@@ -5,26 +5,43 @@ import { useTranslations } from "next-intl";
 import { Input, Select, Textarea } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 
-export function ContactForm({ recipientEmail }: { recipientEmail: string }) {
+type Status = "idle" | "sending" | "sent" | "error";
+
+export function ContactForm() {
   const t = useTranslations("contact");
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const firstName = String(form.get("firstName") ?? "");
-    const lastName = String(form.get("lastName") ?? "");
-    const email = String(form.get("email") ?? "");
-    const subject = String(form.get("subject") ?? "");
-    const message = String(form.get("message") ?? "");
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      firstName: String(data.get("firstName") ?? ""),
+      lastName: String(data.get("lastName") ?? ""),
+      email: String(data.get("email") ?? ""),
+      subject: String(data.get("subject") ?? ""),
+      message: String(data.get("message") ?? ""),
+    };
 
-    const body = `${message}\n\n—\n${firstName} ${lastName}\n${email}`;
-    const mailto = `mailto:${recipientEmail}?subject=${encodeURIComponent(
-      `[Inaya.farm] ${subject}`,
-    )}&body=${encodeURIComponent(body)}`;
+    setStatus("sending");
 
-    window.location.href = mailto;
-    setSent(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const subjectOptions = t.raw("subjectOptions") as string[];
@@ -51,9 +68,13 @@ export function ContactForm({ recipientEmail }: { recipientEmail: string }) {
         ))}
       </Select>
       <Textarea dark name="message" rows={6} placeholder={t("messagePlaceholder")} required />
-      <Button type="submit">{t("submit")}</Button>
-      {sent ? (
-        <p className="text-[13px] text-accent-light">✓ {t("appointmentNote")}</p>
+      <Button type="submit" disabled={status === "sending"}>
+        {status === "sending" ? t("sending") : t("submit")}
+      </Button>
+      {status === "sent" ? (
+        <p className="text-[13px] text-accent-light">✓ {t("sentMessage")}</p>
+      ) : status === "error" ? (
+        <p className="text-[13px] text-red-400">{t("errorMessage")}</p>
       ) : (
         <span className="text-[12.5px] opacity-50 leading-relaxed">{t("appointmentNote")}</span>
       )}

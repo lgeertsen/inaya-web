@@ -1,9 +1,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 // Internal shelter-operations data for an animal: identity/status fields plus
-// intake/outcome history, vaccines, treatments, and vet appointments. All of
-// this lives in tables with admin-only RLS (see supabase/migrations/0002_*)
-// and must never be surfaced on public pages.
+// intake/outcome history, vaccines, and treatments. Vet visits live in
+// lib/vet-visits.ts (they can span multiple animals). All of this lives in
+// tables with admin-only RLS (see supabase/migrations/0002_*, 0003_*) and
+// must never be surfaced on public pages.
 
 export type AnimalIntakeReason =
   | "stray"
@@ -24,7 +25,6 @@ export type AnimalOutcomeReason =
   | "adopted";
 
 export type TreatmentMeasurementUnit = "pill" | "spoon" | "ml" | "cl";
-export type VetAppointmentStatus = "pending" | "completed" | "canceled";
 
 export interface AnimalInternalDetails {
   animalId: string;
@@ -117,26 +117,6 @@ export interface AnimalTreatmentInsert {
   measurement: TreatmentMeasurementUnit;
   dayStep?: number | null;
   dayTimes?: number | null;
-}
-
-export interface AnimalVetAppointment {
-  id: string;
-  animalId: string;
-  scheduledAt: string;
-  reason: string;
-  status: VetAppointmentStatus;
-  followUpDate: string | null;
-  followUpCompleted: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface AnimalVetAppointmentInsert {
-  scheduledAt: string;
-  reason: string;
-  status?: VetAppointmentStatus;
-  followUpDate?: string | null;
-  followUpCompleted?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -460,85 +440,5 @@ export async function updateAnimalTreatment(
 
 export async function deleteAnimalTreatment(supabase: SupabaseClient, treatmentId: string): Promise<void> {
   const { error } = await supabase.from("animal_treatments").delete().eq("id", treatmentId);
-  if (error) throw error;
-}
-
-// Vet appointments --------------------------------------------------------
-
-function toVetAppointment(row: Row): AnimalVetAppointment {
-  return {
-    id: row.id,
-    animalId: row.animal_id,
-    scheduledAt: row.scheduled_at,
-    reason: row.reason,
-    status: row.status,
-    followUpDate: row.follow_up_date,
-    followUpCompleted: row.follow_up_completed,
-    createdAt: row.created_at,
-    updatedAt: row.updated_at,
-  };
-}
-
-export async function listAnimalVetAppointments(
-  supabase: SupabaseClient,
-  animalId: string,
-): Promise<AnimalVetAppointment[]> {
-  const { data, error } = await supabase
-    .from("animal_vet_appointments")
-    .select("*")
-    .eq("animal_id", animalId)
-    .order("scheduled_at", { ascending: false });
-  if (error) throw error;
-  return (data ?? []).map(toVetAppointment);
-}
-
-export async function createAnimalVetAppointment(
-  supabase: SupabaseClient,
-  animalId: string,
-  values: AnimalVetAppointmentInsert,
-): Promise<AnimalVetAppointment> {
-  const { data, error } = await supabase
-    .from("animal_vet_appointments")
-    .insert({
-      animal_id: animalId,
-      scheduled_at: values.scheduledAt,
-      reason: values.reason,
-      status: values.status ?? "pending",
-      follow_up_date: values.followUpDate,
-      follow_up_completed: values.followUpCompleted ?? false,
-    })
-    .select("*")
-    .single();
-  if (error) throw error;
-  return toVetAppointment(data);
-}
-
-export async function updateAnimalVetAppointment(
-  supabase: SupabaseClient,
-  appointmentId: string,
-  values: Partial<AnimalVetAppointmentInsert>,
-): Promise<AnimalVetAppointment> {
-  const row: Record<string, unknown> = {};
-  if (values.scheduledAt !== undefined) row.scheduled_at = values.scheduledAt;
-  if (values.reason !== undefined) row.reason = values.reason;
-  if (values.status !== undefined) row.status = values.status;
-  if (values.followUpDate !== undefined) row.follow_up_date = values.followUpDate;
-  if (values.followUpCompleted !== undefined) row.follow_up_completed = values.followUpCompleted;
-
-  const { data, error } = await supabase
-    .from("animal_vet_appointments")
-    .update(row)
-    .eq("id", appointmentId)
-    .select("*")
-    .single();
-  if (error) throw error;
-  return toVetAppointment(data);
-}
-
-export async function deleteAnimalVetAppointment(
-  supabase: SupabaseClient,
-  appointmentId: string,
-): Promise<void> {
-  const { error } = await supabase.from("animal_vet_appointments").delete().eq("id", appointmentId);
   if (error) throw error;
 }

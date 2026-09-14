@@ -196,6 +196,9 @@
     "subjectOptions": ["Adoption", "Sponsorship", "Volunteering", "Fostering", "Donation / wishlist", "Other"],
     "messagePlaceholder": "Your message",
     "submit": "Send",
+    "sending": "Sending…",
+    "sentMessage": "Thank you, your message has been sent!",
+    "errorMessage": "Something went wrong. Please try again or email us directly.",
     "appointmentNote": "We welcome visitors by appointment only, to preserve the animals' calm.",
     "mapCaption": "Villeneuve-sur-Lot"
   },
@@ -217,6 +220,7 @@
     },
     "nav": {
       "animals": "Animals",
+      "calendar": "Calendar",
       "donations": "Donations",
       "signOut": "Sign out"
     },
@@ -336,27 +340,49 @@
         }
       },
       "vetAppointments": {
-        "title": "Vet appointments",
-        "add": "Add an appointment",
         "scheduledAt": "Date & time",
         "reason": "Reason",
         "status": "Status",
         "followUpDate": "Follow-up date",
-        "followUpCompleted": "Follow-up completed",
-        "delete": "Delete",
-        "deleteConfirm": "Permanently delete this appointment?",
-        "empty": "No vet appointments recorded yet.",
-        "statuses": {
-          "pending": "Pending",
-          "completed": "Completed",
-          "canceled": "Canceled"
-        }
+        "view": "View",
+        "empty": "No vet visits recorded yet."
       }
     },
     "donations": {
       "title": "Donations received",
       "empty": "No donations recorded yet.",
       "columns": { "date": "Date", "donor": "Donor", "amount": "Amount", "frequency": "Frequency", "status": "Status" }
+    },
+    "calendar": {
+      "title": "Vet calendar",
+      "monthView": "Month",
+      "weekView": "Week",
+      "today": "Today",
+      "addVisit": "Add a visit",
+      "save": "Save",
+      "animals": "Animals",
+      "notes": "Notes",
+      "reason": "Reason",
+      "status": "Status",
+      "scheduledAt": "Start",
+      "searchAnimals": "Search animals…",
+      "followUpDate": "Follow-up date",
+      "followUpCompleted": "Follow-up completed",
+      "addAnimal": "Add animal",
+      "removeAnimal": "Remove",
+      "removeAnimalConfirm": "Remove this animal from the visit?",
+      "syncPending": "Not synced yet",
+      "syncSynced": "Synced to Veto",
+      "syncFailed": "Sync failed",
+      "retrySync": "Retry sync",
+      "delete": "Delete",
+      "deleteConfirm": "Permanently delete this vet visit?",
+      "empty": "No vet visits scheduled.",
+      "statuses": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "canceled": "Canceled"
+      }
     }
   }
 }

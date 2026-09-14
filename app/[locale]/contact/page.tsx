@@ -62,7 +62,7 @@ export default async function ContactPage() {
           </div>
         </Card>
 
-        <ContactForm recipientEmail={common("email")} />
+        <ContactForm />
       </div>
     </Container>
   );

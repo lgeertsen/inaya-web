@@ -47,6 +47,9 @@ insert into animal_treatments (animal_id, name, medicine, start_date, end_date, 
 select id, 'Vermifuge', 'Milbemax', '2022-06-01', '2022-06-01', 1, 'pill', 90, 1
 from animals where name = 'Nala';
 
-insert into animal_vet_appointments (animal_id, scheduled_at, reason, status)
-select id, '2022-06-16 10:00+02', 'Bilan de santé initial', 'completed'
-from animals where name = 'Nala';
+-- Vet visits (0003_vet_visits.sql) — one visit, one animal, as an example.
+select create_vet_visit(
+  '2022-06-16 10:00+02', '2022-06-16 10:30+02', 'Bilan de santé initial', 'completed',
+  array[(select id from animals where name = 'Nala')],
+  null
+);

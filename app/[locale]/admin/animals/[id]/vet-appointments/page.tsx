@@ -1,10 +1,8 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { listAnimalVetAppointments, type AnimalVetAppointment } from "@/lib/animal-care";
+import { listVetVisitsForAnimal, type VetVisitForAnimal } from "@/lib/vet-visits";
 import { AdminTable, type AdminTableColumn } from "@/components/admin/AdminTable";
-import { DeleteRowButton } from "@/components/admin/DeleteRowButton";
-import { VetAppointmentStatusSelect } from "@/components/admin/VetAppointmentStatusSelect";
-import { AnimalVetAppointmentForm } from "@/components/admin/AnimalVetAppointmentForm";
 
 export default async function AnimalVetAppointmentsPage({
   params,
@@ -13,42 +11,25 @@ export default async function AnimalVetAppointmentsPage({
 }) {
   const { id } = await params;
   const supabase = await createClient();
-  const appointments = await listAnimalVetAppointments(supabase, id);
+  const visits = await listVetVisitsForAnimal(supabase, id);
   const t = await getTranslations("admin.animals.vetAppointments");
+  const statusT = await getTranslations("admin.calendar.statuses");
 
-  const columns: AdminTableColumn<AnimalVetAppointment>[] = [
+  const columns: AdminTableColumn<VetVisitForAnimal>[] = [
     { header: t("scheduledAt"), render: (row) => new Date(row.scheduledAt).toLocaleString() },
     { header: t("reason"), render: (row) => row.reason },
-    {
-      header: t("status"),
-      render: (row) => (
-        <VetAppointmentStatusSelect
-          endpoint={`/api/admin/animals/${id}/vet-appointments/${row.id}`}
-          status={row.status}
-        />
-      ),
-    },
+    { header: t("status"), render: (row) => statusT(row.status) },
     { header: t("followUpDate"), render: (row) => row.followUpDate ?? "—" },
     {
       header: "",
       className: "text-right",
       render: (row) => (
-        <DeleteRowButton
-          endpoint={`/api/admin/animals/${id}/vet-appointments/${row.id}`}
-          label={t("delete")}
-          confirmMessage={t("deleteConfirm")}
-        />
+        <Link href={`/admin/calendar/${row.id}`} className="font-bold text-accent">
+          {t("view")}
+        </Link>
       ),
     },
   ];
 
-  return (
-    <div className="flex flex-col gap-8">
-      <AdminTable columns={columns} rows={appointments} emptyMessage={t("empty")} />
-      <div className="flex flex-col gap-3 max-w-2xl">
-        <h2 className="text-lg font-bold">{t("add")}</h2>
-        <AnimalVetAppointmentForm animalId={id} />
-      </div>
-    </div>
-  );
+  return <AdminTable columns={columns} rows={visits} emptyMessage={t("empty")} />;
 }

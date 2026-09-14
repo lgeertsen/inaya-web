@@ -196,6 +196,9 @@
     "subjectOptions": ["Adoption", "Parrainage", "Bénévolat", "Famille d'accueil", "Don / wishlist", "Autre"],
     "messagePlaceholder": "Votre message",
     "submit": "Envoyer",
+    "sending": "Envoi en cours…",
+    "sentMessage": "Merci, votre message a bien été envoyé !",
+    "errorMessage": "Une erreur est survenue. Merci de réessayer ou de nous écrire directement.",
     "appointmentNote": "Nous accueillons sur rendez-vous uniquement, afin de préserver le calme des animaux.",
     "mapCaption": "Villeneuve-sur-Lot"
   },
@@ -217,6 +220,7 @@
     },
     "nav": {
       "animals": "Animaux",
+      "calendar": "Calendrier",
       "donations": "Dons",
       "signOut": "Se déconnecter"
     },
@@ -336,27 +340,49 @@
         }
       },
       "vetAppointments": {
-        "title": "Rendez-vous vétérinaire",
-        "add": "Ajouter un rendez-vous",
         "scheduledAt": "Date et heure",
         "reason": "Motif",
         "status": "Statut",
         "followUpDate": "Date de rappel",
-        "followUpCompleted": "Rappel effectué",
-        "delete": "Supprimer",
-        "deleteConfirm": "Supprimer définitivement ce rendez-vous ?",
-        "empty": "Aucun rendez-vous enregistré.",
-        "statuses": {
-          "pending": "En attente",
-          "completed": "Terminé",
-          "canceled": "Annulé"
-        }
+        "view": "Voir",
+        "empty": "Aucune visite vétérinaire enregistrée."
       }
     },
     "donations": {
       "title": "Dons reçus",
       "empty": "Aucun don enregistré pour le moment.",
       "columns": { "date": "Date", "donor": "Donateur", "amount": "Montant", "frequency": "Fréquence", "status": "Statut" }
+    },
+    "calendar": {
+      "title": "Calendrier vétérinaire",
+      "monthView": "Mois",
+      "weekView": "Semaine",
+      "today": "Aujourd'hui",
+      "addVisit": "Ajouter une visite",
+      "save": "Enregistrer",
+      "animals": "Animaux",
+      "notes": "Notes",
+      "reason": "Motif",
+      "status": "Statut",
+      "scheduledAt": "Début",
+      "searchAnimals": "Rechercher un animal…",
+      "followUpDate": "Date de rappel",
+      "followUpCompleted": "Rappel effectué",
+      "addAnimal": "Ajouter un animal",
+      "removeAnimal": "Retirer",
+      "removeAnimalConfirm": "Retirer cet animal de la visite ?",
+      "syncPending": "Pas encore synchronisé",
+      "syncSynced": "Synchronisé avec Veto",
+      "syncFailed": "Échec de la synchronisation",
+      "retrySync": "Réessayer la synchronisation",
+      "delete": "Supprimer",
+      "deleteConfirm": "Supprimer définitivement cette visite vétérinaire ?",
+      "empty": "Aucune visite vétérinaire planifiée.",
+      "statuses": {
+        "pending": "En attente",
+        "completed": "Terminé",
+        "canceled": "Annulé"
+      }
     }
   }
 }

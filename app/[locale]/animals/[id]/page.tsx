@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { getAnimalById } from "@/lib/animals";
+import { getAnimalById, getPlaceholderPhotoUrl } from "@/lib/animals";
 import { computeAge } from "@/lib/format";
 
 export default async function AnimalDetailPage({
@@ -28,6 +28,7 @@ export default async function AnimalDetailPage({
   const bio = (locale === "fr" ? animal.bioFr : animal.bioEn) || animal.bioFr || animal.bioEn;
   const cover = animal.photos[0];
   const gallery = animal.photos.slice(1);
+  const placeholder = getPlaceholderPhotoUrl(animal.species);
 
   return (
     <Container className="py-16">
@@ -37,9 +38,16 @@ export default async function AnimalDetailPage({
 
       <div className="mt-6 grid gap-10 md:grid-cols-2">
         <div className="flex flex-col gap-3">
-          <div className="relative aspect-4/5 rounded-panel overflow-hidden bg-[repeating-linear-gradient(135deg,#dedcdd_0_12px,#d5d3d4_12px_24px)]">
+          <div className="relative aspect-4/5 rounded-panel overflow-hidden bg-[radial-gradient(circle_at_50%_38%,#fdeefa_0%,#f3eef2_55%,#e9e6e8_100%)]">
             {cover ? (
               <Image src={cover.url} alt={animal.name} fill className="object-cover" />
+            ) : placeholder ? (
+              <Image
+                src={placeholder}
+                alt={animal.name}
+                fill
+                className="object-contain p-10 opacity-80"
+              />
             ) : null}
           </div>
           {gallery.length > 0 ? (

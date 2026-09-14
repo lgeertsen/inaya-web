@@ -7,6 +7,15 @@ export type AnimalSex = "male" | "female" | "unknown";
 
 export const PHOTO_BUCKET = "animal-photos";
 
+const PLACEHOLDER_PHOTOS: Partial<Record<AnimalSpecies, string>> = {
+  cat: "/images/animal-placeholder-cat.png",
+  dog: "/images/animal-placeholder-dog.png",
+};
+
+export function getPlaceholderPhotoUrl(species: AnimalSpecies): string | null {
+  return PLACEHOLDER_PHOTOS[species] ?? null;
+}
+
 export interface AnimalPhoto {
   id: string;
   storagePath: string;
@@ -138,6 +147,23 @@ export async function getAnimals(
   const { data, error } = await query;
   if (error) throw error;
   return (data ?? []).map((row: Row) => toAnimal(supabase, row));
+}
+
+export interface AnimalOption {
+  id: string;
+  name: string;
+  species: AnimalSpecies;
+}
+
+// Lightweight listing for pickers (e.g. the vet-visit multi-select) that
+// don't need the full Animal shape (bio, photos, ...).
+export async function listAnimalOptions(supabase: SupabaseClient): Promise<AnimalOption[]> {
+  const { data, error } = await supabase
+    .from("animals")
+    .select("id, name, species")
+    .order("name", { ascending: true });
+  if (error) throw error;
+  return data ?? [];
 }
 
 export async function getAnimalById(

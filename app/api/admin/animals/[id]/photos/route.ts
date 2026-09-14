@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import sharp from "sharp";
 import { requireAdmin } from "@/lib/auth";
 import { addAnimalPhoto, deleteAnimalPhoto, PHOTO_BUCKET } from "@/lib/animals";
+
+const MAX_DIMENSION = 1600;
+const WEBP_QUALITY = 80;
 
 export async function POST(
   request: NextRequest,
@@ -21,13 +25,31 @@ export async function POST(
   let position = count ?? 0;
 
   for (const file of files) {
-    const ext = file.name.split(".").pop() || "jpg";
-    const path = `${id}/${crypto.randomUUID()}.${ext}`;
-    const arrayBuffer = await file.arrayBuffer();
+    const path = `${id}/${crypto.randomUUID()}.webp`;
+
+    let webpBuffer: Buffer;
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      webpBuffer = await sharp(Buffer.from(arrayBuffer))
+        .rotate()
+        .resize({
+          width: MAX_DIMENSION,
+          height: MAX_DIMENSION,
+          fit: "inside",
+          withoutEnlargement: true,
+        })
+        .webp({ quality: WEBP_QUALITY })
+        .toBuffer();
+    } catch {
+      return NextResponse.json(
+        { error: `Could not process image: ${file.name}` },
+        { status: 400 },
+      );
+    }
 
     const { error: uploadError } = await supabase.storage
       .from(PHOTO_BUCKET)
-      .upload(path, arrayBuffer, { contentType: file.type });
+      .upload(path, webpBuffer, { contentType: "image/webp" });
 
     if (uploadError) {
       return NextResponse.json({ error: uploadError.message }, { status: 500 });

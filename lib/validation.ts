@@ -118,15 +118,28 @@ export const animalTreatmentFormSchema = z.object({
 export type AnimalTreatmentFormValues = z.infer<typeof animalTreatmentFormSchema>;
 export type AnimalTreatmentFormInput = z.input<typeof animalTreatmentFormSchema>;
 
-export const animalVetAppointmentFormSchema = z.object({
+// Vet visits always block exactly one hour (see computeVisitEndAt in
+// lib/vet-visits.ts) — there's no end-time input.
+export const vetVisitFormSchema = z.object({
   scheduledAt: z.string().min(1, "Date/time is required"),
   reason: z.string().trim().min(1, "Reason is required"),
   status: vetAppointmentStatusSchema,
+  animalIds: z.array(z.string().uuid()).min(1, "Select at least one animal"),
+});
+
+export type VetVisitFormValues = z.infer<typeof vetVisitFormSchema>;
+
+export const vetVisitAnimalFormSchema = z.object({
+  notes: z.string().trim().optional().nullable(),
   followUpDate: z.string().optional().nullable(),
   followUpCompleted: z.boolean(),
 });
 
-export type AnimalVetAppointmentFormValues = z.infer<typeof animalVetAppointmentFormSchema>;
+export type VetVisitAnimalFormValues = z.infer<typeof vetVisitAnimalFormSchema>;
+
+export const vetVisitAddAnimalSchema = z.object({
+  animalId: z.string().uuid(),
+});
 
 export const contactFormSchema = z.object({
   firstName: z.string().trim().min(1),

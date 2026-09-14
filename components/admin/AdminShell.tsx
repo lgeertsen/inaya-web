@@ -24,6 +24,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
           <Link href="/admin/animals" className="text-sm font-bold hover:text-accent">
             {t("animals")}
           </Link>
+          <Link href="/admin/calendar" className="text-sm font-bold hover:text-accent">
+            {t("calendar")}
+          </Link>
           <Link href="/admin/donations" className="text-sm font-bold hover:text-accent">
             {t("donations")}
           </Link>
