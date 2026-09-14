@@ -1,0 +1,362 @@
+{
+  "common": {
+    "appName": "Association Inaya",
+    "tagline": "Sanctuaire animalier",
+    "location": "Villeneuve-sur-Lot, Lot-et-Garonne, France",
+    "email": "inaya.farm@gmail.com",
+    "rights": "© 2021–2026 Association Inaya — Textes & photographies, tous droits réservés.",
+    "photoCredits": "Photos : Audrey Demaretz, Isabelle Caire & l'équipe Inaya"
+  },
+  "announcement": {
+    "text": "Le sanctuaire vit grâce à vous — chaque don finance soins, foin et croquettes.",
+    "cta": "En savoir plus"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "team": "Notre équipe",
+    "animals": "Nos animaux",
+    "adopt": "Adopter",
+    "surrender": "Céder un animal",
+    "help": "Aidez-nous",
+    "contact": "Contact",
+    "donate": "Faire un don"
+  },
+  "home": {
+    "eyebrow": "Villeneuve-sur-Lot · Lot-et-Garonne",
+    "title": "Un refuge pour vieillir en paix",
+    "body": "Nous accueillons tous les animaux quadrupèdes — jeunes ou vieux, sains ou malades. Chats, chiens, chèvres et chevaux reçoivent ici des soins, un endroit paisible et un environnement sûr pour la vie.",
+    "ctaAnimals": "Rencontrer nos animaux",
+    "ctaHelp": "Comment aider ?",
+    "statResidents": "Pensionnaires",
+    "statResidentsValue": "120+",
+    "statSince": "Depuis",
+    "statSinceValue": "2016",
+    "statLand": "De terrain",
+    "statLandValue": "4 ha",
+    "animalsEyebrow": "Nos animaux",
+    "animalsTitle": "Ils cherchent une famille ou un parrain",
+    "animalsIntro": "Certains repartiront dans un foyer, d'autres resteront chez nous pour toujours. Dans les deux cas, votre soutien change leur quotidien.",
+    "animalsCta": "Tous les animaux",
+    "aboutEyebrow": "Bienvenue",
+    "aboutTitle": "Un sanctuaire dans le Sud de la France",
+    "aboutBody": "L'Association Inaya a construit un sanctuaire pour animaux domestiques où aucun animal n'est jugé sur son âge ou son état de santé. Nous accueillons principalement chats, chiens, chèvres et chevaux, mais notre porte reste ouverte à toutes sortes d'animaux.",
+    "aboutNeed": "Nous avons besoin de vous pour continuer.",
+    "aboutCta": "Agir pour le sanctuaire",
+    "helpEyebrow": "Comment",
+    "helpTitle": "Aider le sanctuaire ?",
+    "helpIntro": "Il y a une place pour chacun, avec ou sans budget, près d'ici ou à l'autre bout de l'Europe.",
+    "donateTitle": "20 € nourrissent un pensionnaire pendant un mois",
+    "donateBody": "Dons ponctuels, dons mensuels ou parrainage : tout arrive directement aux animaux. Réduction fiscale de 66 % pour les contribuables français.",
+    "donateCta": "Faire un don",
+    "contactTitle": "Une question, une envie d'adopter ?",
+    "contactIntro": "Écrivez-nous : nous répondons à chaque message, même si cela prend parfois quelques jours."
+  },
+  "helpCards": {
+    "donation": { "title": "Faire un don", "text": "Ponctuel ou mensuel, avec réduction fiscale de 66 % de la somme versée." },
+    "sponsorship": { "title": "Parrainer un animal", "text": "À partir de 5 €/mois, un lien privilégié avec votre pensionnaire préféré." },
+    "adoption": { "title": "Adopter", "text": "Les animaux qui peuvent repartir cherchent un foyer calme et patient." },
+    "volunteer": { "title": "Bénévolat", "text": "Un coup de main sur place : soins, entretien, aménagement des enclos." },
+    "legacy": { "title": "Legs", "text": "Transmettre une partie de vos biens pour protéger les animaux après vous." }
+  },
+  "about": {
+    "title": "À propos de nous",
+    "body1": "Depuis des dizaines d'années, nous accueillons des animaux en détresse en leur offrant un foyer. Au tout début, nous avons commencé notre chemin en stérilisant des chats abandonnés, après, nous nous sommes occupés des chiens, et plus tard nous avons aussi accueilli des chevaux âgés.",
+    "body2": "Notre sanctuaire a continué à évoluer jusqu'au printemps 2019, où nous nous sommes trouvés au bord du gouffre financier. Une ponette, qui s'appelle Inaya, a été très malade et a dû être hospitalisée deux fois. Elle a eu besoin de traitements et de nourriture très coûteux. Cela nous a financièrement mis la corde au cou. Les coûts élevés pour Inaya ont mis en péril la continuité de notre activité et nous ont fait réaliser que nous ne pouvions pas continuer seuls à assumer les soins pour tous les animaux. Raison pour laquelle nous avons constitué notre association afin d'être soutenus dans notre mission. Grâce à Inaya, nous avons compris que ce projet devait être partagé avec de nombreux amis d'animaux, et c'est la raison pour laquelle notre association porte son nom.",
+    "body3": "Aujourd'hui, nous poursuivons notre passion d'accueillir et de soigner les animaux en détresse. Nous sommes en plein développement pour agrandir notre sanctuaire et accueillir plus de protégés, leur offrant un havre de paix pour vieillir en toute sérénité."
+  },
+  "team": {
+    "title": "Notre équipe"
+  },
+  "animals": {
+    "title": "Nos animaux",
+    "intro": "Certains cherchent une famille, d'autres un parrain pour rester avec nous à vie.",
+    "empty": "Aucun animal ne correspond à ces filtres pour le moment.",
+    "viewProfile": "Faire connaissance",
+    "backToList": "Retour aux animaux",
+    "filters": {
+      "species": "Espèce",
+      "track": "Statut",
+      "allSpecies": "Toutes les espèces",
+      "allTracks": "Tous",
+      "cat": "Chat",
+      "dog": "Chien",
+      "horse": "Cheval",
+      "goat": "Chèvre",
+      "other": "Autre",
+      "adoption": "Adoption",
+      "sponsorship": "Parrainage",
+      "available": "Disponible",
+      "pending": "En cours d'adoption",
+      "adopted": "Adopté"
+    },
+    "sex": { "male": "Mâle", "female": "Femelle", "unknown": "Non renseigné" },
+    "yearsOld": "{age, plural, one {# an} other {# ans}}",
+    "keyFacts": "Informations",
+    "breed": "Race",
+    "age": "Âge",
+    "sexLabel": "Sexe",
+    "arrived": "Arrivé(e) en",
+    "specialNeeds": "Besoins spécifiques",
+    "adoptionCta": "Faire une demande d'adoption",
+    "sponsorshipCta": "Parrainer {name}",
+    "adoptedNote": "{name} a trouvé sa famille pour toujours.",
+    "pendingNote": "Une famille est en cours de validation pour {name}."
+  },
+  "adopt": {
+    "title": "Adopter à Inaya",
+    "intro": "Vous aimeriez adopter un chien ou un chat à Inaya ?",
+    "procedureTitle": "La procédure à suivre",
+    "steps": [
+      "Vous appelez le 06 11 50 13 17 pour fixer un rendez-vous pour visiter les animaux. Le sanctuaire n'a pas d'horaires d'ouverture et fait de l'accueil sur RDV uniquement.",
+      "Vous avez un coup de cœur et vous aimeriez réserver un animal pour l'adopter.",
+      "Vous remplissez un « certificat d'engagement et de connaissance » qui vous oblige à bien réfléchir — au moins une semaine — avant d'adopter.",
+      "Pendant cette semaine, un bénévole d'INAYA vous rendra visite pour parler de votre projet d'adoption et pour vérifier si votre foyer est adapté à accueillir l'animal de votre choix. Le bénévole nous donnera son avis pour accepter ou refuser votre candidature.",
+      "Après un feu vert, vous pouvez reprendre RDV afin de remplir le contrat d'adoption, payer les frais d'adoption et venir chercher l'animal. Pour compléter votre dossier, apportez une copie de votre carte d'identité et un justificatif de domicile.",
+      "Environ un mois après, un bénévole effectue une visite pour vérifier que tout se passe bien. Si c'est le cas, l'adoption sera validée et la puce transférée à votre nom. En cas de rétractation, il n'y a pas de remboursement.",
+      "Le refuge a le droit d'exécuter une visite de contrôle imprévue et de retirer un animal s'il est en danger.",
+      "Si l'adoptant ne peut plus continuer de prendre en charge l'animal, il est obligé de le retourner au sanctuaire. Il est interdit de céder l'animal à un tiers ou de le mettre à l'adoption sur les réseaux sociaux."
+    ],
+    "pricingTitle": "Tarifs (1er janvier 2025)",
+    "dogPricingNote": "Nos chiens sont pucés, vermifugés, (au moins primo) vaccinés et stérilisés + adhésion 2025 comprise.",
+    "catPricingNote": "Nos chats sont pucés, vermifugés, (au moins primo) vaccinés, stérilisés et testés Fiv/Felv + adhésion 2025 comprise.",
+    "unsterilizedNote": "Si l'animal n'est pas encore stérilisé au moment de son adoption, vous recevrez un certificat de prise en charge par INAYA. Avec ce document, vous passez gratuitement dans notre clinique vétérinaire quand l'animal a l'âge adapté pour être stérilisé.",
+    "dogRows": [
+      { "label": "Chiot", "note": "stérilisation comprise", "price": "500 €" },
+      { "label": "Chienne stérilisée", "note": "", "price": "400 €" },
+      { "label": "Chien castré", "note": "", "price": "350 €" }
+    ],
+    "catRows": [
+      { "label": "Chatte stérilisée", "note": "", "price": "285 €" },
+      { "label": "Chat castré", "note": "", "price": "240 €" },
+      { "label": "Chaton femelle", "note": "stérilisation comprise", "price": "285 €" },
+      { "label": "Chaton mâle", "note": "stérilisation comprise", "price": "240 €" }
+    ]
+  },
+  "surrender": {
+    "title": "Céder un animal",
+    "intro": "Vous voulez céder votre animal ?",
+    "waitlistNote": "Sachez que notre sanctuaire est souvent plein à cause du grand nombre de sauvetages, des urgences et des imprévus… Pour cette raison, il y a une liste d'attente pour une durée indéfinie.",
+    "conditionsTitle": "Pour céder un chien ou un chat, il y a plusieurs conditions :",
+    "conditions": [
+      "L'animal est identifié (puce ou tatouage) au nom du cédant. En cas de décès du propriétaire, une copie de l'acte de décès est nécessaire.",
+      "Vous êtes en possession de la carte d'identité I-CAD (document A4 bleu) que vous devez signer au dos en cas de cession. Si ce document manque, nous devons établir un certificat de cession, accompagné d'une copie de votre carte d'identité.",
+      "Les frais de cession sont de 180 € pour un chien stérilisé et 100 € pour un chat stérilisé. Ce don aide le refuge à nourrir et soigner (vermifuge, vaccination, traitements anti-puces, collier Seresto, etc.) votre animal, qui restera avec nous pour un séjour court ou plusieurs années. Si l'animal n'est pas stérilisé, les frais de cession sont doublés, la stérilisation étant réalisée ici à l'entrée par notre clinique vétérinaire."
+    ]
+  },
+  "help": {
+    "title": "Aidez-nous",
+    "intro": "En tant qu'organisation à but non lucratif, nous sommes constamment à la recherche de fonds pour assurer la continuation des soins des animaux. La plus grande partie de nos fonds est dépensée à l'alimentation quotidienne de tous nos animaux : foin, nourriture sèche, compléments alimentaires et entretien des pâturages. Il y a aussi les frais médicaux fixes tels que la stérilisation et la castration, l'achat de produits de déparasitage et de traitements préventifs contre puces, tiques et poux. Ensuite, il y a les produits de nettoyage et de désinfection, les frais dentaires et l'entretien des sabots. Enfin, il y a parfois des coûts inattendus et lourds en cas de maladie ou d'accident. La liste est longue.",
+    "howTitle": "Comment pouvez-vous nous aider ?",
+    "gift": { "title": "Don", "text": "En faisant une donation unique qui pérennise notre futur proche." },
+    "sponsorship": { "title": "Parrainage", "text": "Vous pouvez parrainer un animal en particulier en devenant parrain ou marraine. Consultez la liste de nos protégés sur la page « Nos animaux » et choisissez un montant mensuel fixe. Votre nom apparaîtra sous le passeport de l'animal choisi, et chaque année vous recevrez des nouvelles et des photos de votre filleul." },
+    "adoption": { "title": "Adoption", "text": "Parfois, nous recherchons des familles adoptives. Notre sanctuaire étant limité en espace, certains animaux ne peuvent pas rester indéfiniment. Les candidats à l'adoption sont présélectionnés et versent une contribution au profit des animaux qui restent." },
+    "bankTransferTitle": "Vous voulez nous soutenir par virement ?",
+    "iban": "FR76 1330 6003 8623 1286 2576 314",
+    "bic": "AGRIFRPP833",
+    "donateCta": "Faire un don en ligne"
+  },
+  "donate": {
+    "title": "Faire un don",
+    "intro": "Chaque don, ponctuel ou mensuel, arrive directement aux animaux du sanctuaire.",
+    "sponsorTitle": "Parrainer {name}",
+    "sponsorIntro": "Votre don soutient directement {name} et son quotidien au sanctuaire.",
+    "sponsorBanner": "Ce don sera attribué à {name}.",
+    "switchToGeneral": "Faire un don général à la place",
+    "amountLabel": "Montant",
+    "customAmountLabel": "Autre montant (€)",
+    "frequencyLabel": "Fréquence",
+    "oneTime": "Ponctuel",
+    "monthly": "Mensuel",
+    "submit": "Continuer vers le paiement sécurisé",
+    "taxNote": "Réduction fiscale de 66 % pour les contribuables français — un reçu Stripe vous est envoyé par e-mail ; contactez-nous pour un reçu fiscal officiel.",
+    "poweredBy": "Paiement sécurisé par Stripe.",
+    "success": {
+      "title": "Merci pour votre don !",
+      "body": "Votre soutien fait une vraie différence pour les animaux du sanctuaire. Un reçu vous a été envoyé par e-mail.",
+      "backHome": "Retour à l'accueil"
+    },
+    "cancel": {
+      "title": "Don annulé",
+      "body": "Aucun paiement n'a été effectué. Vous pouvez réessayer à tout moment.",
+      "retry": "Réessayer"
+    }
+  },
+  "contact": {
+    "title": "Une question, une envie d'adopter ?",
+    "intro": "Écrivez-nous : nous répondons à chaque message, même si cela prend parfois quelques jours.",
+    "addressLabel": "Nos coordonnées",
+    "emailLabel": "Nous écrire",
+    "socialLabel": "Nos réseaux",
+    "formTitle": "Envoyer un message",
+    "firstNamePlaceholder": "Prénom",
+    "lastNamePlaceholder": "Nom",
+    "emailPlaceholder": "E-mail",
+    "subjectPlaceholder": "Objet du message",
+    "subjectOptions": ["Adoption", "Parrainage", "Bénévolat", "Famille d'accueil", "Don / wishlist", "Autre"],
+    "messagePlaceholder": "Votre message",
+    "submit": "Envoyer",
+    "appointmentNote": "Nous accueillons sur rendez-vous uniquement, afin de préserver le calme des animaux.",
+    "mapCaption": "Villeneuve-sur-Lot"
+  },
+  "footer": {
+    "about": "Sanctuaire pour animaux domestiques\nVilleneuve-sur-Lot, Lot-et-Garonne",
+    "linksTitle": "Liens",
+    "helpTitle": "Aidez-nous",
+    "animalsTitle": "Animaux",
+    "linkAdopted": "Animaux adoptés",
+    "linkThanks": "Remerciements"
+  },
+  "admin": {
+    "login": {
+      "title": "Connexion administration",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "error": "E-mail ou mot de passe incorrect."
+    },
+    "nav": {
+      "animals": "Animaux",
+      "donations": "Dons",
+      "signOut": "Se déconnecter"
+    },
+    "animals": {
+      "title": "Gestion des animaux",
+      "add": "Ajouter un animal",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "deleteConfirm": "Supprimer définitivement cet animal et ses photos ?",
+      "publishedYes": "Publié",
+      "publishedNo": "Brouillon",
+      "empty": "Aucun animal pour le moment.",
+      "form": {
+        "name": "Nom",
+        "species": "Espèce",
+        "track": "Statut (adoption / parrainage)",
+        "status": "État",
+        "breed": "Race",
+        "sex": "Sexe",
+        "birthYear": "Année de naissance",
+        "birthMonth": "Mois de naissance",
+        "size": "Taille",
+        "arrivalDate": "Date d'arrivée",
+        "bioFr": "Description (FR)",
+        "bioEn": "Description (EN)",
+        "specialNeeds": "Besoins spécifiques",
+        "isPublished": "Publier sur le site",
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "photos": "Photos",
+        "uploadPhoto": "Ajouter une photo",
+        "removePhoto": "Retirer"
+      },
+      "tabs": {
+        "profile": "Profil",
+        "internalDetails": "Fiche interne",
+        "intakeOutcome": "Entrées / Sorties",
+        "vaccines": "Vaccins",
+        "treatments": "Traitements",
+        "vetAppointments": "Rendez-vous vétérinaire"
+      },
+      "internalDetails": {
+        "title": "Fiche interne",
+        "microchip": "N° de puce",
+        "coat": "Robe / pelage",
+        "birthDate": "Date de naissance",
+        "inShelter": "Présence",
+        "inShelterYes": "Présent",
+        "inShelterNo": "Absent",
+        "save": "Enregistrer"
+      },
+      "intakeOutcome": {
+        "title": "Entrées / Sorties",
+        "addIntake": "Ajouter une entrée",
+        "addOutcome": "Ajouter une sortie",
+        "occurredOn": "Date",
+        "reason": "Motif",
+        "description": "Description",
+        "recordedBy": "Enregistré par",
+        "type": "Type",
+        "intakeLabel": "Entrée",
+        "outcomeLabel": "Sortie",
+        "delete": "Supprimer",
+        "deleteConfirm": "Supprimer définitivement cet événement ?",
+        "empty": "Aucune entrée ni sortie enregistrée.",
+        "intakeReasons": {
+          "stray": "Trouvé errant",
+          "police_surrender": "Confié par la police",
+          "born_in_care": "Naissance",
+          "shelter_transfer": "Sortie fourrière",
+          "association_transfer": "Sortie autre association",
+          "owner_surrender": "Cédé",
+          "abandoned": "Abandon",
+          "cruelty_seizure": "Saisi maltraitance"
+        },
+        "outcomeReasons": {
+          "reunited_with_owner": "Propriétaire retrouvé",
+          "deceased": "Décédé",
+          "euthanized": "Euthanasie",
+          "released": "Relâché",
+          "transferred_to_association": "Parti chez une autre association",
+          "adopted": "Adopté"
+        }
+      },
+      "vaccines": {
+        "title": "Vaccins",
+        "add": "Ajouter un vaccin",
+        "name": "Nom",
+        "administeredOn": "Date d'administration",
+        "followUpDate": "Date de rappel",
+        "followUpCompleted": "Rappel effectué",
+        "delete": "Supprimer",
+        "deleteConfirm": "Supprimer définitivement ce vaccin ?",
+        "empty": "Aucun vaccin enregistré."
+      },
+      "treatments": {
+        "title": "Traitements",
+        "add": "Ajouter un traitement",
+        "name": "Nom",
+        "medicine": "Médicament",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "step": "Étape",
+        "amount": "Dose",
+        "measurement": "Unité",
+        "dayStep": "Intervalle (jours)",
+        "dayTimes": "Fois par jour",
+        "schedule": "Tous les {days} jours, {times}×",
+        "delete": "Supprimer",
+        "deleteConfirm": "Supprimer définitivement ce traitement ?",
+        "empty": "Aucun traitement enregistré.",
+        "measurementUnits": {
+          "pill": "comprimé",
+          "spoon": "cuillère",
+          "ml": "ml",
+          "cl": "cl"
+        }
+      },
+      "vetAppointments": {
+        "title": "Rendez-vous vétérinaire",
+        "add": "Ajouter un rendez-vous",
+        "scheduledAt": "Date et heure",
+        "reason": "Motif",
+        "status": "Statut",
+        "followUpDate": "Date de rappel",
+        "followUpCompleted": "Rappel effectué",
+        "delete": "Supprimer",
+        "deleteConfirm": "Supprimer définitivement ce rendez-vous ?",
+        "empty": "Aucun rendez-vous enregistré.",
+        "statuses": {
+          "pending": "En attente",
+          "completed": "Terminé",
+          "canceled": "Annulé"
+        }
+      }
+    },
+    "donations": {
+      "title": "Dons reçus",
+      "empty": "Aucun don enregistré pour le moment.",
+      "columns": { "date": "Date", "donor": "Donateur", "amount": "Montant", "frequency": "Fréquence", "status": "Statut" }
+    }
+  }
+}

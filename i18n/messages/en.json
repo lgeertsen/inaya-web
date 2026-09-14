@@ -1,0 +1,362 @@
+{
+  "common": {
+    "appName": "Association Inaya",
+    "tagline": "Animal sanctuary",
+    "location": "Villeneuve-sur-Lot, Lot-et-Garonne, France",
+    "email": "inaya.farm@gmail.com",
+    "rights": "© 2021–2026 Association Inaya — Text & photographs, all rights reserved.",
+    "photoCredits": "Photos: Audrey Demaretz, Isabelle Caire & the Inaya team"
+  },
+  "announcement": {
+    "text": "The sanctuary runs on your support — every donation funds care, hay, and food.",
+    "cta": "Learn more"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "team": "Our team",
+    "animals": "Our animals",
+    "adopt": "Adopt",
+    "surrender": "Surrender an animal",
+    "help": "Help us",
+    "contact": "Contact",
+    "donate": "Donate"
+  },
+  "home": {
+    "eyebrow": "Villeneuve-sur-Lot · Lot-et-Garonne",
+    "title": "A refuge to grow old in peace",
+    "body": "We welcome every four-legged animal — young or old, healthy or sick. Cats, dogs, goats and horses find care, a peaceful place, and a safe environment for life here.",
+    "ctaAnimals": "Meet our animals",
+    "ctaHelp": "How can I help?",
+    "statResidents": "Residents",
+    "statResidentsValue": "120+",
+    "statSince": "Since",
+    "statSinceValue": "2016",
+    "statLand": "Of land",
+    "statLandValue": "4 ha",
+    "animalsEyebrow": "Our animals",
+    "animalsTitle": "Looking for a family or a sponsor",
+    "animalsIntro": "Some will go on to a home of their own, others will stay with us for life. Either way, your support changes their daily lives.",
+    "animalsCta": "All animals",
+    "aboutEyebrow": "Welcome",
+    "aboutTitle": "A sanctuary in the South of France",
+    "aboutBody": "Association Inaya built a sanctuary for domestic animals where no animal is judged on its age or health. We mainly welcome cats, dogs, goats and horses, but our door stays open to all kinds of animals.",
+    "aboutNeed": "We need you to keep going.",
+    "aboutCta": "Support the sanctuary",
+    "helpEyebrow": "How",
+    "helpTitle": "Help the sanctuary?",
+    "helpIntro": "There's a place for everyone — with or without a budget, nearby or across Europe.",
+    "donateTitle": "€20 feeds a resident for a month",
+    "donateBody": "One-time gifts, monthly donations, or sponsorship: it all goes straight to the animals. French taxpayers get a 66% tax deduction.",
+    "donateCta": "Donate",
+    "contactTitle": "A question, or thinking about adopting?",
+    "contactIntro": "Write to us: we answer every message, even if it sometimes takes a few days."
+  },
+  "helpCards": {
+    "donation": { "title": "Donate", "text": "One-time or monthly, with a 66% tax deduction on the amount given." },
+    "sponsorship": { "title": "Sponsor an animal", "text": "From €5/month, a special bond with your favorite resident." },
+    "adoption": { "title": "Adopt", "text": "Animals available for adoption are looking for a calm, patient home." },
+    "volunteer": { "title": "Volunteer", "text": "Lend a hand on-site: care, upkeep, building and fixing enclosures." },
+    "legacy": { "title": "Bequests", "text": "Pass on part of your estate to protect the animals after you." }
+  },
+  "about": {
+    "title": "About us",
+    "body1": "For decades we have opened our home to animals in distress, giving them a place to live. We started by sterilizing abandoned cats, then took in dogs, and later also welcomed elderly horses.",
+    "body2": "Our sanctuary kept growing until the spring of 2019, when we found ourselves on the edge of financial collapse. A young pony named Inaya became very ill and had to be hospitalized twice. She needed costly treatment and food, which put us under serious financial strain. The high cost of caring for Inaya put the continuity of our work at risk and made us realize we could no longer bear the care of every animal alone. That's why we set up our association, to be supported in our mission. Thanks to Inaya, we understood that this project needed to be shared with many animal lovers — which is why our association carries her name.",
+    "body3": "Today we carry on our passion for rescuing and caring for animals in distress. We are working hard to expand our sanctuary and welcome more animals in need, offering them a peaceful haven to grow old in."
+  },
+  "team": {
+    "title": "Our team"
+  },
+  "animals": {
+    "title": "Our animals",
+    "intro": "Some are looking for a family, others for a sponsor to stay with us for life.",
+    "empty": "No animals match these filters right now.",
+    "viewProfile": "Meet me",
+    "backToList": "Back to all animals",
+    "filters": {
+      "species": "Species",
+      "track": "Status",
+      "allSpecies": "All species",
+      "allTracks": "All",
+      "cat": "Cat",
+      "dog": "Dog",
+      "horse": "Horse",
+      "goat": "Goat",
+      "other": "Other",
+      "adoption": "Adoption",
+      "sponsorship": "Sponsorship",
+      "available": "Available",
+      "pending": "Adoption pending",
+      "adopted": "Adopted"
+    },
+    "sex": { "male": "Male", "female": "Female", "unknown": "Unknown" },
+    "yearsOld": "{age, plural, one {# year} other {# years}}",
+    "keyFacts": "Key facts",
+    "breed": "Breed",
+    "age": "Age",
+    "sexLabel": "Sex",
+    "arrived": "Arrived in",
+    "specialNeeds": "Special needs",
+    "adoptionCta": "Start an adoption request",
+    "sponsorshipCta": "Sponsor {name}",
+    "adoptedNote": "{name} has found a forever family.",
+    "pendingNote": "A family is currently being confirmed for {name}."
+  },
+  "adopt": {
+    "title": "Adopting at Inaya",
+    "intro": "Would you like to adopt a dog or cat at Inaya?",
+    "procedureTitle": "Procedure to follow",
+    "steps": [
+      "You call +33 6 11 50 13 17 to set up an appointment to visit the animals. The sanctuary has no regular opening hours and hosts visits by appointment only.",
+      "You fall in love and would like to reserve an animal to adopt.",
+      "You fill out a \"commitment and awareness certificate\", which requires you to think carefully — at least one week — before adopting.",
+      "During that week, a volunteer from INAYA will visit you to discuss your adoption plan and check whether your home is suitable for the animal of your choice. The volunteer gives us their opinion on whether to accept or decline your application.",
+      "After approval, you make another appointment to sign the adoption contract, pay the adoption fee, and pick up the animal. Bring a copy of your ID and proof of address to complete your file.",
+      "About a month later, a volunteer makes a follow-up visit to check that everything is going well. If so, the adoption is validated and the microchip transferred to your name. If you decide to return the animal, there is no refund.",
+      "The shelter reserves the right to carry out an unannounced follow-up visit, and to remove an animal if it is in danger.",
+      "If you can no longer care for the animal, you are required to return it to the sanctuary. Transferring it to a third party or rehoming it via social media is not allowed."
+    ],
+    "pricingTitle": "Rates (as of January 1, 2025)",
+    "dogPricingNote": "All animals are microchipped, dewormed, vaccinated (at least an initial round) and sterilized, plus 2025 membership included.",
+    "catPricingNote": "All cats are microchipped, dewormed, vaccinated (at least an initial round), sterilized and tested for FIV/FeLV, plus 2025 membership included.",
+    "unsterilizedNote": "If the animal isn't sterilized yet at the time of adoption, you'll receive a certificate of coverage from INAYA — with this document, sterilization at our veterinary clinic is free once the animal is old enough.",
+    "dogRows": [
+      { "label": "Puppy", "note": "sterilization included", "price": "€500" },
+      { "label": "Sterilized female dog", "note": "", "price": "€400" },
+      { "label": "Neutered male dog", "note": "", "price": "€350" }
+    ],
+    "catRows": [
+      { "label": "Sterilized female cat", "note": "", "price": "€285" },
+      { "label": "Neutered male cat", "note": "", "price": "€240" },
+      { "label": "Female kitten", "note": "sterilization included", "price": "€285" },
+      { "label": "Male kitten", "note": "sterilization included", "price": "€240" }
+    ]
+  },
+  "surrender": {
+    "title": "Surrendering an animal",
+    "intro": "Do you need to give up your animal?",
+    "waitlistNote": "Our sanctuary is often full because of the large number of rescues, emergencies and unexpected arrivals — for this reason, there is a waiting list of indefinite length.",
+    "conditionsTitle": "To surrender a dog or cat, several conditions apply:",
+    "conditions": [
+      "The animal is identified (microchip or tattoo) in the name of the person surrendering it. If the owner has passed away, a copy of the death certificate is required.",
+      "You have the I-CAD identification card (blue A4 document), which you must sign on the back when surrendering the animal. If this document is missing, we will draw up a surrender certificate along with a copy of your ID.",
+      "The surrender fee is €180 for a sterilized dog and €100 for a sterilized cat. This contribution helps the shelter feed and care for your animal (deworming, vaccination, flea treatment, Seresto collar, etc.), whether it stays with us for a short time or for years. If the animal isn't sterilized, the fee is doubled, since sterilization will be carried out here on intake by our veterinary clinic."
+    ]
+  },
+  "help": {
+    "title": "Help us",
+    "intro": "As a non-profit organization, we are constantly looking for funding to keep caring for our animals. Most of our funds go toward daily food for all the animals — hay, dry food, supplements — and the upkeep of pastures. There are also fixed medical costs such as sterilization and castration, deworming products, and flea and tick prevention. Then there are cleaning and disinfecting supplies, dental care, and hoof care. And on top of that, there are sometimes heavy, unexpected costs in case of illness or accident. The list is long.",
+    "howTitle": "How can you help us?",
+    "gift": { "title": "Donation", "text": "Make a one-time donation that helps secure our near future." },
+    "sponsorship": { "title": "Sponsorship", "text": "You can sponsor a specific animal by becoming its godparent. Browse the list on our \"Our animals\" page and choose a fixed monthly amount. Your name will appear on the animal's passport, and every year you'll receive news and photos of your godchild." },
+    "adoption": { "title": "Adoption", "text": "Sometimes we look for adoptive families. Since our sanctuary has limited space, some animals cannot stay indefinitely. Adoption candidates are screened and pay a contribution that benefits the animals who remain." },
+    "bankTransferTitle": "Prefer a bank transfer?",
+    "iban": "FR76 1330 6003 8623 1286 2576 314",
+    "bic": "AGRIFRPP833",
+    "donateCta": "Donate online"
+  },
+  "donate": {
+    "title": "Make a donation",
+    "intro": "Every donation, one-time or monthly, goes straight to the animals at the sanctuary.",
+    "sponsorTitle": "Sponsor {name}",
+    "sponsorIntro": "Your gift directly supports {name} and their daily care at the sanctuary.",
+    "sponsorBanner": "This donation will be credited to {name}.",
+    "switchToGeneral": "Make a general donation instead",
+    "amountLabel": "Amount",
+    "customAmountLabel": "Other amount (€)",
+    "frequencyLabel": "Frequency",
+    "oneTime": "One-time",
+    "monthly": "Monthly",
+    "submit": "Continue to secure payment",
+    "taxNote": "French taxpayers get a 66% tax deduction — you'll receive a Stripe receipt by email; contact us for an official tax receipt.",
+    "poweredBy": "Secure payment powered by Stripe.",
+    "success": {
+      "title": "Thank you for your donation!",
+      "body": "Your support makes a real difference for the animals at the sanctuary. A receipt has been emailed to you.",
+      "backHome": "Back to home"
+    },
+    "cancel": {
+      "title": "Donation canceled",
+      "body": "No payment was made. You can try again anytime.",
+      "retry": "Try again"
+    }
+  },
+  "contact": {
+    "title": "A question, or thinking about adopting?",
+    "intro": "Write to us: we answer every message, even if it sometimes takes a few days.",
+    "addressLabel": "Our details",
+    "emailLabel": "Email us",
+    "socialLabel": "Follow us",
+    "formTitle": "Send a message",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "emailPlaceholder": "Email",
+    "subjectPlaceholder": "Subject",
+    "subjectOptions": ["Adoption", "Sponsorship", "Volunteering", "Fostering", "Donation / wishlist", "Other"],
+    "messagePlaceholder": "Your message",
+    "submit": "Send",
+    "appointmentNote": "We welcome visitors by appointment only, to preserve the animals' calm.",
+    "mapCaption": "Villeneuve-sur-Lot"
+  },
+  "footer": {
+    "about": "Sanctuary for domestic animals\nVilleneuve-sur-Lot, Lot-et-Garonne",
+    "linksTitle": "Links",
+    "helpTitle": "Help us",
+    "animalsTitle": "Animals",
+    "linkAdopted": "Adopted animals",
+    "linkThanks": "Thank you"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin sign in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "error": "Incorrect email or password."
+    },
+    "nav": {
+      "animals": "Animals",
+      "donations": "Donations",
+      "signOut": "Sign out"
+    },
+    "animals": {
+      "title": "Manage animals",
+      "add": "Add an animal",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Permanently delete this animal and its photos?",
+      "publishedYes": "Published",
+      "publishedNo": "Draft",
+      "empty": "No animals yet.",
+      "form": {
+        "name": "Name",
+        "species": "Species",
+        "track": "Track (adoption / sponsorship)",
+        "status": "Status",
+        "breed": "Breed",
+        "sex": "Sex",
+        "birthYear": "Birth year",
+        "birthMonth": "Birth month",
+        "size": "Size",
+        "arrivalDate": "Arrival date",
+        "bioFr": "Bio (FR)",
+        "bioEn": "Bio (EN)",
+        "specialNeeds": "Special needs",
+        "isPublished": "Publish on site",
+        "save": "Save",
+        "cancel": "Cancel",
+        "photos": "Photos",
+        "uploadPhoto": "Add a photo",
+        "removePhoto": "Remove"
+      },
+      "tabs": {
+        "profile": "Profile",
+        "internalDetails": "Internal details",
+        "intakeOutcome": "Intake / Outcome",
+        "vaccines": "Vaccines",
+        "treatments": "Treatments",
+        "vetAppointments": "Vet appointments"
+      },
+      "internalDetails": {
+        "title": "Internal details",
+        "microchip": "Microchip number",
+        "coat": "Coat",
+        "birthDate": "Birth date",
+        "inShelter": "Presence",
+        "inShelterYes": "Present",
+        "inShelterNo": "Not present",
+        "save": "Save"
+      },
+      "intakeOutcome": {
+        "title": "Intake / Outcome",
+        "addIntake": "Add an intake",
+        "addOutcome": "Add an outcome",
+        "occurredOn": "Date",
+        "reason": "Reason",
+        "description": "Description",
+        "recordedBy": "Recorded by",
+        "type": "Type",
+        "intakeLabel": "Intake",
+        "outcomeLabel": "Outcome",
+        "delete": "Delete",
+        "deleteConfirm": "Permanently delete this event?",
+        "empty": "No intake or outcome recorded yet.",
+        "intakeReasons": {
+          "stray": "Stray",
+          "police_surrender": "Police surrender",
+          "born_in_care": "Born in care",
+          "shelter_transfer": "Shelter transfer",
+          "association_transfer": "Association transfer",
+          "owner_surrender": "Owner surrender",
+          "abandoned": "Abandoned",
+          "cruelty_seizure": "Cruelty seizure"
+        },
+        "outcomeReasons": {
+          "reunited_with_owner": "Reunited with owner",
+          "deceased": "Deceased",
+          "euthanized": "Euthanized",
+          "released": "Released",
+          "transferred_to_association": "Transferred to another association",
+          "adopted": "Adopted"
+        }
+      },
+      "vaccines": {
+        "title": "Vaccines",
+        "add": "Add a vaccine",
+        "name": "Name",
+        "administeredOn": "Date administered",
+        "followUpDate": "Follow-up date",
+        "followUpCompleted": "Follow-up completed",
+        "delete": "Delete",
+        "deleteConfirm": "Permanently delete this vaccine?",
+        "empty": "No vaccines recorded yet."
+      },
+      "treatments": {
+        "title": "Treatments",
+        "add": "Add a treatment",
+        "name": "Name",
+        "medicine": "Medicine",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "step": "Step",
+        "amount": "Dose",
+        "measurement": "Unit",
+        "dayStep": "Interval (days)",
+        "dayTimes": "Times per day",
+        "schedule": "Every {days} days, {times}×",
+        "delete": "Delete",
+        "deleteConfirm": "Permanently delete this treatment?",
+        "empty": "No treatments recorded yet.",
+        "measurementUnits": {
+          "pill": "pill",
+          "spoon": "spoon",
+          "ml": "ml",
+          "cl": "cl"
+        }
+      },
+      "vetAppointments": {
+        "title": "Vet appointments",
+        "add": "Add an appointment",
+        "scheduledAt": "Date & time",
+        "reason": "Reason",
+        "status": "Status",
+        "followUpDate": "Follow-up date",
+        "followUpCompleted": "Follow-up completed",
+        "delete": "Delete",
+        "deleteConfirm": "Permanently delete this appointment?",
+        "empty": "No vet appointments recorded yet.",
+        "statuses": {
+          "pending": "Pending",
+          "completed": "Completed",
+          "canceled": "Canceled"
+        }
+      }
+    },
+    "donations": {
+      "title": "Donations received",
+      "empty": "No donations recorded yet.",
+      "columns": { "date": "Date", "donor": "Donor", "amount": "Amount", "frequency": "Frequency", "status": "Status" }
+    }
+  }
+}

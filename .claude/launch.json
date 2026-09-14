@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "inaya-web-dev",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "C:\\Users\\leege\\inaya-web\\.claude\\dev.cmd"],
+      "port": 3000
+    }
+  ]
+}
