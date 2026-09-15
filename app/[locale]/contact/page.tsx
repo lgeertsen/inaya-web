@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ContactForm } from "@/components/site/ContactForm";
+import { ShelterMap } from "@/components/site/ShelterMap";
 
 export default async function ContactPage() {
   const t = await getTranslations("contact");
@@ -57,9 +58,11 @@ export default async function ContactPage() {
               </div>
             </div>
           </div>
-          <div className="aspect-video rounded-2xl bg-[repeating-linear-gradient(135deg,#dedcdd_0_12px,#d5d3d4_12px_24px)] grid place-items-center">
-            <span className="font-mono text-[11.5px] opacity-50">{t("mapCaption")}</span>
-          </div>
+          <ShelterMap
+            title={t("mapCaption")}
+            unavailableLabel={t("mapUnavailable")}
+            openInMapsLabel={t("openInMaps")}
+          />
         </Card>
 
         <ContactForm />

@@ -1,7 +1,13 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { redirect } from "@/i18n/navigation";
+import { getPageRole } from "@/lib/auth";
 import { AnimalForm } from "@/components/admin/AnimalForm";
 
 export default async function NewAnimalPage() {
+  const locale = await getLocale();
+  const role = await getPageRole();
+  if (role !== "admin") redirect({ href: "/admin/animals", locale });
+
   const t = await getTranslations("admin.animals");
 
   return (

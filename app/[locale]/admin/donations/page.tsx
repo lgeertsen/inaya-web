@@ -1,17 +1,14 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { redirect } from "@/i18n/navigation";
+import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-
-interface DonationRow {
-  id: string;
-  created_at: string;
-  donor_name: string | null;
-  donor_email: string | null;
-  amount_cents: number;
-  frequency: string;
-  status: string;
-}
+import { DonationsTableClient, type DonationRow } from "@/components/admin/DonationsTableClient";
 
 export default async function AdminDonationsPage() {
+  const locale = await getLocale();
+  const role = await getPageRole();
+  if (role !== "admin") redirect({ href: "/admin/animals", locale });
+
   const t = await getTranslations("admin.donations");
   const supabase = await createClient();
   const { data: donations } = await supabase
@@ -27,34 +24,7 @@ export default async function AdminDonationsPage() {
       {!donations || donations.length === 0 ? (
         <p className="opacity-60 text-sm">{t("empty")}</p>
       ) : (
-        <div className="bg-surface rounded-card overflow-hidden overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left border-b border-ink/10">
-                <th className="p-4">{t("columns.date")}</th>
-                <th className="p-4">{t("columns.donor")}</th>
-                <th className="p-4">{t("columns.amount")}</th>
-                <th className="p-4">{t("columns.frequency")}</th>
-                <th className="p-4">{t("columns.status")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {donations.map((donation) => (
-                <tr key={donation.id} className="border-b border-ink/10 last:border-0">
-                  <td className="p-4 whitespace-nowrap">
-                    {new Date(donation.created_at).toLocaleDateString()}
-                  </td>
-                  <td className="p-4">{donation.donor_name || donation.donor_email || "—"}</td>
-                  <td className="p-4 whitespace-nowrap">
-                    {(donation.amount_cents / 100).toFixed(2)} €
-                  </td>
-                  <td className="p-4">{donation.frequency}</td>
-                  <td className="p-4">{donation.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DonationsTableClient donations={donations} />
       )}
     </div>
   );

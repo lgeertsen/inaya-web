@@ -158,6 +158,19 @@ export async function listVetVisitsForAnimal(
     .sort((a, b) => (a.scheduledAt < b.scheduledAt ? 1 : -1));
 }
 
+export async function countUpcomingVetVisits(
+  supabase: SupabaseClient,
+  fromIso: string,
+): Promise<number> {
+  const { count, error } = await supabase
+    .from("vet_visits")
+    .select("id", { count: "exact", head: true })
+    .gte("scheduled_at", fromIso)
+    .neq("status", "canceled");
+  if (error) throw error;
+  return count ?? 0;
+}
+
 export async function createVetVisit(
   supabase: SupabaseClient,
   values: VetVisitInsert,

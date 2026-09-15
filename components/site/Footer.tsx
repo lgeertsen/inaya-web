@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "./Logo";
 
 export async function Footer() {
   const t = await getTranslations("footer");
@@ -11,14 +12,7 @@ export async function Footer() {
     <footer className="bg-ink text-white/72">
       <Container className="py-14 grid gap-9 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
         <div className="flex flex-col gap-3.5">
-          <div className="flex items-center gap-3">
-            <span className="w-[42px] h-[42px] rounded-full bg-accent grid place-items-center text-white font-display font-extrabold">
-              I
-            </span>
-            <span className="font-display font-extrabold text-lg text-white">
-              {common("appName")}
-            </span>
-          </div>
+          <Logo size={42} showTagline={false} variant="light" />
           <p className="text-[14.5px] leading-relaxed whitespace-pre-line">{t("about")}</p>
           <a href={`mailto:${common("email")}`} className="text-[14.5px] text-accent-light">
             {common("email")}

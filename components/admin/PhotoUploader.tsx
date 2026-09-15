@@ -9,11 +9,17 @@ export function PhotoUploader({
   photos,
   removeLabel,
   uploadLabel,
+  setCoverLabel,
+  coverBadgeLabel,
+  canManage,
 }: {
   animalId: string;
   photos: AnimalPhoto[];
   removeLabel: string;
   uploadLabel: string;
+  setCoverLabel: string;
+  coverBadgeLabel: string;
+  canManage: boolean;
 }) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,21 +50,40 @@ export function PhotoUploader({
     startTransition(() => router.refresh());
   }
 
+  async function handleSetCover(photoId: string) {
+    await fetch(`/api/admin/animals/${animalId}/photos`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ photoId }),
+    });
+    startTransition(() => router.refresh());
+  }
+
   return (
     <div className="flex flex-col gap-3">
       {photos.length > 0 ? (
         <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
           {photos.map((photo) => (
-            // eslint-disable-next-line @next/next/no-img-element
             <div key={photo.id} className="relative aspect-square rounded-lg overflow-hidden group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photo.url} alt="" className="w-full h-full object-cover" />
-              <button
-                type="button"
-                onClick={() => handleRemove(photo.id)}
-                className="absolute inset-0 bg-black/55 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                {removeLabel}
-              </button>
+              {photo.isFeatured ? (
+                <span className="absolute top-1 left-1 text-[10px] font-bold px-1.5 py-0.5 rounded-pill bg-accent text-white">
+                  {coverBadgeLabel}
+                </span>
+              ) : null}
+              {canManage ? (
+                <div className="absolute inset-0 bg-black/55 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5">
+                  {!photo.isFeatured ? (
+                    <button type="button" onClick={() => handleSetCover(photo.id)}>
+                      {setCoverLabel}
+                    </button>
+                  ) : null}
+                  <button type="button" onClick={() => handleRemove(photo.id)}>
+                    {removeLabel}
+                  </button>
+                </div>
+              ) : null}
             </div>
           ))}
         </div>

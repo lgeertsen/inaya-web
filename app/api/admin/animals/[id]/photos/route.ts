@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
-import { requireAdmin } from "@/lib/auth";
-import { addAnimalPhoto, deleteAnimalPhoto, PHOTO_BUCKET } from "@/lib/animals";
+import { requireAdmin, requireStaff } from "@/lib/auth";
+import { addAnimalPhoto, deleteAnimalPhoto, setFeaturedPhoto, PHOTO_BUCKET } from "@/lib/animals";
 
 const MAX_DIMENSION = 1600;
 const WEBP_QUALITY = 80;
@@ -10,7 +10,7 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const { user, supabase, response } = await requireAdmin();
+  const { user, supabase, response } = await requireStaff();
   if (!user) return response;
 
   const { id } = await params;
@@ -55,10 +55,27 @@ export async function POST(
       return NextResponse.json({ error: uploadError.message }, { status: 500 });
     }
 
-    await addAnimalPhoto(supabase, id, path, position);
+    await addAnimalPhoto(supabase, id, path, position, user.id);
     position += 1;
   }
 
+  return NextResponse.json({ ok: true });
+}
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const { user, supabase, response } = await requireAdmin();
+  if (!user) return response;
+
+  const { id } = await params;
+  const { photoId } = await request.json();
+  if (!photoId) {
+    return NextResponse.json({ error: "missing_photo_id" }, { status: 400 });
+  }
+
+  await setFeaturedPhoto(supabase, id, photoId);
   return NextResponse.json({ ok: true });
 }
 

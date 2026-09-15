@@ -141,6 +141,15 @@ export const vetVisitAddAnimalSchema = z.object({
   animalId: z.string().uuid(),
 });
 
+// Volunteer accounts (admin-only) --------------------------------------------
+
+export const createVolunteerAccountSchema = z.object({
+  email: z.string().trim().email("A valid email is required"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
+
+export type CreateVolunteerAccountValues = z.infer<typeof createVolunteerAccountSchema>;
+
 export const contactFormSchema = z.object({
   firstName: z.string().trim().min(1),
   lastName: z.string().trim().min(1),

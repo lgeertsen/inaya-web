@@ -2,7 +2,7 @@
   "common": {
     "appName": "Association Inaya",
     "tagline": "Animal sanctuary",
-    "location": "Villeneuve-sur-Lot, Lot-et-Garonne, France",
+    "location": "Route du Merdassou, 47110 Villeneuve-sur-Lot, France",
     "email": "inaya.farm@gmail.com",
     "rights": "© 2021–2026 Association Inaya — Text & photographs, all rights reserved.",
     "photoCredits": "Photos: Audrey Demaretz, Isabelle Caire & the Inaya team"
@@ -29,7 +29,6 @@
     "ctaAnimals": "Meet our animals",
     "ctaHelp": "How can I help?",
     "statResidents": "Residents",
-    "statResidentsValue": "120+",
     "statSince": "Since",
     "statSinceValue": "2016",
     "statLand": "Of land",
@@ -76,9 +75,7 @@
     "backToList": "Back to all animals",
     "filters": {
       "species": "Species",
-      "track": "Status",
       "allSpecies": "All species",
-      "allTracks": "All",
       "cat": "Cat",
       "dog": "Dog",
       "horse": "Horse",
@@ -200,7 +197,9 @@
     "sentMessage": "Thank you, your message has been sent!",
     "errorMessage": "Something went wrong. Please try again or email us directly.",
     "appointmentNote": "We welcome visitors by appointment only, to preserve the animals' calm.",
-    "mapCaption": "Villeneuve-sur-Lot"
+    "mapCaption": "Villeneuve-sur-Lot",
+    "mapUnavailable": "Map unavailable — view on Google Maps",
+    "openInMaps": "View on Google Maps"
   },
   "footer": {
     "about": "Sanctuary for domestic animals\nVilleneuve-sur-Lot, Lot-et-Garonne",
@@ -219,20 +218,51 @@
       "error": "Incorrect email or password."
     },
     "nav": {
+      "overview": "Overview",
       "animals": "Animals",
       "calendar": "Calendar",
       "donations": "Donations",
-      "signOut": "Sign out"
+      "accounts": "Volunteers",
+      "signOut": "Sign out",
+      "toggleMenu": "Open menu",
+      "closeMenu": "Close menu"
+    },
+    "overview": {
+      "title": "Overview",
+      "totalAnimals": "Total animals",
+      "published": "Published",
+      "inShelter": "In shelter",
+      "donationsTotal": "Donations received",
+      "upcomingVisits": "Upcoming visits",
+      "bySpecies": {
+        "title": "Animals by species"
+      },
+      "quickLinks": {
+        "title": "Quick links",
+        "addAnimal": "Add an animal",
+        "newVisit": "Schedule a visit",
+        "viewDonations": "View donations"
+      }
     },
     "animals": {
       "title": "Manage animals",
       "add": "Add an animal",
       "edit": "Edit",
+      "photos": "Photos",
       "delete": "Delete",
       "deleteConfirm": "Permanently delete this animal and its photos?",
       "publishedYes": "Published",
       "publishedNo": "Draft",
       "empty": "No animals yet.",
+      "searchPlaceholder": "Search by name or species…",
+      "allSpecies": "All species",
+      "columns": {
+        "name": "Name",
+        "species": "Species",
+        "trackStatus": "Track / status",
+        "published": "Published",
+        "inShelter": "In shelter"
+      },
       "form": {
         "name": "Name",
         "species": "Species",
@@ -252,7 +282,9 @@
         "cancel": "Cancel",
         "photos": "Photos",
         "uploadPhoto": "Add a photo",
-        "removePhoto": "Remove"
+        "removePhoto": "Remove",
+        "setCover": "Set as cover photo",
+        "coverBadge": "Shown on site"
       },
       "tabs": {
         "profile": "Profile",
@@ -312,6 +344,11 @@
         "administeredOn": "Date administered",
         "followUpDate": "Follow-up date",
         "followUpCompleted": "Follow-up completed",
+        "sync": "Reminder",
+        "syncPending": "Not synced yet",
+        "syncSynced": "Synced to Vaccins",
+        "syncFailed": "Sync failed",
+        "retrySync": "Retry sync",
         "delete": "Delete",
         "deleteConfirm": "Permanently delete this vaccine?",
         "empty": "No vaccines recorded yet."
@@ -351,7 +388,21 @@
     "donations": {
       "title": "Donations received",
       "empty": "No donations recorded yet.",
+      "searchPlaceholder": "Search by donor…",
       "columns": { "date": "Date", "donor": "Donor", "amount": "Amount", "frequency": "Frequency", "status": "Status" }
+    },
+    "accounts": {
+      "title": "Volunteer accounts",
+      "add": "Create a volunteer account",
+      "email": "Email",
+      "password": "Password",
+      "generatePassword": "Generate",
+      "createdAt": "Created",
+      "delete": "Delete",
+      "deleteConfirm": "Permanently delete this volunteer account? They will no longer be able to sign in.",
+      "empty": "No volunteer accounts yet.",
+      "error": "Something went wrong creating this account.",
+      "created": "Account created for {email}. Share this temporary password with them: {password}"
     },
     "calendar": {
       "title": "Vet calendar",

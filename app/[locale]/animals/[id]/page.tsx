@@ -26,8 +26,8 @@ export default async function AnimalDetailPage({
   const locale = await getLocale();
   const age = computeAge(animal.birthYear, animal.birthMonth);
   const bio = (locale === "fr" ? animal.bioFr : animal.bioEn) || animal.bioFr || animal.bioEn;
-  const cover = animal.photos[0];
-  const gallery = animal.photos.slice(1);
+  const cover = animal.photos.find((p) => p.isFeatured) ?? animal.photos[0];
+  const gallery = animal.photos.filter((p) => p.id !== cover?.id);
   const placeholder = getPlaceholderPhotoUrl(animal.species);
 
   return (

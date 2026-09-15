@@ -5,7 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
 import { AnimalCard } from "@/components/animals/AnimalCard";
 import { createClient } from "@/lib/supabase/server";
-import { getAnimals } from "@/lib/animals";
+import { getAnimals, getPublishedAnimalCount } from "@/lib/animals";
 
 export default async function HomePage() {
   const [home, helpCards, common] = await Promise.all([
@@ -15,9 +15,17 @@ export default async function HomePage() {
   ]);
 
   const supabase = await createClient();
-  const featuredAnimals = await getAnimals(supabase, { publishedOnly: true, limit: 4 });
+  const [featuredAnimals, residentCount] = await Promise.all([
+    getAnimals(supabase, { publishedOnly: true, limit: 4 }),
+    getPublishedAnimalCount(supabase),
+  ]);
 
   const helpItems = ["donation", "sponsorship", "adoption", "volunteer", "legacy"] as const;
+  const stats = [
+    { value: String(residentCount), labelKey: "statResidents" },
+    { value: home("statSinceValue"), labelKey: "statSince" },
+    { value: home("statLandValue"), labelKey: "statLand" },
+  ];
 
   return (
     <>
@@ -42,20 +50,16 @@ export default async function HomePage() {
                     </ButtonLink>
                   </div>
                 </div>
-                <div className="flex-none basis-[320px] grid grid-cols-3 gap-2.5">
-                  {[
-                    ["statResidentsValue", "statResidents"],
-                    ["statSinceValue", "statSince"],
-                    ["statLandValue", "statLand"],
-                  ].map(([valueKey, labelKey]) => (
+                <div className="flex-none basis-[360px] grid grid-cols-3 gap-2.5">
+                  {stats.map(({ value, labelKey }) => (
                     <div
                       key={labelKey}
-                      className="bg-white/10 border border-white/22 rounded-2xl px-3 py-3.5"
+                      className="bg-white/10 border border-white/22 rounded-2xl px-2 py-3.5"
                     >
                       <div className="font-display font-extrabold text-2xl text-white">
-                        {home(valueKey)}
+                        {value}
                       </div>
-                      <div className="text-[11.5px] uppercase tracking-[0.08em] text-white/70">
+                      <div className="text-[10px] uppercase tracking-normal text-white/70 break-words">
                         {home(labelKey)}
                       </div>
                     </div>
@@ -148,10 +152,7 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="flex-none basis-[280px] flex flex-col gap-2.5 w-full sm:w-auto">
-              <ButtonLink
-                href="/donate"
-                className="bg-white text-accent hover:bg-ink hover:text-white justify-center"
-              >
+              <ButtonLink href="/donate" variant="light" className="justify-center">
                 {home("donateCta")}
               </ButtonLink>
             </div>

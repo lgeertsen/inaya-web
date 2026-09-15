@@ -1,3 +1,6 @@
+import { getLocale } from "next-intl/server";
+import { redirect } from "@/i18n/navigation";
+import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { listVetVisits } from "@/lib/vet-visits";
 import { VetCalendar } from "@/components/admin/VetCalendar";
@@ -8,6 +11,10 @@ export default async function AdminCalendarPage({
 }: {
   searchParams: Promise<{ view?: string; date?: string }>;
 }) {
+  const locale = await getLocale();
+  const role = await getPageRole();
+  if (role !== "admin") redirect({ href: "/admin/animals", locale });
+
   const { view: rawView, date: rawDate } = await searchParams;
   const view = rawView === "week" ? "week" : "month";
   const anchor = rawDate ? new Date(rawDate) : new Date();

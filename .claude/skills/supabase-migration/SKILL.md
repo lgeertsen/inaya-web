@@ -26,9 +26,13 @@ already established in `supabase/migrations/0001_init.sql`.
      like `is_published = true`, the way `animals` and `animal_photos` do. If nothing about the
      table is public, skip the read policy entirely (see `donations`, which has an admin-only read
      policy and no public one).
-   - An `admin full access` policy using `auth.role() = 'authenticated')` for both `using` and
-     `with check` — this project treats any authenticated user as an admin (see `lib/auth.ts`),
-     there's no separate role system.
+   - An `admin full access` policy using `public.current_role() = 'admin'` for both `using` and
+     `with check`. Since `0004_volunteer_accounts.sql`, authentication alone is no longer enough —
+     there are two roles (`admin`, `volunteer`, stored in `profiles`; see `lib/auth.ts`), and any
+     authenticated user (`auth.role() = 'authenticated'`) can read/write far more than intended if
+     you reuse the old check. Only reach for `auth.role() = 'authenticated'` on a policy that's
+     deliberately meant to include volunteers (read-only animal browsing, photo upload) — match the
+     split already done for `animals`/`animal_photos` in that migration.
    - If a table should only ever be written by a server-side service-role client (e.g. driven by
      a webhook, like `donations`), skip the admin write policy and add a comment explaining that
      writes go through `createAdminClient()` and bypass RLS — don't invent a write policy that

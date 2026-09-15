@@ -9,6 +9,18 @@
   --color-accent-hover: #b00f9f;
   --color-accent-light: #ff7bee;
 
+  --color-success: #1e8a5f;
+  --color-success-bg: #e4f5ec;
+  --color-warning: #b8770e;
+  --color-warning-bg: #fbeed6;
+  --color-danger: #c22b3f;
+  --color-danger-bg: #fbe4e7;
+
+  --color-sidebar: #1b1a1c;
+  --color-sidebar-hover: #2c282e;
+  --color-sidebar-active: rgba(223, 23, 203, 0.18);
+  --color-sidebar-border: rgba(255, 255, 255, 0.08);
+
   --font-display: "Bricolage Grotesque", Helvetica, sans-serif;
   --font-sans: Karla, Helvetica, Arial, sans-serif;
   --font-mono: "IBM Plex Mono", monospace;

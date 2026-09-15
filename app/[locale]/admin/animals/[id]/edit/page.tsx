@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getAnimalById } from "@/lib/animals";
 import { AnimalForm } from "@/components/admin/AnimalForm";
+import { VolunteerPhotoPanel } from "@/components/admin/VolunteerPhotoPanel";
 
 export default async function EditAnimalPage({
   params,
@@ -16,9 +18,11 @@ export default async function EditAnimalPage({
     notFound();
   }
 
+  const role = await getPageRole();
+
   return (
     <div className="flex flex-col gap-6">
-      <AnimalForm animal={animal} />
+      {role === "admin" ? <AnimalForm animal={animal} /> : <VolunteerPhotoPanel animal={animal} />}
     </div>
   );
 }

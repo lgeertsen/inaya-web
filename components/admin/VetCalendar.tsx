@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { getMonthGridDays, getWeekDays, toDateKey, addDays, addMonths } from "@/lib/calendar-dates";
 import type { VetVisitWithAnimals } from "@/lib/vet-visits";
@@ -47,9 +48,9 @@ export function VetCalendar({
           <button
             type="button"
             onClick={() => navigate(view, view === "month" ? addMonths(anchorDate, -1) : addDays(anchorDate, -7))}
-            className="px-3 py-1.5 rounded-pill border border-ink/15 text-sm font-bold hover:bg-ink/5"
+            className="p-2 rounded-pill border border-ink/15 hover:bg-ink/5"
           >
-            ←
+            <ChevronLeft size={16} />
           </button>
           <button
             type="button"
@@ -61,9 +62,9 @@ export function VetCalendar({
           <button
             type="button"
             onClick={() => navigate(view, view === "month" ? addMonths(anchorDate, 1) : addDays(anchorDate, 7))}
-            className="px-3 py-1.5 rounded-pill border border-ink/15 text-sm font-bold hover:bg-ink/5"
+            className="p-2 rounded-pill border border-ink/15 hover:bg-ink/5"
           >
-            →
+            <ChevronRight size={16} />
           </button>
           <div className="ml-2 flex rounded-pill border border-ink/15 overflow-hidden text-sm font-bold">
             <button

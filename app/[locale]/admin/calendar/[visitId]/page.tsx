@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { redirect } from "@/i18n/navigation";
+import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getVetVisit, type VetVisitAnimal } from "@/lib/vet-visits";
 import { listAnimalOptions } from "@/lib/animals";
@@ -9,12 +11,17 @@ import { DeleteRowButton } from "@/components/admin/DeleteRowButton";
 import { ToggleCheckbox } from "@/components/admin/ToggleCheckbox";
 import { AddAnimalToVisitForm } from "@/components/admin/AddAnimalToVisitForm";
 import { AdminTable, type AdminTableColumn } from "@/components/admin/AdminTable";
+import { Badge } from "@/components/ui/Badge";
 
 export default async function VetVisitDetailPage({
   params,
 }: {
   params: Promise<{ visitId: string }>;
 }) {
+  const locale = await getLocale();
+  const role = await getPageRole();
+  if (role !== "admin") redirect({ href: "/admin/animals", locale });
+
   const { visitId } = await params;
   const supabase = await createClient();
   const [visit, animalOptions] = await Promise.all([
@@ -61,12 +68,8 @@ export default async function VetVisitDetailPage({
       <div className="flex items-center justify-between flex-wrap gap-4">
         <h1 className="text-2xl">{visit.reason}</h1>
         <div className="flex items-center gap-3">
-          <span
-            className={`text-xs font-bold px-2.5 py-1 rounded-pill ${
-              visit.googleSyncError || visit.googleEventId
-                ? "bg-accent/10 text-accent"
-                : "bg-ink/10 text-ink/60"
-            }`}
+          <Badge
+            tone={visit.googleSyncError ? "danger" : visit.googleEventId ? "success" : "warning"}
             title={visit.googleSyncError ?? undefined}
           >
             {visit.googleSyncError
@@ -74,8 +77,11 @@ export default async function VetVisitDetailPage({
               : visit.googleEventId
                 ? t("syncSynced")
                 : t("syncPending")}
-          </span>
-          <RetrySyncButton visitId={visit.id} label={t("retrySync")} />
+          </Badge>
+          <RetrySyncButton
+            endpoint={`/api/admin/vet-visits/${visit.id}/retry-sync`}
+            label={t("retrySync")}
+          />
           <DeleteRowButton
             endpoint={`/api/admin/vet-visits/${visit.id}`}
             label={t("delete")}

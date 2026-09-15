@@ -8,7 +8,7 @@ import { getPlaceholderPhotoUrl, type Animal } from "@/lib/animals";
 
 export async function AnimalCard({ animal }: { animal: Animal }) {
   const t = await getTranslations("animals");
-  const cover = animal.photos[0];
+  const cover = animal.photos.find((p) => p.isFeatured) ?? animal.photos[0];
   const placeholder = getPlaceholderPhotoUrl(animal.species);
   const age = computeAge(animal.birthYear, animal.birthMonth);
 

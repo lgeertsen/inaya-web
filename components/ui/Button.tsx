@@ -9,6 +9,7 @@ const variants = {
   dark: "bg-ink text-white hover:bg-accent",
   outline: "border-[1.5px] border-ink/25 text-ink hover:bg-ink hover:text-white hover:border-ink",
   outlineLight: "border-[1.5px] border-white/60 text-white hover:bg-white/15",
+  light: "bg-white text-accent hover:bg-ink hover:text-white",
   ghost: "text-ink hover:text-accent",
 };
 

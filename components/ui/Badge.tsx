@@ -4,6 +4,10 @@ const tones = {
   accent: "bg-accent text-white",
   ink: "bg-ink text-white",
   outline: "border border-ink/20 text-ink",
+  neutral: "bg-ink/10 text-ink/60",
+  success: "bg-success-bg text-success",
+  warning: "bg-warning-bg text-warning",
+  danger: "bg-danger-bg text-danger",
 };
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {

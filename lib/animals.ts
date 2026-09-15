@@ -20,6 +20,7 @@ export interface AnimalPhoto {
   id: string;
   storagePath: string;
   position: number;
+  isFeatured: boolean;
   url: string;
 }
 
@@ -79,6 +80,7 @@ function toPhoto(supabase: SupabaseClient, row: Row): AnimalPhoto {
     id: row.id,
     storagePath: row.storage_path,
     position: row.position,
+    isFeatured: row.is_featured,
     url: data.publicUrl,
   };
 }
@@ -127,6 +129,15 @@ function toRow(values: Partial<AnimalInsert>): Record<string, unknown> {
   if (values.specialNeeds !== undefined) row.special_needs = values.specialNeeds;
   if (values.isPublished !== undefined) row.is_published = values.isPublished;
   return row;
+}
+
+export async function getPublishedAnimalCount(supabase: SupabaseClient): Promise<number> {
+  const { count, error } = await supabase
+    .from("animals")
+    .select("*", { count: "exact", head: true })
+    .eq("is_published", true);
+  if (error) throw error;
+  return count ?? 0;
 }
 
 export async function getAnimals(
@@ -227,10 +238,11 @@ export async function addAnimalPhoto(
   animalId: string,
   storagePath: string,
   position: number,
+  uploadedBy: string,
 ): Promise<void> {
   const { error } = await supabase
     .from("animal_photos")
-    .insert({ animal_id: animalId, storage_path: storagePath, position });
+    .insert({ animal_id: animalId, storage_path: storagePath, position, uploaded_by: uploadedBy });
   if (error) throw error;
 }
 
@@ -241,5 +253,18 @@ export async function deleteAnimalPhoto(
 ): Promise<void> {
   await supabase.storage.from(PHOTO_BUCKET).remove([storagePath]);
   const { error } = await supabase.from("animal_photos").delete().eq("id", photoId);
+  if (error) throw error;
+}
+
+export async function setFeaturedPhoto(
+  supabase: SupabaseClient,
+  animalId: string,
+  photoId: string,
+): Promise<void> {
+  const { error } = await supabase
+    .from("animal_photos")
+    .update({ is_featured: true })
+    .eq("id", photoId)
+    .eq("animal_id", animalId);
   if (error) throw error;
 }

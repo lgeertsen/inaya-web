@@ -1,5 +1,6 @@
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link, redirect } from "@/i18n/navigation";
+import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { listVetVisitsForAnimal, type VetVisitForAnimal } from "@/lib/vet-visits";
 import { AdminTable, type AdminTableColumn } from "@/components/admin/AdminTable";
@@ -9,6 +10,10 @@ export default async function AnimalVetAppointmentsPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const locale = await getLocale();
+  const role = await getPageRole();
+  if (role !== "admin") redirect({ href: "/admin/animals", locale });
+
   const { id } = await params;
   const supabase = await createClient();
   const visits = await listVetVisitsForAnimal(supabase, id);

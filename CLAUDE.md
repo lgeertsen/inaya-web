@@ -18,11 +18,20 @@ Three clients in `lib/supabase/`, pick based on context:
 - `server.ts` (`createClient()`) — Server Components, Server Actions, Route Handlers. Cookie-based,
   respects RLS. Use this for anything running with a user session.
 - `admin.ts` (`createAdminClient()`) — service-role key, bypasses RLS. Server-only, never import
-  from client code. Currently used only by the Stripe webhook route, which has no user session to
-  write `donations` rows with.
+  from client code. Used by the Stripe webhook route (no user session to write `donations` rows
+  with) and by the volunteer-account routes (`app/api/admin/accounts/**`, `lib/accounts.ts`), which
+  need the Auth admin API to create/list/delete `auth.users` rows.
 
-Auth model (`lib/auth.ts`): any authenticated Supabase user is treated as an admin. There is no
-public sign-up — accounts are provisioned manually via the Supabase Auth dashboard.
+Auth model (`lib/auth.ts`): two roles, stored in a `profiles` table keyed off `auth.users.id` —
+`admin` (full access) and `volunteer` (can browse animals and upload photos only). `requireAdmin()`
+gates Route Handlers to admins; `requireStaff()` allows either role; `getPageRole()` is for
+Server Components/layouts. There is no public sign-up. Admins can create/delete volunteer accounts
+from `/admin/accounts` (backed by the Auth admin API — see above); a DB trigger creates each new
+user's `profiles` row, defaulted to `volunteer`. A second admin account still has to be provisioned
+manually via the Supabase Auth dashboard, then promoted with
+`update profiles set role = 'admin' where id = '<uuid>'` in the SQL editor. RLS policies must key
+off `public.current_role() = 'admin'`, not `auth.role() = 'authenticated'` — see
+`0004_volunteer_accounts.sql` and the `supabase-migration` skill.
 
 Migrations live in `supabase/migrations/`, applied manually against the remote project — there's
 no local Supabase CLI stack (no `config.toml`, no `functions/`). See the `supabase-migration`

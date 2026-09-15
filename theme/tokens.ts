@@ -12,6 +12,21 @@ export const colors = {
   accent: "#df17cb",
   accentHover: "#b00f9f",
   accentLight: "#ff7bee",
+
+  // Semantic status colors — additive, admin-dashboard use only (badges,
+  // sync/donation/animal status). Do not repurpose the brand colors above.
+  success: "#1e8a5f",
+  successBg: "#e4f5ec",
+  warning: "#b8770e",
+  warningBg: "#fbeed6",
+  danger: "#c22b3f",
+  dangerBg: "#fbe4e7",
+
+  // Admin sidebar tones — namespaced so they never shadow `ink` elsewhere.
+  sidebar: "#1b1a1c",
+  sidebarHover: "#2c282e",
+  sidebarActive: "rgba(223, 23, 203, 0.18)",
+  sidebarBorder: "rgba(255, 255, 255, 0.08)",
 } as const;
 
 export const fonts = {

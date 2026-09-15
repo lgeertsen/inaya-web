@@ -4,16 +4,14 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { AnimalCard } from "@/components/animals/AnimalCard";
 import { AnimalFilterBar } from "@/components/animals/AnimalFilterBar";
 import { createClient } from "@/lib/supabase/server";
-import { getAnimals, type AnimalSpecies, type AnimalStatus, type AnimalTrack } from "@/lib/animals";
+import { getAnimals, type AnimalSpecies } from "@/lib/animals";
 
 const SPECIES = ["cat", "dog", "horse", "goat", "other"];
-const TRACKS = ["adoption", "sponsorship"];
-const STATUSES = ["available", "pending", "adopted"];
 
 export default async function AnimalsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ species?: string; track?: string; status?: string }>;
+  searchParams: Promise<{ species?: string }>;
 }) {
   const params = await searchParams;
   const t = await getTranslations("animals");
@@ -21,17 +19,11 @@ export default async function AnimalsPage({
   const species = SPECIES.includes(params.species ?? "")
     ? (params.species as AnimalSpecies)
     : undefined;
-  const track = TRACKS.includes(params.track ?? "") ? (params.track as AnimalTrack) : undefined;
-  const status = STATUSES.includes(params.status ?? "")
-    ? (params.status as AnimalStatus)
-    : undefined;
 
   const supabase = await createClient();
   const animals = await getAnimals(supabase, {
     publishedOnly: true,
     species,
-    track,
-    status,
   });
 
   return (

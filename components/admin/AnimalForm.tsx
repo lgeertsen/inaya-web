@@ -201,6 +201,9 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
             photos={animal.photos}
             uploadLabel={t("uploadPhoto")}
             removeLabel={t("removePhoto")}
+            setCoverLabel={t("setCover")}
+            coverBadgeLabel={t("coverBadge")}
+            canManage
           />
         </div>
       ) : null}

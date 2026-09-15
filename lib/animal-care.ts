@@ -80,6 +80,8 @@ export interface AnimalVaccine {
   administeredOn: string;
   followUpDate: string | null;
   followUpCompleted: boolean;
+  googleEventId: string | null;
+  googleSyncError: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -89,6 +91,11 @@ export interface AnimalVaccineInsert {
   administeredOn: string;
   followUpDate?: string | null;
   followUpCompleted?: boolean;
+}
+
+export interface AnimalVaccineUpdate extends Partial<AnimalVaccineInsert> {
+  googleEventId?: string | null;
+  googleSyncError?: string | null;
 }
 
 export interface AnimalTreatment {
@@ -290,6 +297,8 @@ function toVaccine(row: Row): AnimalVaccine {
     administeredOn: row.administered_on,
     followUpDate: row.follow_up_date,
     followUpCompleted: row.follow_up_completed,
+    googleEventId: row.google_event_id,
+    googleSyncError: row.google_sync_error,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -306,6 +315,19 @@ export async function listAnimalVaccines(
     .order("administered_on", { ascending: false });
   if (error) throw error;
   return (data ?? []).map(toVaccine);
+}
+
+export async function getAnimalVaccine(
+  supabase: SupabaseClient,
+  vaccineId: string,
+): Promise<AnimalVaccine | null> {
+  const { data, error } = await supabase
+    .from("animal_vaccines")
+    .select("*")
+    .eq("id", vaccineId)
+    .maybeSingle();
+  if (error) throw error;
+  return data ? toVaccine(data) : null;
 }
 
 export async function createAnimalVaccine(
@@ -331,13 +353,15 @@ export async function createAnimalVaccine(
 export async function updateAnimalVaccine(
   supabase: SupabaseClient,
   vaccineId: string,
-  values: Partial<AnimalVaccineInsert>,
+  values: AnimalVaccineUpdate,
 ): Promise<AnimalVaccine> {
   const row: Record<string, unknown> = {};
   if (values.name !== undefined) row.name = values.name;
   if (values.administeredOn !== undefined) row.administered_on = values.administeredOn;
   if (values.followUpDate !== undefined) row.follow_up_date = values.followUpDate;
   if (values.followUpCompleted !== undefined) row.follow_up_completed = values.followUpCompleted;
+  if (values.googleEventId !== undefined) row.google_event_id = values.googleEventId;
+  if (values.googleSyncError !== undefined) row.google_sync_error = values.googleSyncError;
 
   const { data, error } = await supabase
     .from("animal_vaccines")
