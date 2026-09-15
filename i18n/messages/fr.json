@@ -265,8 +265,8 @@
       },
       "form": {
         "name": "Nom",
+        "microchip": "N° de puce",
         "species": "Espèce",
-        "track": "Statut (adoption / parrainage)",
         "status": "État",
         "breed": "Race",
         "sex": "Sexe",

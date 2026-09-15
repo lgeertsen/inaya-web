@@ -6,21 +6,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import {
-  animalFormSchema,
-  type AnimalFormInput,
-  type AnimalFormValues,
+  animalFormWithMicrochipSchema,
+  type AnimalFormWithMicrochipInput,
+  type AnimalFormWithMicrochipValues,
 } from "@/lib/validation";
 import { Input, Select, Textarea, Label } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import type { Animal } from "@/lib/animals";
+import type { AnimalInternalDetails } from "@/lib/animal-care";
 import { PhotoUploader } from "./PhotoUploader";
 
 const SPECIES = ["cat", "dog", "horse", "goat", "other"] as const;
-const TRACKS = ["adoption", "sponsorship"] as const;
 const STATUSES = ["available", "pending", "adopted"] as const;
 const SEXES = ["male", "female", "unknown"] as const;
 
-export function AnimalForm({ animal }: { animal?: Animal }) {
+export function AnimalForm({
+  animal,
+  internalDetails,
+}: {
+  animal?: Animal;
+  internalDetails?: AnimalInternalDetails | null;
+}) {
   const t = useTranslations("admin.animals.form");
   const router = useRouter();
   const [serverError, setServerError] = useState(false);
@@ -29,13 +35,13 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<AnimalFormInput, unknown, AnimalFormValues>({
-    resolver: zodResolver(animalFormSchema),
+  } = useForm<AnimalFormWithMicrochipInput, unknown, AnimalFormWithMicrochipValues>({
+    resolver: zodResolver(animalFormWithMicrochipSchema),
     defaultValues: animal
       ? {
           name: animal.name,
           species: animal.species,
-          track: animal.track,
+          track: animal.track ?? "adoption",
           status: animal.status,
           breed: animal.breed ?? "",
           sex: animal.sex,
@@ -47,6 +53,7 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
           bioEn: animal.bioEn ?? "",
           specialNeeds: animal.specialNeeds,
           isPublished: animal.isPublished,
+          microchipNumber: internalDetails?.microchipNumber ?? "",
         }
       : {
           name: "",
@@ -56,18 +63,21 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
           sex: "unknown",
           specialNeeds: false,
           isPublished: true,
+          microchipNumber: "",
         },
   });
 
-  async function onSubmit(values: AnimalFormValues) {
+  async function onSubmit(values: AnimalFormWithMicrochipValues) {
     setServerError(false);
+
+    const { microchipNumber, ...animalValues } = values;
 
     const res = await fetch(
       animal ? `/api/admin/animals/${animal.id}` : "/api/admin/animals",
       {
         method: animal ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify(animalValues),
       },
     );
 
@@ -76,9 +86,21 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
       return;
     }
 
+    const animalId = animal ? animal.id : (await res.json()).id;
+
+    const detailsRes = await fetch(`/api/admin/animals/${animalId}/internal-details`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ microchipNumber }),
+    });
+
+    if (!detailsRes.ok) {
+      setServerError(true);
+      return;
+    }
+
     if (!animal) {
-      const saved = await res.json();
-      router.push(`/admin/animals/${saved.id}/edit`);
+      router.push(`/admin/animals/${animalId}/edit`);
     } else {
       router.refresh();
     }
@@ -93,6 +115,11 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
           {errors.name ? <span className="text-xs text-accent">{errors.name.message}</span> : null}
         </div>
 
+        <div className="flex flex-col gap-1.5 col-span-2">
+          <Label>{t("microchip")}</Label>
+          <Input {...register("microchipNumber")} />
+        </div>
+
         <div className="flex flex-col gap-1.5">
           <Label>{t("species")}</Label>
           <Select {...register("species")}>
@@ -104,16 +131,7 @@ export function AnimalForm({ animal }: { animal?: Animal }) {
           </Select>
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("track")}</Label>
-          <Select {...register("track")}>
-            {TRACKS.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </Select>
-        </div>
+        <input type="hidden" {...register("track")} />
 
         <div className="flex flex-col gap-1.5">
           <Label>{t("status")}</Label>

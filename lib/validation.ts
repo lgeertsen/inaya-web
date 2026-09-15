@@ -5,6 +5,8 @@ export const animalTrackSchema = z.enum(["adoption", "sponsorship"]);
 export const animalStatusSchema = z.enum(["available", "pending", "adopted"]);
 export const animalSexSchema = z.enum(["male", "female", "unknown"]);
 
+const emptyToUndefined = (val: unknown) => (val === "" || val === null ? undefined : val);
+
 export const animalFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   species: animalSpeciesSchema,
@@ -12,16 +14,19 @@ export const animalFormSchema = z.object({
   status: animalStatusSchema,
   breed: z.string().trim().optional().nullable(),
   sex: animalSexSchema,
-  birthYear: z.coerce
-    .number()
-    .int()
-    .min(1990)
-    .max(new Date().getFullYear())
-    .optional()
-    .nullable(),
-  birthMonth: z.coerce.number().int().min(1).max(12).optional().nullable(),
+  birthYear: z.preprocess(
+    emptyToUndefined,
+    z.coerce.number().int().min(1990).max(new Date().getFullYear()).optional(),
+  ).nullable(),
+  birthMonth: z.preprocess(
+    emptyToUndefined,
+    z.coerce.number().int().min(1).max(12).optional(),
+  ).nullable(),
   size: z.string().trim().optional().nullable(),
-  arrivalDate: z.string().optional().nullable(),
+  arrivalDate: z.preprocess(
+    (val) => (val === "" ? null : val),
+    z.string().optional().nullable(),
+  ),
   bioFr: z.string().optional().nullable(),
   bioEn: z.string().optional().nullable(),
   specialNeeds: z.boolean(),
@@ -34,6 +39,16 @@ export type AnimalFormValues = z.infer<typeof animalFormSchema>;
 // Input type (before coercion) — what react-hook-form's raw field state holds,
 // since number fields start as strings before zod coerces them on submit.
 export type AnimalFormInput = z.input<typeof animalFormSchema>;
+
+// Client-only: the animal form also collects the microchip number, which
+// lives in animal_internal_details (admin-only table), not animals. The
+// AnimalForm component splits this back out and sends it to the
+// internal-details endpoint separately — it's never part of AnimalFormValues.
+export const animalFormWithMicrochipSchema = animalFormSchema.extend({
+  microchipNumber: z.string().trim().optional().nullable(),
+});
+export type AnimalFormWithMicrochipValues = z.infer<typeof animalFormWithMicrochipSchema>;
+export type AnimalFormWithMicrochipInput = z.input<typeof animalFormWithMicrochipSchema>;
 
 export const donateCheckoutSchema = z.object({
   amount: z.coerce.number().int().min(1, "Minimum 1€").max(10000),
