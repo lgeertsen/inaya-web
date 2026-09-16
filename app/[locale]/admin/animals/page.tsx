@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getAnimals } from "@/lib/animals";
-import { listInShelterStatuses } from "@/lib/animal-care";
+import { listInternalDetailsSummaries } from "@/lib/animal-care";
 import { AnimalsTableClient } from "@/components/admin/AnimalsTableClient";
 
 export default async function AdminAnimalsPage() {
@@ -11,10 +11,17 @@ export default async function AdminAnimalsPage() {
   const role = await getPageRole();
   const isAdmin = role === "admin";
   const supabase = await createClient();
-  const [animals, inShelterStatuses] = await Promise.all([
+  const [animals, internalDetails] = await Promise.all([
     getAnimals(supabase, { publishedOnly: false }),
-    listInShelterStatuses(supabase),
+    listInternalDetailsSummaries(supabase),
   ]);
+
+  // Volunteers add photos, which only makes sense for animals still at the
+  // shelter — admins keep seeing the full history (adopted, deceased, ...).
+  // Filtered server-side so a volunteer's browser never receives the rest.
+  const visibleAnimals = isAdmin
+    ? animals
+    : animals.filter((animal) => internalDetails[animal.id]?.inShelter);
 
   return (
     <div className="flex flex-col gap-6">
@@ -23,10 +30,14 @@ export default async function AdminAnimalsPage() {
         {isAdmin ? <ButtonLink href="/admin/animals/new">{t("add")}</ButtonLink> : null}
       </div>
 
-      {animals.length === 0 ? (
+      {visibleAnimals.length === 0 ? (
         <p className="opacity-60 text-sm">{t("empty")}</p>
       ) : (
-        <AnimalsTableClient animals={animals} inShelterStatuses={inShelterStatuses} isAdmin={isAdmin} />
+        <AnimalsTableClient
+          animals={visibleAnimals}
+          internalDetails={internalDetails}
+          isAdmin={isAdmin}
+        />
       )}
     </div>
   );

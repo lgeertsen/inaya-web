@@ -24,6 +24,12 @@ export default async function AnimalDetailLayout({
   if (role !== "admin") {
     // Volunteers only ever reach the (cut-down) edit route under this
     // segment — no internal-ops data to fetch, no tabs into admin-only pages.
+    // They may only reach animals currently at the shelter: the list page
+    // already filters to those, but this closes the direct-URL bypass for
+    // anyone who navigates straight to an id that isn't (anymore).
+    const details = await getAnimalInternalDetails(supabase, id);
+    if (!details?.inShelter) notFound();
+
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-4">

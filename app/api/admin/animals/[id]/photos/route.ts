@@ -14,6 +14,22 @@ export async function POST(
   if (!user) return response;
 
   const { id } = await params;
+
+  // Volunteers may only add photos for animals currently at the shelter —
+  // re-checked here (not just in the UI) since this endpoint takes an animal
+  // id directly and the list page's filtering can't stop a raw request.
+  const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle();
+  if (profile?.role !== "admin") {
+    const { data: details } = await supabase
+      .from("animal_internal_details")
+      .select("in_shelter")
+      .eq("animal_id", id)
+      .maybeSingle();
+    if (!details?.in_shelter) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+  }
+
   const formData = await request.formData();
   const files = formData.getAll("files").filter((f): f is File => f instanceof File);
 

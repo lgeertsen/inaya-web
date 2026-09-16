@@ -223,6 +223,7 @@
       "calendar": "Calendrier",
       "donations": "Dons",
       "accounts": "Bénévoles",
+      "profile": "Mon compte",
       "signOut": "Se déconnecter",
       "toggleMenu": "Ouvrir le menu",
       "closeMenu": "Fermer le menu"
@@ -254,11 +255,13 @@
       "publishedYes": "Publié",
       "publishedNo": "Brouillon",
       "empty": "Aucun animal pour le moment.",
-      "searchPlaceholder": "Rechercher un animal…",
+      "searchPlaceholder": "Rechercher par nom, espèce ou n° de puce…",
       "allSpecies": "Toutes les espèces",
+      "allPresence": "Tous (présents et absents)",
       "columns": {
         "name": "Nom",
         "species": "Espèce",
+        "microchip": "N° de puce",
         "trackStatus": "Statut",
         "published": "Publication",
         "inShelter": "Présence"
@@ -403,6 +406,14 @@
       "empty": "Aucun compte bénévole pour le moment.",
       "error": "Une erreur est survenue lors de la création de ce compte.",
       "created": "Compte créé pour {email}. Communiquez ce mot de passe temporaire : {password}"
+    },
+    "profile": {
+      "title": "Mon compte",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "save": "Enregistrer",
+      "success": "Votre mot de passe a été mis à jour.",
+      "error": "Une erreur est survenue lors de la mise à jour de votre mot de passe."
     },
     "calendar": {
       "title": "Calendrier vétérinaire",

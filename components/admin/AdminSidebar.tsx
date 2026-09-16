@@ -3,7 +3,16 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { LayoutDashboard, PawPrint, CalendarDays, HeartHandshake, Users, Menu, X } from "lucide-react";
+import {
+  LayoutDashboard,
+  PawPrint,
+  CalendarDays,
+  HeartHandshake,
+  Users,
+  KeyRound,
+  Menu,
+  X,
+} from "lucide-react";
 import { SignOutButton } from "./SignOutButton";
 import type { Role } from "@/lib/auth";
 
@@ -13,6 +22,7 @@ const NAV_ITEMS = [
   { href: "/admin/calendar", icon: CalendarDays, key: "calendar", adminOnly: true, exact: false },
   { href: "/admin/donations", icon: HeartHandshake, key: "donations", adminOnly: true, exact: false },
   { href: "/admin/accounts", icon: Users, key: "accounts", adminOnly: true, exact: false },
+  { href: "/admin/profile", icon: KeyRound, key: "profile", adminOnly: false, exact: false },
 ] as const;
 
 export function AdminSidebar({ role }: { role: Role | null }) {

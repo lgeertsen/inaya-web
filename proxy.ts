@@ -33,9 +33,24 @@ function resolvePreferredLocale(request: NextRequest): AppLocale {
 
 export default async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const hasLocalePrefix = routing.locales.some(
+  const prefixLocale = routing.locales.find(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
   );
+  const hasLocalePrefix = prefixLocale !== undefined;
+
+  const pathWithoutLocale = prefixLocale
+    ? pathname.slice(`/${prefixLocale}`.length) || "/"
+    : pathname;
+  const isAdminPath =
+    pathWithoutLocale === "/admin" || pathWithoutLocale.startsWith("/admin/");
+
+  // The admin back office is French-only: ignore the visitor's preferred
+  // language and any /en prefix, and always land on the /fr version.
+  if (isAdminPath && prefixLocale !== "fr") {
+    const url = new URL(`/fr${pathWithoutLocale}`, request.url);
+    url.search = request.nextUrl.search;
+    return NextResponse.redirect(url);
+  }
 
   const intlResponse = hasLocalePrefix
     ? handleI18nRouting(request)
@@ -45,12 +60,9 @@ export default async function proxy(request: NextRequest) {
 
   const { response, user } = await updateSession(request, intlResponse);
 
-  const locale =
-    routing.locales.find(
-      (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
-    ) ?? routing.defaultLocale;
+  const locale = prefixLocale ?? routing.defaultLocale;
 
-  const adminPathWithoutLocale = pathname.slice(`/${locale}`.length) || "/";
+  const adminPathWithoutLocale = pathWithoutLocale;
   const isProtectedAdminPath =
     adminPathWithoutLocale.startsWith("/admin") &&
     adminPathWithoutLocale !== "/admin/login";

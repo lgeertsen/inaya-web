@@ -223,6 +223,7 @@
       "calendar": "Calendar",
       "donations": "Donations",
       "accounts": "Volunteers",
+      "profile": "My account",
       "signOut": "Sign out",
       "toggleMenu": "Open menu",
       "closeMenu": "Close menu"
@@ -254,11 +255,13 @@
       "publishedYes": "Published",
       "publishedNo": "Draft",
       "empty": "No animals yet.",
-      "searchPlaceholder": "Search by name or species…",
+      "searchPlaceholder": "Search by name, species, or chip number…",
       "allSpecies": "All species",
+      "allPresence": "All (present & not present)",
       "columns": {
         "name": "Name",
         "species": "Species",
+        "microchip": "Chip number",
         "trackStatus": "Track / status",
         "published": "Published",
         "inShelter": "In shelter"
@@ -403,6 +406,14 @@
       "empty": "No volunteer accounts yet.",
       "error": "Something went wrong creating this account.",
       "created": "Account created for {email}. Share this temporary password with them: {password}"
+    },
+    "profile": {
+      "title": "My account",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "save": "Save",
+      "success": "Your password has been updated.",
+      "error": "Something went wrong updating your password."
     },
     "calendar": {
       "title": "Vet calendar",

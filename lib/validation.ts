@@ -165,6 +165,20 @@ export const createVolunteerAccountSchema = z.object({
 
 export type CreateVolunteerAccountValues = z.infer<typeof createVolunteerAccountSchema>;
 
+// Self-service password change (any signed-in admin or volunteer) --------------
+
+export const changePasswordSchema = z
+  .object({
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z.string().min(8, "Password must be at least 8 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+export type ChangePasswordValues = z.infer<typeof changePasswordSchema>;
+
 export const contactFormSchema = z.object({
   firstName: z.string().trim().min(1),
   lastName: z.string().trim().min(1),

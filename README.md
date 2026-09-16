@@ -33,8 +33,11 @@ Bilingual (FR/EN) website for Association Inaya, an animal sanctuary in Villeneu
    cp .env.local.example .env.local
    ```
 
-   - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` — from your Supabase project's API settings.
-   - `SUPABASE_SERVICE_ROLE_KEY` — same page, **server-only**, never expose to the client.
+   - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` — from Settings > API Keys >
+     "Publishable and secret API keys" tab. Despite the var name, use the `sb_publishable_...` key
+     here, not the legacy anon JWT.
+   - `SUPABASE_SERVICE_ROLE_KEY` — same tab, the `sb_secret_...` key (not the legacy service_role
+     JWT). **Server-only**, never expose to the client.
    - `STRIPE_SECRET_KEY` — from the Stripe dashboard (use a test-mode key while developing).
    - `STRIPE_WEBHOOK_SECRET` — see "Stripe webhook" below.
 

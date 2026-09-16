@@ -163,6 +163,26 @@ export async function listInShelterStatuses(
   return Object.fromEntries((data ?? []).map((row: Row) => [row.animal_id, row.in_shelter]));
 }
 
+export interface AnimalInternalDetailsSummary {
+  inShelter: boolean;
+  microchipNumber: string | null;
+}
+
+export async function listInternalDetailsSummaries(
+  supabase: SupabaseClient,
+): Promise<Record<string, AnimalInternalDetailsSummary>> {
+  const { data, error } = await supabase
+    .from("animal_internal_details")
+    .select("animal_id, in_shelter, microchip_number");
+  if (error) throw error;
+  return Object.fromEntries(
+    (data ?? []).map((row: Row) => [
+      row.animal_id,
+      { inShelter: row.in_shelter, microchipNumber: row.microchip_number },
+    ]),
+  );
+}
+
 export async function updateAnimalInternalDetails(
   supabase: SupabaseClient,
   animalId: string,

@@ -9,23 +9,28 @@ import { DeleteAnimalButton } from "./DeleteAnimalButton";
 import { Badge } from "@/components/ui/Badge";
 import { Select } from "@/components/ui/Field";
 import type { Animal } from "@/lib/animals";
+import type { AnimalInternalDetailsSummary } from "@/lib/animal-care";
 
 interface AnimalRow extends Animal {
   inShelter: boolean;
+  microchipNumber: string | null;
 }
+
+type PresenceFilter = "present" | "notPresent" | "all";
 
 export function AnimalsTableClient({
   animals,
-  inShelterStatuses,
+  internalDetails,
   isAdmin,
 }: {
   animals: Animal[];
-  inShelterStatuses: Record<string, boolean>;
+  internalDetails: Record<string, AnimalInternalDetailsSummary>;
   isAdmin: boolean;
 }) {
   const t = useTranslations("admin.animals");
   const [search, setSearch] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("all");
+  const [presenceFilter, setPresenceFilter] = useState<PresenceFilter>("present");
   const [sort, setSort] = useState<AdminTableSortState>({
     column: t("columns.name"),
     direction: "asc",
@@ -33,7 +38,8 @@ export function AnimalsTableClient({
 
   const rows: AnimalRow[] = animals.map((animal) => ({
     ...animal,
-    inShelter: inShelterStatuses[animal.id] ?? false,
+    inShelter: internalDetails[animal.id]?.inShelter ?? false,
+    microchipNumber: internalDetails[animal.id]?.microchipNumber ?? null,
   }));
 
   const speciesOptions = [...new Set(rows.map((row) => row.species))].sort();
@@ -50,6 +56,12 @@ export function AnimalsTableClient({
       sortable: true,
       sortAccessor: (row) => row.species,
       render: (row) => <span className="text-ink/60">{row.species}</span>,
+    },
+    {
+      header: t("columns.microchip"),
+      sortable: true,
+      sortAccessor: (row) => row.microchipNumber ?? "",
+      render: (row) => <span className="text-ink/60">{row.microchipNumber ?? "—"}</span>,
     },
     {
       header: t("columns.trackStatus"),
@@ -100,9 +112,15 @@ export function AnimalsTableClient({
     .filter((row) => speciesFilter === "all" || row.species === speciesFilter)
     .filter(
       (row) =>
+        presenceFilter === "all" ||
+        (presenceFilter === "present" ? row.inShelter : !row.inShelter),
+    )
+    .filter(
+      (row) =>
         !query ||
         row.name.toLowerCase().includes(query) ||
-        row.species.toLowerCase().includes(query),
+        row.species.toLowerCase().includes(query) ||
+        (row.microchipNumber?.toLowerCase().includes(query) ?? false),
     );
 
   const activeColumn = columns.find((column) => column.header === sort.column);
@@ -139,6 +157,17 @@ export function AnimalsTableClient({
             </option>
           ))}
         </Select>
+        {isAdmin ? (
+          <Select
+            value={presenceFilter}
+            onChange={(event) => setPresenceFilter(event.target.value as PresenceFilter)}
+            className="max-w-[180px]"
+          >
+            <option value="present">{t("internalDetails.inShelterYes")}</option>
+            <option value="notPresent">{t("internalDetails.inShelterNo")}</option>
+            <option value="all">{t("allPresence")}</option>
+          </Select>
+        ) : null}
       </div>
       <AdminTable
         columns={columns}
