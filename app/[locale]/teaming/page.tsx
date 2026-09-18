@@ -8,7 +8,7 @@ const TEAMING_URL =
 export default async function TeamingPage() {
   const t = await getTranslations("teaming");
 
-  const steps = ["join", "amount", "impact"] as const;
+  const steps = ["step1", "step2", "step3", "step4"] as const;
 
   return (
     <Container className="py-16 flex flex-col gap-12">
@@ -26,6 +26,14 @@ export default async function TeamingPage() {
               <p className="text-[14.5px] leading-relaxed opacity-70">{t(`${key}.text`)}</p>
             </Card>
           ))}
+        </div>
+      </div>
+
+      <div className="max-w-[860px] flex flex-col gap-5">
+        <h2 className="text-2xl">{t("impactTitle")}</h2>
+        <div className="flex flex-col gap-4 text-[16px] leading-relaxed opacity-80">
+          <p>{t("impactBody1")}</p>
+          <p>{t("impactBody2")}</p>
         </div>
       </div>
 

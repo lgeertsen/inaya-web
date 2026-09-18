@@ -63,7 +63,7 @@
     "adoption": { "title": "Adopter", "text": "Les animaux qui peuvent repartir cherchent un foyer calme et patient." },
     "volunteer": { "title": "Bénévolat", "text": "Un coup de main sur place : soins, entretien, aménagement des enclos." },
     "legacy": { "title": "Legs", "text": "Transmettre une partie de vos biens pour protéger les animaux après vous." },
-    "teaming": { "title": "Teaming", "text": "1 € par mois, sans aucune commission, pour soutenir durablement le sanctuaire." }
+    "teaming": { "title": "Teaming", "text": "1 € par mois, soit 12 € par an, sans aucune commission pour soutenir durablement le sanctuaire." }
   },
   "about": {
     "title": "À propos de nous",
@@ -250,14 +250,18 @@
     "donateCta": "Faire un don en ligne"
   },
   "teaming": {
-    "title": "Teaming : 1 € par mois pour sauver des vies",
-    "intro": "Rejoignez notre réseau Teaming et transformez un petit geste mensuel en soutien durable pour les animaux du sanctuaire. Teaming est une plateforme qui gère des dons pour de bonnes causes : vous donnez 1 € par mois, sans aucune commission, et votre don arrive directement à Inaya.",
-    "howTitle": "Comment ça marche ?",
-    "join": { "title": "Rejoignez le réseau", "text": "Inscrivez-vous en quelques clics sur la page Teaming de l'association Inaya." },
-    "amount": { "title": "1 € par mois", "text": "Votre don mensuel de 1 € est prélevé automatiquement, sans aucune commission prise par Teaming." },
-    "impact": { "title": "Un impact collectif", "text": "Additionné aux dons des autres membres du réseau, votre euro contribue directement aux soins quotidiens des animaux." },
-    "ctaTitle": "Prêt à rejoindre notre réseau ?",
-    "ctaText": "Vous serez redirigé vers le site sécurisé de Teaming pour finaliser votre inscription.",
+    "title": "1 € par mois pour soutenir le sanctuaire",
+    "intro": "Et si seulement 1 € par mois pouvait faire une vraie différence pour les animaux en détresse ? Soit 12 € par an, votre don sur Teaming aide le sanctuaire à faire face aux soins, aux médicaments, aux hospitalisations et à toutes les dépenses indispensables au bien-être de nos animaux.",
+    "howTitle": "Pour nous soutenir, c'est très simple :",
+    "step1": { "title": "1. Rendez-vous sur Teaming", "text": "Direction le site de Teaming, la plateforme qui gère les dons pour les bonnes causes." },
+    "step2": { "title": "2. Créez votre compte", "text": "L'inscription est rapide et gratuite." },
+    "step3": { "title": "3. Choisissez notre projet", "text": "Sélectionnez « Sanctuaire / Refuge INAYA pour les animaux en détresse »." },
+    "step4": { "title": "4. C'est prélevé chaque mois", "text": "Votre compte est ensuite prélevé de 1 € par mois, sans aucune démarche supplémentaire." },
+    "impactTitle": "Quelques euros pour chacun, une aide immense pour eux",
+    "impactBody1": "Nous touchons énormément de monde grâce à nos publications et nos reels : le 4 septembre, la vidéo de deux chiots arrivés dans un état grave a atteint 182 868 vues — l'un des deux ne nous a malheureusement pas survécu. Le 31 décembre, notre publication sur la crise sanitaire liée au typhus a atteint 15 585 vues, une crise qui a entraîné d'importants frais vétérinaires : médicaments, hospitalisations, soins, incinérations.",
+    "impactBody2": "Malgré ces milliers de vues et de mentions « j'aime », seulement 24 personnes nous ont rejoints cet été sur Teaming. Nous sommes convaincus que nous pouvons être bien plus nombreux : imaginez si des centaines, des milliers de personnes nous soutenaient avec seulement 1 € par mois.",
+    "ctaTitle": "Prêt à nous rejoindre sur Teaming ?",
+    "ctaText": "Derrière ce petit euro se cachent des soins, des médicaments, des repas, des hospitalisations — et surtout, une chance supplémentaire pour les animaux que nous accueillons.",
     "cta": "Rejoindre sur Teaming"
   },
   "donate": {

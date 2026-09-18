@@ -63,7 +63,7 @@
     "adoption": { "title": "Adopt", "text": "Animals available for adoption are looking for a calm, patient home." },
     "volunteer": { "title": "Volunteer", "text": "Lend a hand on-site: care, upkeep, building and fixing enclosures." },
     "legacy": { "title": "Bequests", "text": "Pass on part of your estate to protect the animals after you." },
-    "teaming": { "title": "Teaming", "text": "€1 a month, with zero commission, for lasting support of the sanctuary." }
+    "teaming": { "title": "Teaming", "text": "€1 a month, just €12 a year, with zero commission for lasting support of the sanctuary." }
   },
   "about": {
     "title": "About us",
@@ -250,14 +250,18 @@
     "donateCta": "Donate online"
   },
   "teaming": {
-    "title": "Teaming: €1 a month to save lives",
-    "intro": "Join our Teaming network and turn a small monthly gesture into lasting support for the sanctuary's animals. Teaming is a platform that manages donations to good causes: you give €1 a month, with zero commission, and your donation goes straight to Inaya.",
-    "howTitle": "How does it work?",
-    "join": { "title": "Join the network", "text": "Sign up in a few clicks on Association Inaya's Teaming page." },
-    "amount": { "title": "€1 a month", "text": "Your €1 monthly gift is charged automatically, with zero commission taken by Teaming." },
-    "impact": { "title": "A collective impact", "text": "Added to the gifts of every other member of the network, your euro goes straight to the animals' daily care." },
-    "ctaTitle": "Ready to join our network?",
-    "ctaText": "You'll be redirected to Teaming's secure site to finish signing up.",
+    "title": "€1 a month to support the sanctuary",
+    "intro": "What if just €1 a month could make a real difference for animals in distress? That's only €12 a year — your gift on Teaming helps the sanctuary cover care, medication, hospital stays, and everything our animals need for their well-being.",
+    "howTitle": "Supporting us is simple:",
+    "step1": { "title": "1. Head to Teaming", "text": "Go to the Teaming website, the platform that manages donations for good causes." },
+    "step2": { "title": "2. Create your account", "text": "Signing up is quick and free." },
+    "step3": { "title": "3. Choose our project", "text": "Select \"Sanctuaire / Refuge INAYA pour les animaux en détresse\"." },
+    "step4": { "title": "4. It's charged monthly", "text": "Your account is then charged €1 a month, automatically — no further steps needed." },
+    "impactTitle": "A few euros each, an enormous help for them",
+    "impactBody1": "Our posts and reels reach a huge number of people: on September 4, a video of two puppies arriving in critical condition reached 182,868 views — one of the two sadly didn't survive. On December 31, our post about the typhus outbreak reached 15,585 views, a crisis that brought heavy vet bills: medication, hospital stays, care, cremations.",
+    "impactBody2": "Despite those thousands of views and likes, only 24 people joined us on Teaming this summer. We're convinced we can be many more: imagine if hundreds, or thousands, of people supported us with just €1 a month.",
+    "ctaTitle": "Ready to join us on Teaming?",
+    "ctaText": "Behind that small euro lies care, medication, meals, hospital stays — and above all, one more chance for the animals we take in.",
     "cta": "Join on Teaming"
   },
   "donate": {
