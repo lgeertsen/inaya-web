@@ -37,6 +37,7 @@ const NAV_GROUPS: NavGroup[] = [
     children: [
       { href: "/volunteer", key: "volunteer" },
       { href: "/foster-family", key: "fosterFamily" },
+      { href: "/teaming", key: "teaming" },
     ],
   },
   { href: "/contact", key: "contact" },

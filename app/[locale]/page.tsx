@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
+import { Link } from "@/i18n/navigation";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
@@ -20,7 +21,14 @@ export default async function HomePage() {
     getPublishedAnimalCount(supabase),
   ]);
 
-  const helpItems = ["donation", "sponsorship", "adoption", "volunteer", "legacy"] as const;
+  const helpItems = [
+    "donation",
+    "sponsorship",
+    "adoption",
+    "volunteer",
+    "legacy",
+    "teaming",
+  ] as const;
   const stats = [
     { value: String(residentCount), labelKey: "statResidents" },
     { value: home("statSinceValue"), labelKey: "statSince" },
@@ -127,14 +135,27 @@ export default async function HomePage() {
             <p className="text-[16.5px] leading-relaxed opacity-72">{home("helpIntro")}</p>
           </div>
           <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-            {helpItems.map((key) => (
-              <Card key={key} className="p-5 flex flex-col gap-2">
-                <h3 className="text-[19px]">{helpCards(`${key}.title`)}</h3>
-                <p className="text-[14.5px] leading-relaxed opacity-70">
-                  {helpCards(`${key}.text`)}
-                </p>
-              </Card>
-            ))}
+            {helpItems.map((key) => {
+              const cardContent = (
+                <>
+                  <h3 className="text-[19px]">{helpCards(`${key}.title`)}</h3>
+                  <p className="text-[14.5px] leading-relaxed opacity-70">
+                    {helpCards(`${key}.text`)}
+                  </p>
+                </>
+              );
+              return key === "teaming" ? (
+                <Card key={key} className="p-0">
+                  <Link href="/teaming" className="p-5 flex flex-col gap-2">
+                    {cardContent}
+                  </Link>
+                </Card>
+              ) : (
+                <Card key={key} className="p-5 flex flex-col gap-2">
+                  {cardContent}
+                </Card>
+              );
+            })}
           </div>
         </Container>
       </section>

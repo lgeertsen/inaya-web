@@ -47,6 +47,9 @@ export async function Footer() {
           <Link href="/help" className="text-[14.5px] text-white/72 hover:text-accent-light">
             {nav("help")}
           </Link>
+          <Link href="/teaming" className="text-[14.5px] text-white/72 hover:text-accent-light">
+            {nav("teaming")}
+          </Link>
           <Link href="/surrender" className="text-[14.5px] text-white/72 hover:text-accent-light">
             {nav("surrender")}
           </Link>

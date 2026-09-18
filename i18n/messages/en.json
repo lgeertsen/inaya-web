@@ -22,6 +22,7 @@
     "volunteer": "Become a volunteer",
     "fosterFamily": "Foster family",
     "help": "Help us",
+    "teaming": "Teaming",
     "contact": "Contact",
     "donate": "Donate",
     "openMenu": "Open menu",
@@ -61,7 +62,8 @@
     "sponsorship": { "title": "Sponsor an animal", "text": "From €5/month, a special bond with your favorite resident." },
     "adoption": { "title": "Adopt", "text": "Animals available for adoption are looking for a calm, patient home." },
     "volunteer": { "title": "Volunteer", "text": "Lend a hand on-site: care, upkeep, building and fixing enclosures." },
-    "legacy": { "title": "Bequests", "text": "Pass on part of your estate to protect the animals after you." }
+    "legacy": { "title": "Bequests", "text": "Pass on part of your estate to protect the animals after you." },
+    "teaming": { "title": "Teaming", "text": "€1 a month, with zero commission, for lasting support of the sanctuary." }
   },
   "about": {
     "title": "About us",
@@ -246,6 +248,17 @@
     "iban": "FR76 1330 6003 8623 1286 2576 314",
     "bic": "AGRIFRPP833",
     "donateCta": "Donate online"
+  },
+  "teaming": {
+    "title": "Teaming: €1 a month to save lives",
+    "intro": "Join our Teaming network and turn a small monthly gesture into lasting support for the sanctuary's animals. Teaming is a platform that manages donations to good causes: you give €1 a month, with zero commission, and your donation goes straight to Inaya.",
+    "howTitle": "How does it work?",
+    "join": { "title": "Join the network", "text": "Sign up in a few clicks on Association Inaya's Teaming page." },
+    "amount": { "title": "€1 a month", "text": "Your €1 monthly gift is charged automatically, with zero commission taken by Teaming." },
+    "impact": { "title": "A collective impact", "text": "Added to the gifts of every other member of the network, your euro goes straight to the animals' daily care." },
+    "ctaTitle": "Ready to join our network?",
+    "ctaText": "You'll be redirected to Teaming's secure site to finish signing up.",
+    "cta": "Join on Teaming"
   },
   "donate": {
     "title": "Make a donation",

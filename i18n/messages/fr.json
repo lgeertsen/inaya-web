@@ -22,6 +22,7 @@
     "volunteer": "Devenir bénévole",
     "fosterFamily": "Famille d'accueil",
     "help": "Aidez-nous",
+    "teaming": "Teaming",
     "contact": "Contact",
     "donate": "Faire un don",
     "openMenu": "Ouvrir le menu",
@@ -61,7 +62,8 @@
     "sponsorship": { "title": "Parrainer un animal", "text": "À partir de 5 €/mois, un lien privilégié avec votre pensionnaire préféré." },
     "adoption": { "title": "Adopter", "text": "Les animaux qui peuvent repartir cherchent un foyer calme et patient." },
     "volunteer": { "title": "Bénévolat", "text": "Un coup de main sur place : soins, entretien, aménagement des enclos." },
-    "legacy": { "title": "Legs", "text": "Transmettre une partie de vos biens pour protéger les animaux après vous." }
+    "legacy": { "title": "Legs", "text": "Transmettre une partie de vos biens pour protéger les animaux après vous." },
+    "teaming": { "title": "Teaming", "text": "1 € par mois, sans aucune commission, pour soutenir durablement le sanctuaire." }
   },
   "about": {
     "title": "À propos de nous",
@@ -246,6 +248,17 @@
     "iban": "FR76 1330 6003 8623 1286 2576 314",
     "bic": "AGRIFRPP833",
     "donateCta": "Faire un don en ligne"
+  },
+  "teaming": {
+    "title": "Teaming : 1 € par mois pour sauver des vies",
+    "intro": "Rejoignez notre réseau Teaming et transformez un petit geste mensuel en soutien durable pour les animaux du sanctuaire. Teaming est une plateforme qui gère des dons pour de bonnes causes : vous donnez 1 € par mois, sans aucune commission, et votre don arrive directement à Inaya.",
+    "howTitle": "Comment ça marche ?",
+    "join": { "title": "Rejoignez le réseau", "text": "Inscrivez-vous en quelques clics sur la page Teaming de l'association Inaya." },
+    "amount": { "title": "1 € par mois", "text": "Votre don mensuel de 1 € est prélevé automatiquement, sans aucune commission prise par Teaming." },
+    "impact": { "title": "Un impact collectif", "text": "Additionné aux dons des autres membres du réseau, votre euro contribue directement aux soins quotidiens des animaux." },
+    "ctaTitle": "Prêt à rejoindre notre réseau ?",
+    "ctaText": "Vous serez redirigé vers le site sécurisé de Teaming pour finaliser votre inscription.",
+    "cta": "Rejoindre sur Teaming"
   },
   "donate": {
     "title": "Faire un don",
