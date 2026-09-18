@@ -39,9 +39,14 @@ export default async function AnimalIntakeOutcomePage({
   ].sort((a, b) => (a.occurredOn < b.occurredOn ? 1 : -1));
 
   const columns: AdminTableColumn<TimelineRow>[] = [
-    { header: t("occurredOn"), render: (row) => row.occurredOn },
+    {
+      header: t("occurredOn"),
+      className: "font-mono text-[11.5px] text-ink/66",
+      render: (row) => new Date(row.occurredOn).toLocaleDateString(locale),
+    },
     {
       header: t("type"),
+      className: "font-bold",
       render: (row) => (row.kind === "intake" ? t("intakeLabel") : t("outcomeLabel")),
     },
     {
@@ -49,7 +54,7 @@ export default async function AnimalIntakeOutcomePage({
       render: (row) =>
         row.kind === "intake" ? t(`intakeReasons.${row.reason}`) : t(`outcomeReasons.${row.reason}`),
     },
-    { header: t("description"), render: (row) => row.description ?? "—" },
+    { header: t("description"), className: "text-ink/66", render: (row) => row.description ?? "—" },
     {
       header: "",
       className: "text-right",
@@ -58,21 +63,24 @@ export default async function AnimalIntakeOutcomePage({
           endpoint={`/api/admin/animals/${id}/${row.kind === "intake" ? "intakes" : "outcomes"}/${row.id}`}
           label={t("delete")}
           confirmMessage={t("deleteConfirm")}
+          iconOnly
         />
       ),
     },
   ];
 
   return (
-    <div className="flex flex-col gap-8">
-      <AdminTable columns={columns} rows={rows} emptyMessage={t("empty")} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold">{t("addIntake")}</h2>
+    <div className="flex flex-col gap-4">
+      <div className="overflow-hidden rounded-admin border border-ink/10 bg-surface">
+        <AdminTable columns={columns} rows={rows} emptyMessage={t("empty")} minWidth={620} />
+      </div>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="flex flex-col gap-3 rounded-admin border border-ink/10 bg-surface p-[16px_18px]">
+          <h2 className="text-[14.5px]">{t("addIntake")}</h2>
           <AnimalIntakeForm animalId={id} />
         </div>
-        <div className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold">{t("addOutcome")}</h2>
+        <div className="flex flex-col gap-3 rounded-admin border border-ink/10 bg-surface p-[16px_18px]">
+          <h2 className="text-[14.5px]">{t("addOutcome")}</h2>
           <AnimalOutcomeForm animalId={id} />
         </div>
       </div>

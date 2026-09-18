@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { animalIntakeFormSchema, type AnimalIntakeFormValues } from "@/lib/validation";
-import { Input, Select, Textarea, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminSelect, AdminTextarea, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 
 const INTAKE_REASONS = [
   "stray",
@@ -54,32 +54,32 @@ export function AnimalIntakeForm({ animalId }: { animalId: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("occurredOn")}</Label>
-          <Input type="date" {...register("occurredOn")} />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
+      <div className="grid grid-cols-2 gap-3.5">
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("occurredOn")}</AdminLabel>
+          <AdminInput type="date" {...register("occurredOn")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("reason")}</Label>
-          <Select {...register("reason")}>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("reason")}</AdminLabel>
+          <AdminSelect {...register("reason")}>
             {INTAKE_REASONS.map((r) => (
               <option key={r} value={r}>
                 {t(`intakeReasons.${r}`)}
               </option>
             ))}
-          </Select>
+          </AdminSelect>
         </div>
       </div>
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("description")}</Label>
-        <Textarea rows={2} {...register("description")} />
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("description")}</AdminLabel>
+        <AdminTextarea rows={2} {...register("description")} />
       </div>
-      {serverError ? <p className="text-sm text-accent">Something went wrong.</p> : null}
+      {serverError ? <p className="text-sm text-danger">Something went wrong.</p> : null}
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" size="sm" disabled={isSubmitting}>
           {isSubmitting ? "…" : t("addIntake")}
-        </Button>
+        </AdminButton>
       </div>
     </form>
   );

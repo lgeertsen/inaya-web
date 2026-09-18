@@ -20,29 +20,32 @@ export function AdminTable<T extends { id: string }>({
   emptyMessage,
   sortState,
   onSortChange,
+  minWidth,
 }: {
   columns: AdminTableColumn<T>[];
   rows: T[];
   emptyMessage: string;
   sortState?: AdminTableSortState;
   onSortChange?: (column: string) => void;
+  /** Minimum table width in px before horizontal scroll kicks in — set this on tables with several columns so cells wrap/scroll instead of clipping on narrow screens. */
+  minWidth?: number;
 }) {
   if (rows.length === 0) {
-    return <p className="opacity-60 text-sm">{emptyMessage}</p>;
+    return <p className="p-[14px_18px] text-sm text-ink/60">{emptyMessage}</p>;
   }
 
   return (
-    <div className="bg-surface rounded-card overflow-hidden overflow-x-auto">
-      <table className="w-full text-sm">
+    <div className="overflow-x-auto">
+      <table className="w-full text-[13px]" style={minWidth ? { minWidth } : undefined}>
         <thead>
-          <tr className="border-b border-ink/10">
+          <tr className="bg-ink/[0.025]">
             {columns.map((column) => {
               const isSortable = Boolean(column.sortable && onSortChange);
               const isActive = sortState?.column === column.header;
               return (
                 <th
                   key={column.header}
-                  className="p-4 text-left text-[11.5px] uppercase tracking-[0.12em] text-ink/50 font-bold whitespace-nowrap"
+                  className="whitespace-nowrap border-b border-ink/10 p-[9px_14px] text-left font-mono text-[9.5px] font-medium uppercase tracking-[0.14em] text-ink/55"
                 >
                   {isSortable ? (
                     <button
@@ -53,12 +56,12 @@ export function AdminTable<T extends { id: string }>({
                       {column.header}
                       {isActive && sortState ? (
                         sortState.direction === "asc" ? (
-                          <ChevronUp size={13} />
+                          <ChevronUp size={12} />
                         ) : (
-                          <ChevronDown size={13} />
+                          <ChevronDown size={12} />
                         )
                       ) : (
-                        <ChevronsUpDown size={13} className="opacity-40" />
+                        <ChevronsUpDown size={12} className="opacity-40" />
                       )}
                     </button>
                   ) : (
@@ -71,9 +74,9 @@ export function AdminTable<T extends { id: string }>({
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id} className="border-b border-ink/10 last:border-0 hover:bg-ink/[0.02]">
+            <tr key={row.id} className="border-b border-ink/7 last:border-0 hover:bg-ink/[0.02]">
               {columns.map((column) => (
-                <td key={column.header} className={`p-4 whitespace-nowrap ${column.className ?? ""}`}>
+                <td key={column.header} className={`whitespace-nowrap p-[8px_14px] ${column.className ?? ""}`}>
                   {column.render(row)}
                 </td>
               ))}

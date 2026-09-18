@@ -18,7 +18,7 @@ export default async function AnimalDetailPage({
   const supabase = await createClient();
   const animal = await getAnimalById(supabase, id);
 
-  if (!animal || !animal.isPublished) {
+  if (!animal || !animal.isPublished || !animal.inShelter) {
     notFound();
   }
 
@@ -40,7 +40,13 @@ export default async function AnimalDetailPage({
         <div className="flex flex-col gap-3">
           <div className="relative aspect-4/5 rounded-panel overflow-hidden bg-[radial-gradient(circle_at_50%_38%,#fdeefa_0%,#f3eef2_55%,#e9e6e8_100%)]">
             {cover ? (
-              <Image src={cover.url} alt={animal.name} fill className="object-cover" />
+              <Image
+                src={cover.url}
+                alt={animal.name}
+                fill
+                className="object-cover"
+                style={{ objectPosition: `${cover.focalX * 100}% ${cover.focalY * 100}%` }}
+              />
             ) : placeholder ? (
               <Image
                 src={placeholder}
@@ -57,7 +63,13 @@ export default async function AnimalDetailPage({
                   key={photo.id}
                   className="relative aspect-square rounded-xl overflow-hidden"
                 >
-                  <Image src={photo.url} alt={animal.name} fill className="object-cover" />
+                  <Image
+                    src={photo.url}
+                    alt={animal.name}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: `${photo.focalX * 100}% ${photo.focalY * 100}%` }}
+                  />
                 </div>
               ))}
             </div>
@@ -67,7 +79,6 @@ export default async function AnimalDetailPage({
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-2.5 flex-wrap">
             <Badge>{t(`filters.${animal.track}`)}</Badge>
-            <Badge tone="outline">{t(`filters.${animal.status}`)}</Badge>
           </div>
           <h1 className="text-[clamp(32px,4.5vw,48px)] leading-[1.05]">{animal.name}</h1>
           {bio ? <p className="text-[17px] leading-relaxed opacity-80">{bio}</p> : null}
@@ -114,15 +125,7 @@ export default async function AnimalDetailPage({
           </dl>
 
           <div className="mt-3">
-            {animal.status === "adopted" ? (
-              <p className="text-[15px] opacity-70">
-                {t("adoptedNote", { name: animal.name })}
-              </p>
-            ) : animal.status === "pending" ? (
-              <p className="text-[15px] opacity-70">
-                {t("pendingNote", { name: animal.name })}
-              </p>
-            ) : animal.track === "adoption" ? (
+            {animal.track === "adoption" ? (
               <ButtonLink href="/adopt">{t("adoptionCta")}</ButtonLink>
             ) : (
               <ButtonLink href={`/donate?animalId=${animal.id}`}>

@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   const supabase = await createClient();
   const [featuredAnimals, residentCount] = await Promise.all([
-    getAnimals(supabase, { publishedOnly: true, limit: 4 }),
+    getAnimals(supabase, { publishedOnly: true, inShelterOnly: true, limit: 4 }),
     getPublishedAnimalCount(supabase),
   ]);
 
@@ -88,7 +88,7 @@ export default async function HomePage() {
               {home("animalsCta")}
             </ButtonLink>
           </div>
-          <div className="grid gap-4.5 grid-cols-[repeat(auto-fit,minmax(230px,1fr))]">
+          <div className="grid gap-4.5 grid-cols-[repeat(auto-fill,minmax(230px,1fr))]">
             {featuredAnimals.map((animal) => (
               <AnimalCard key={animal.id} animal={animal} />
             ))}

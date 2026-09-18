@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Input } from "@/components/ui/Field";
+import { AdminInput } from "@/components/admin/ui/AdminField";
 import type { AnimalOption } from "@/lib/animals";
 
 export function AnimalMultiSelect({
@@ -43,7 +43,7 @@ export function AnimalMultiSelect({
           {selected.map((animal) => (
             <span
               key={animal.id}
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-pill bg-accent/10 text-accent"
+              className="inline-flex items-center gap-1.5 rounded-pill bg-accent-bg px-2.5 py-1 text-xs font-bold text-accent-hover"
             >
               {animal.name}
               <button
@@ -60,7 +60,7 @@ export function AnimalMultiSelect({
       ) : null}
 
       <div className="relative">
-        <Input
+        <AdminInput
           type="text"
           value={query}
           placeholder={placeholder}
@@ -72,7 +72,7 @@ export function AnimalMultiSelect({
           onBlur={() => setTimeout(() => setOpen(false), 150)}
         />
         {open && filtered.length > 0 ? (
-          <div className="absolute z-10 mt-1 w-full max-h-56 overflow-y-auto rounded-xl border border-ink/15 bg-white shadow-lg">
+          <div className="absolute z-10 mt-1 max-h-56 w-full overflow-y-auto rounded-[9px] border border-ink/14 bg-surface shadow-card-hover">
             {filtered.map((animal) => (
               <button
                 key={animal.id}

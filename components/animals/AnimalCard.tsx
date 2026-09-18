@@ -29,6 +29,7 @@ export async function AnimalCard({ animal }: { animal: Animal }) {
               fill
               sizes="(min-width: 1024px) 280px, 45vw"
               className="object-cover"
+              style={{ objectPosition: `${cover.focalX * 100}% ${cover.focalY * 100}%` }}
             />
           ) : placeholder ? (
             <Image

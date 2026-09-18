@@ -2,7 +2,6 @@ import { z } from "zod";
 
 export const animalSpeciesSchema = z.enum(["cat", "dog", "horse", "goat", "other"]);
 export const animalTrackSchema = z.enum(["adoption", "sponsorship"]);
-export const animalStatusSchema = z.enum(["available", "pending", "adopted"]);
 export const animalSexSchema = z.enum(["male", "female", "unknown"]);
 
 const emptyToUndefined = (val: unknown) => (val === "" || val === null ? undefined : val);
@@ -11,7 +10,6 @@ export const animalFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   species: animalSpeciesSchema,
   track: animalTrackSchema,
-  status: animalStatusSchema,
   breed: z.string().trim().optional().nullable(),
   sex: animalSexSchema,
   birthYear: z.preprocess(
@@ -30,6 +28,7 @@ export const animalFormSchema = z.object({
   bioFr: z.string().optional().nullable(),
   bioEn: z.string().optional().nullable(),
   specialNeeds: z.boolean(),
+  calicivirus: z.boolean(),
   isPublished: z.boolean(),
 });
 
@@ -188,3 +187,42 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+// Public applications (volunteer / foster family) --------------------------
+
+export const volunteerAvailabilitySchema = z.enum([
+  "weekday",
+  "weekend",
+  "occasional",
+  "flexible",
+]);
+
+export const volunteerApplicationSchema = z.object({
+  firstName: z.string().trim().min(1),
+  lastName: z.string().trim().min(1),
+  email: z.string().trim().email(),
+  phone: z.string().trim().min(1),
+  availability: volunteerAvailabilitySchema,
+  message: z.string().trim().min(1),
+});
+
+export type VolunteerApplicationValues = z.infer<typeof volunteerApplicationSchema>;
+
+export const fosterHousingTypeSchema = z.enum([
+  "house_garden",
+  "apartment",
+  "farm",
+  "other",
+]);
+
+export const fosterFamilyApplicationSchema = z.object({
+  firstName: z.string().trim().min(1),
+  lastName: z.string().trim().min(1),
+  email: z.string().trim().email(),
+  phone: z.string().trim().min(1),
+  city: z.string().trim().min(1),
+  housingType: fosterHousingTypeSchema,
+  message: z.string().trim().min(1),
+});
+
+export type FosterFamilyApplicationValues = z.infer<typeof fosterFamilyApplicationSchema>;

@@ -3,10 +3,8 @@
 import { FormEvent, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { Container } from "@/components/ui/Container";
-import { Card } from "@/components/ui/Card";
-import { Input, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 
 export default function AdminLoginPage() {
   const t = useTranslations("admin.login");
@@ -37,36 +35,51 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <Container className="py-24 max-w-[420px]!">
-      <Card className="p-8 hover:shadow-card hover:translate-y-0">
-        <h1 className="text-2xl mb-6">{t("title")}</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1.5">
-            <Label>{t("email")}</Label>
-            <Input
+    <div className="admin-scope flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="flex w-full max-w-[380px] flex-col gap-[18px] rounded-admin border border-ink/10 bg-surface p-7">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-accent font-display text-[15px] font-extrabold text-white">
+            I
+          </div>
+          <div className="flex flex-col leading-[1.15]">
+            <span className="font-display text-base font-extrabold tracking-tight">Inaya</span>
+            <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink/50">
+              Administration
+            </span>
+          </div>
+        </div>
+
+        <h2 className="text-xl">{t("title")}</h2>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-[18px]">
+          <div className="flex flex-col gap-[5px]">
+            <AdminLabel>{t("email")}</AdminLabel>
+            <AdminInput
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               autoComplete="username"
               required
             />
           </div>
-          <div className="flex flex-col gap-1.5">
-            <Label>{t("password")}</Label>
-            <Input
+          <div className="flex flex-col gap-[5px]">
+            <AdminLabel>{t("password")}</AdminLabel>
+            <AdminInput
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
               autoComplete="current-password"
               required
             />
           </div>
-          {error ? <p className="text-sm text-accent">{t("error")}</p> : null}
-          <Button type="submit" disabled={loading}>
+          {error ? <p className="text-sm text-danger">{t("error")}</p> : null}
+          <AdminButton type="submit" variant="dark" disabled={loading} className="w-full justify-center py-2.5 text-[13.5px]">
             {loading ? "…" : t("submit")}
-          </Button>
+          </AdminButton>
         </form>
-      </Card>
-    </Container>
+
+        <p className="text-[11.5px] leading-[1.5] text-ink/50">{t("footer")}</p>
+      </div>
+    </div>
   );
 }

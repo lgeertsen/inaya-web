@@ -17,10 +17,15 @@
     "team": "Notre équipe",
     "animals": "Nos animaux",
     "adopt": "Adopter",
+    "calicivirus": "Chats calicivirus",
     "surrender": "Céder un animal",
+    "volunteer": "Devenir bénévole",
+    "fosterFamily": "Famille d'accueil",
     "help": "Aidez-nous",
     "contact": "Contact",
-    "donate": "Faire un don"
+    "donate": "Faire un don",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "home": {
     "eyebrow": "Villeneuve-sur-Lot · Lot-et-Garonne",
@@ -82,10 +87,7 @@
       "goat": "Chèvre",
       "other": "Autre",
       "adoption": "Adoption",
-      "sponsorship": "Parrainage",
-      "available": "Disponible",
-      "pending": "En cours d'adoption",
-      "adopted": "Adopté"
+      "sponsorship": "Parrainage"
     },
     "sex": { "male": "Mâle", "female": "Femelle", "unknown": "Non renseigné" },
     "yearsOld": "{age, plural, one {# an} other {# ans}}",
@@ -96,9 +98,7 @@
     "arrived": "Arrivé(e) en",
     "specialNeeds": "Besoins spécifiques",
     "adoptionCta": "Faire une demande d'adoption",
-    "sponsorshipCta": "Parrainer {name}",
-    "adoptedNote": "{name} a trouvé sa famille pour toujours.",
-    "pendingNote": "Une famille est en cours de validation pour {name}."
+    "sponsorshipCta": "Parrainer {name}"
   },
   "adopt": {
     "title": "Adopter à Inaya",
@@ -128,7 +128,30 @@
       { "label": "Chat castré", "note": "", "price": "240 €" },
       { "label": "Chaton femelle", "note": "stérilisation comprise", "price": "285 €" },
       { "label": "Chaton mâle", "note": "stérilisation comprise", "price": "240 €" }
-    ]
+    ],
+    "calicivirus": {
+      "eyebrow": "Chats à besoins spécifiques",
+      "title": "Adopter un chat porteur du calicivirus",
+      "intro": "La calicivirose fait partie du syndrome coryza du chat. Elle touche certains de nos pensionnaires et ne les empêche pas de vivre une belle vie aux côtés d'une famille aimante.",
+      "whatTitle": "Qu'est-ce que la calicivirose ?",
+      "whatText": "Le calicivirus félin (FCV) n'est pas transmissible à l'Homme. Il se transmet uniquement entre chats, principalement par les sécrétions orales, nasales ou oculaires, et par contact avec des surfaces contaminées.",
+      "symptomsTitle": "Les symptômes",
+      "symptomsIntro": "Ces chats peuvent présenter des « crises » tout au long de leur vie :",
+      "symptoms": [
+        "Fièvre, faiblesse et fatigue",
+        "Éternuements et perte de l'odorat",
+        "Écoulements oculaires et nasaux",
+        "Ulcères buccaux et gingivite, pouvant entraîner des difficultés à manger et une perte de poids",
+        "Difficultés locomotrices"
+      ],
+      "treatmentTitle": "Le traitement",
+      "treatmentText": "Il n'existe actuellement aucun traitement antiviral efficace contre le calicivirus. Le traitement vise donc à améliorer le confort de vie du chat et à limiter les complications. Bien suivi, un chat atteint de calicivirose chronique peut vivre plusieurs années.",
+      "careTitle": "Une prise en charge pendant 6 mois",
+      "careText": "Adopter un chat porteur du calicivirus, c'est un acte de grand cœur. Le refuge prend en charge les frais vétérinaires liés au calicivirus pendant 6 mois à partir de la date d'adoption.",
+      "closing": "Ils sont tous câlins et n'attendent qu'une chose : une super famille pour la vie.",
+      "viewCatsCta": "Voir nos chats à l'adoption",
+      "procedureCta": "Découvrir la procédure d'adoption"
+    }
   },
   "surrender": {
     "title": "Céder un animal",
@@ -140,6 +163,77 @@
       "Vous êtes en possession de la carte d'identité I-CAD (document A4 bleu) que vous devez signer au dos en cas de cession. Si ce document manque, nous devons établir un certificat de cession, accompagné d'une copie de votre carte d'identité.",
       "Les frais de cession sont de 180 € pour un chien stérilisé et 100 € pour un chat stérilisé. Ce don aide le refuge à nourrir et soigner (vermifuge, vaccination, traitements anti-puces, collier Seresto, etc.) votre animal, qui restera avec nous pour un séjour court ou plusieurs années. Si l'animal n'est pas stérilisé, les frais de cession sont doublés, la stérilisation étant réalisée ici à l'entrée par notre clinique vétérinaire."
     ]
+  },
+  "volunteer": {
+    "title": "Devenir bénévole",
+    "intro": "L'association fonctionne grâce à l'engagement de ses bénévoles. Que vous puissiez donner une heure ponctuelle ou plusieurs demi-journées par semaine, votre aide compte pour les animaux comme pour l'équipe.",
+    "tasksTitle": "Ce que vous pouvez faire avec nous",
+    "tasks": [
+      "Nourrir, brosser et sociabiliser les animaux",
+      "Entretenir les box, pâturages et litières",
+      "Aider lors des rendez-vous vétérinaires",
+      "Prêter main forte lors des journées portes ouvertes et événements"
+    ],
+    "conditionsTitle": "Avant de nous rejoindre",
+    "conditions": [
+      "Être disponible régulièrement ou ponctuellement, selon un planning établi ensemble",
+      "Accepter de suivre les consignes d'hygiène et de sécurité du refuge",
+      "Être à l'aise avec le contact direct des animaux (chiens, chats, chevaux, chèvres…)",
+      "Être majeur, ou accompagné d'un parent si mineur"
+    ],
+    "formTitle": "Faire une demande de bénévolat",
+    "firstNamePlaceholder": "Prénom",
+    "lastNamePlaceholder": "Nom",
+    "emailPlaceholder": "E-mail",
+    "phonePlaceholder": "Téléphone",
+    "availabilityPlaceholder": "Vos disponibilités",
+    "availabilityOptions": {
+      "weekday": "En semaine",
+      "weekend": "Le week-end",
+      "occasional": "Ponctuellement",
+      "flexible": "Flexible"
+    },
+    "messagePlaceholder": "Parlez-nous de vous : expérience avec les animaux, motivation, disponibilités…",
+    "submit": "Envoyer ma demande",
+    "sending": "Envoi en cours…",
+    "sentMessage": "Merci ! Votre demande a bien été envoyée, nous reviendrons vers vous rapidement.",
+    "errorMessage": "Une erreur est survenue. Merci de réessayer ou de nous écrire directement."
+  },
+  "fosterFamily": {
+    "title": "Famille d'accueil",
+    "intro": "Devenir famille d'accueil, c'est offrir un foyer temporaire à un animal le temps d'une convalescence ou en attendant son adoption définitive, tout en restant en lien avec notre équipe.",
+    "roleTitle": "Le rôle d'une famille d'accueil",
+    "role": [
+      "Héberger temporairement un animal, le temps d'une convalescence ou avant son adoption",
+      "Le sociabiliser et l'habituer à la vie en foyer",
+      "Nous tenir informés de son comportement et de sa santé",
+      "Le présenter aux éventuels adoptants avec notre accord"
+    ],
+    "conditionsTitle": "Conditions pour devenir famille d'accueil",
+    "conditions": [
+      "Disposer d'un logement adapté à l'animal accueilli (jardin clôturé pour un chien, espace sécurisé pour un chat…)",
+      "Pouvoir assurer les déplacements nécessaires chez le vétérinaire partenaire",
+      "Accepter les visites de suivi et rester en contact régulier avec l'association",
+      "Les frais vétérinaires et de nourriture peuvent être pris en charge par l'association"
+    ],
+    "formTitle": "Faire une demande de famille d'accueil",
+    "firstNamePlaceholder": "Prénom",
+    "lastNamePlaceholder": "Nom",
+    "emailPlaceholder": "E-mail",
+    "phonePlaceholder": "Téléphone",
+    "cityPlaceholder": "Ville",
+    "housingTypePlaceholder": "Type de logement",
+    "housingTypeOptions": {
+      "house_garden": "Maison avec jardin",
+      "apartment": "Appartement",
+      "farm": "Ferme / terrain",
+      "other": "Autre"
+    },
+    "messagePlaceholder": "Parlez-nous de votre foyer : autres animaux, expérience, type d'animal que vous pourriez accueillir…",
+    "submit": "Envoyer ma demande",
+    "sending": "Envoi en cours…",
+    "sentMessage": "Merci ! Votre demande a bien été envoyée, nous reviendrons vers vous rapidement.",
+    "errorMessage": "Une erreur est survenue. Merci de réessayer ou de nous écrire directement."
   },
   "help": {
     "title": "Aidez-nous",
@@ -206,35 +300,90 @@
     "linksTitle": "Liens",
     "helpTitle": "Aidez-nous",
     "animalsTitle": "Animaux",
+    "linkCalicivirus": "Chats porteurs du calicivirus",
     "linkAdopted": "Animaux adoptés",
     "linkThanks": "Remerciements"
   },
   "admin": {
     "login": {
-      "title": "Connexion administration",
+      "title": "Connexion",
       "email": "E-mail",
       "password": "Mot de passe",
       "submit": "Se connecter",
-      "error": "E-mail ou mot de passe incorrect."
+      "error": "E-mail ou mot de passe incorrect.",
+      "footer": "Accès réservé à l'équipe du sanctuaire. Les comptes sont créés par un administrateur."
     },
     "nav": {
       "overview": "Vue d'ensemble",
       "animals": "Animaux",
+      "animalsArchive": "Anciens animaux",
       "calendar": "Calendrier",
       "donations": "Dons",
       "accounts": "Bénévoles",
       "profile": "Mon compte",
       "signOut": "Se déconnecter",
       "toggleMenu": "Ouvrir le menu",
-      "closeMenu": "Fermer le menu"
+      "closeMenu": "Fermer le menu",
+      "groups": {
+        "pilotage": "Pilotage",
+        "refuge": "Refuge",
+        "association": "Association",
+        "compte": "Compte"
+      },
+      "roleAdmin": "Admin",
+      "roleVolunteer": "Bénévole"
+    },
+    "header": {
+      "searchPlaceholder": "Rechercher un animal, un donateur…",
+      "addAnimal": "Ajouter un animal"
     },
     "overview": {
       "title": "Vue d'ensemble",
-      "totalAnimals": "Animaux au total",
-      "published": "Publiés",
+      "published": "Publiés sur le site",
       "inShelter": "Présents au refuge",
-      "donationsTotal": "Dons reçus",
+      "dogsPresent": "Chiens présents",
+      "catsPresent": "Chats présents",
+      "donationsTotal": "Dons 12 mois",
       "upcomingVisits": "Visites à venir",
+      "kpis": {
+        "outcomesThisYear": "{count} sorties en {year}",
+        "nextVisitOn": "prochaine le {date}",
+        "noUpcomingVisit": "aucune visite planifiée"
+      },
+      "chart": {
+        "title": "Dons encaissés",
+        "caption12": "12 derniers mois",
+        "caption6": "6 derniers mois"
+      },
+      "attention": {
+        "title": "À traiter",
+        "empty": "Rien à signaler pour le moment.",
+        "overdueVaccines": "Rappels de vaccin en retard",
+        "overdueVaccinesMeta": "{names}",
+        "syncFailures": "Synchronisation Google Calendar échouée",
+        "syncFailuresMeta": "{count, plural, one {# événement} other {# événements}}",
+        "unpublishedDrafts": "Fiches non publiées",
+        "unpublishedDraftsMeta": "Créées il y a plus de 15 jours",
+        "missingMicrochip": "Fiche interne sans n° de puce",
+        "missingMicrochipMeta": "{count, plural, one {# animal} other {# animaux}}",
+        "failedDonations": "Don en échec de paiement",
+        "failedDonationsMeta": "{count, plural, one {# don à vérifier} other {# dons à vérifier}}"
+      },
+      "vetVisits": {
+        "title": "Prochaines visites vétérinaires",
+        "viewAll": "Calendrier",
+        "empty": "Aucune visite planifiée."
+      },
+      "recentArrivals": {
+        "title": "Arrivées récentes",
+        "viewAll": "Tous les animaux",
+        "empty": "Aucune arrivée récente."
+      },
+      "recentVolunteerPhotos": {
+        "title": "Photos récentes des bénévoles",
+        "viewAll": "Tous les animaux",
+        "empty": "Aucune photo de bénévole pour le moment."
+      },
       "bySpecies": {
         "title": "Animaux par espèce"
       },
@@ -246,31 +395,40 @@
       }
     },
     "animals": {
-      "title": "Gestion des animaux",
+      "title": "Animaux",
       "add": "Ajouter un animal",
       "edit": "Modifier",
       "photos": "Photos",
-      "delete": "Supprimer",
-      "deleteConfirm": "Supprimer définitivement cet animal et ses photos ?",
       "publishedYes": "Publié",
       "publishedNo": "Brouillon",
       "empty": "Aucun animal pour le moment.",
+      "meta": "{count, plural, one {# animal} other {# animaux}} actuellement au refuge",
+      "archiveTitle": "Anciens animaux",
+      "archiveMeta": "{count, plural, one {# animal} other {# animaux}} qui ne sont plus au refuge",
+      "archiveEmpty": "Aucun ancien animal pour le moment.",
+      "resultsCount": "{count} résultats",
       "searchPlaceholder": "Rechercher par nom, espèce ou n° de puce…",
       "allSpecies": "Toutes les espèces",
-      "allPresence": "Tous (présents et absents)",
+      "tracks": { "adoption": "Adoption", "sponsorship": "Parrainage" },
+      "publicationFilter": { "all": "Publication : tous", "published": "Publiés", "draft": "Brouillons" },
       "columns": {
         "name": "Nom",
         "species": "Espèce",
         "microchip": "N° de puce",
-        "trackStatus": "Statut",
+        "care": "Soins",
         "published": "Publication",
         "inShelter": "Présence"
+      },
+      "care": {
+        "overdue": "Rappel en retard",
+        "missingChip": "Puce manquante",
+        "inProgress": "Vaccins en cours",
+        "upToDate": "À jour"
       },
       "form": {
         "name": "Nom",
         "microchip": "N° de puce",
         "species": "Espèce",
-        "status": "État",
         "breed": "Race",
         "sex": "Sexe",
         "birthYear": "Année de naissance",
@@ -287,14 +445,18 @@
         "uploadPhoto": "Ajouter une photo",
         "removePhoto": "Retirer",
         "setCover": "Définir comme photo principale",
-        "coverBadge": "Affichée sur le site"
+        "coverBadge": "Affichée sur le site",
+        "setFocalPoint": "Point de mise au point",
+        "focalPointInstructions": "Cliquez ou faites glisser sur la photo pour définir le point à toujours garder visible.",
+        "saveFocalPoint": "Enregistrer",
+        "cancelFocalPoint": "Annuler",
+        "uploadedBy": "Ajoutée par"
       },
       "tabs": {
-        "profile": "Profil",
+        "profile": "Profil public",
+        "photos": "Photos",
         "internalDetails": "Fiche interne",
-        "intakeOutcome": "Entrées / Sorties",
-        "vaccines": "Vaccins",
-        "treatments": "Traitements",
+        "intakeOutcome": "Entrées / sorties",
         "vetAppointments": "Rendez-vous vétérinaire"
       },
       "internalDetails": {
@@ -306,6 +468,24 @@
         "inShelterYes": "Présent",
         "inShelterNo": "Absent",
         "save": "Enregistrer"
+      },
+      "sexes": { "male": "mâle", "female": "femelle", "unknown": "sexe inconnu" },
+      "detail": {
+        "viewOnSite": "Voir sur le site",
+        "editRecord": "Modifier la fiche",
+        "birthLabel": "Naissance",
+        "ageYears": "{age} ans",
+        "arrivalLabel": "Arrivée",
+        "unknownArrival": "Arrivée inconnue",
+        "sinceDate": "au refuge depuis {date}",
+        "historyTitle": "Historique",
+        "historyPublished": "Publiée sur le site",
+        "deleteButton": "Supprimer",
+        "deleteTitle": "Supprimer {name} ?",
+        "deleteBody": "Cette action supprime définitivement la fiche de l'animal et ses photos. Tapez le nom de l'animal ci-dessous pour confirmer.",
+        "deleteNamePlaceholder": "Tapez le nom de l'animal",
+        "deleteConfirmButton": "Supprimer définitivement",
+        "deleteCancel": "Annuler"
       },
       "intakeOutcome": {
         "title": "Entrées / Sorties",
@@ -354,7 +534,11 @@
         "retrySync": "Réessayer la synchronisation",
         "delete": "Supprimer",
         "deleteConfirm": "Supprimer définitivement ce vaccin ?",
-        "empty": "Aucun vaccin enregistré."
+        "empty": "Aucun vaccin enregistré.",
+        "dueBadge": "{count, plural, =0 {Aucun rappel dû} one {# rappel dû} other {# rappels dus}}",
+        "reminderOverdue": "Rappel {date} · dû",
+        "reminderScheduled": "Rappel {date}",
+        "noReminder": "—"
       },
       "treatments": {
         "title": "Traitements",
@@ -390,18 +574,49 @@
     },
     "donations": {
       "title": "Dons reçus",
+      "meta": "12 derniers mois · {total} encaissés",
       "empty": "Aucun don enregistré pour le moment.",
       "searchPlaceholder": "Rechercher un donateur…",
-      "columns": { "date": "Date", "donor": "Donateur", "amount": "Montant", "frequency": "Fréquence", "status": "Statut" }
+      "exportCsv": "Exporter CSV",
+      "columns": { "date": "Date", "donor": "Donateur", "amount": "Montant", "frequency": "Fréquence", "status": "Statut" },
+      "frequencies": { "one_time": "Ponctuel", "monthly": "Mensuel" },
+      "statusLabels": {
+        "completed": "Encaissé",
+        "pending": "En attente",
+        "failed": "Échoué",
+        "refunded": "Remboursé"
+      },
+      "statusFilter": {
+        "all": "Tous les statuts",
+        "completed": "Encaissés",
+        "pending": "En attente",
+        "failed": "Échoués",
+        "refunded": "Remboursés"
+      },
+      "kpis": {
+        "totalReceived": "Total encaissé",
+        "totalReceivedDelta": "{sign}{percent} % sur 12 mois",
+        "totalReceivedNoData": "12 derniers mois",
+        "activeMonthly": "Dons mensuels actifs",
+        "activeMonthlyDetail": "{amount} / mois récurrents",
+        "average": "Don moyen",
+        "averageDetail": "sur {count} dons",
+        "toReview": "À vérifier",
+        "toReviewDetail": "{failed} échec · {pending} en attente"
+      }
     },
     "accounts": {
       "title": "Comptes bénévoles",
+      "activeCount": "{count} comptes actifs",
       "add": "Créer un compte bénévole",
+      "addDescription": "Les bénévoles ne voient que les animaux présents au refuge et n'ont accès qu'à l'ajout de photos.",
       "email": "E-mail",
       "password": "Mot de passe",
       "generatePassword": "Générer",
       "createdAt": "Créé le",
-      "delete": "Supprimer",
+      "lastActivity": "Dernière activité",
+      "neverActive": "Aucune activité",
+      "delete": "Révoquer",
       "deleteConfirm": "Supprimer définitivement ce compte bénévole ? La personne ne pourra plus se connecter.",
       "empty": "Aucun compte bénévole pour le moment.",
       "error": "Une erreur est survenue lors de la création de ce compte.",
@@ -413,14 +628,25 @@
       "confirmPassword": "Confirmer le nouveau mot de passe",
       "save": "Enregistrer",
       "success": "Votre mot de passe a été mis à jour.",
-      "error": "Une erreur est survenue lors de la mise à jour de votre mot de passe."
+      "error": "Une erreur est survenue lors de la mise à jour de votre mot de passe.",
+      "session": {
+        "title": "Session",
+        "email": "E-mail",
+        "role": "Rôle",
+        "language": "Langue",
+        "languageValue": "Français",
+        "calendar": "Google Calendar",
+        "calendarConnected": "Connecté",
+        "calendarNotConfigured": "Non configuré"
+      }
     },
     "calendar": {
       "title": "Calendrier vétérinaire",
+      "meta": "{month} · {count, plural, one {# visite} other {# visites}}",
       "monthView": "Mois",
       "weekView": "Semaine",
       "today": "Aujourd'hui",
-      "addVisit": "Ajouter une visite",
+      "addVisit": "Planifier une visite",
       "save": "Enregistrer",
       "animals": "Animaux",
       "notes": "Notes",

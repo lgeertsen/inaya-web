@@ -1,12 +1,17 @@
 import { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getAnimalById } from "@/lib/animals";
-import { getAnimalInternalDetails } from "@/lib/animal-care";
+import { getAnimalInternalDetails, listAnimalIntakes } from "@/lib/animal-care";
+import { AdminPage } from "@/components/admin/AdminPage";
 import { AnimalDetailTabs } from "@/components/admin/AnimalDetailTabs";
-import { Badge } from "@/components/ui/Badge";
+import { DeleteAnimalDialog } from "@/components/admin/DeleteAnimalDialog";
+import { AnimalThumb } from "@/components/admin/ui/AnimalThumb";
+import { StatusPill } from "@/components/admin/ui/StatusPill";
+import { AdminButtonLink } from "@/components/admin/ui/AdminButton";
+import { computeAge } from "@/lib/format";
 
 export default async function AnimalDetailLayout({
   params,
@@ -16,6 +21,7 @@ export default async function AnimalDetailLayout({
   children: ReactNode;
 }) {
   const { id } = await params;
+  const locale = await getLocale();
   const supabase = await createClient();
   const animal = await getAnimalById(supabase, id);
   if (!animal) notFound();
@@ -31,30 +37,97 @@ export default async function AnimalDetailLayout({
     if (!details?.inShelter) notFound();
 
     return (
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-4">
-          <h1 className="text-2xl">{animal.name}</h1>
-          <span className="text-sm opacity-60">{animal.species}</span>
-        </div>
+      <AdminPage title={animal.name} meta={animal.species}>
         {children}
-      </div>
+      </AdminPage>
     );
   }
 
-  const details = await getAnimalInternalDetails(supabase, id);
-  const t = await getTranslations("admin.animals.internalDetails");
+  const [details, intakes] = await Promise.all([
+    getAnimalInternalDetails(supabase, id),
+    listAnimalIntakes(supabase, id),
+  ]);
+  const t = await getTranslations("admin.animals");
+  const latestIntake = intakes[0];
+  const age = computeAge(animal.birthYear, animal.birthMonth);
+  const meta = [
+    animal.species,
+    t(`sexes.${animal.sex}`),
+    details?.inShelter && animal.arrivalDate
+      ? t("detail.sinceDate", {
+          date: new Date(animal.arrivalDate).toLocaleDateString(locale, { month: "long", year: "numeric" }),
+        })
+      : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-4">
-        <h1 className="text-2xl">{animal.name}</h1>
-        <span className="text-sm opacity-60">{animal.species}</span>
-        <Badge tone={details?.inShelter ? "success" : "neutral"}>
-          {details?.inShelter ? t("inShelterYes") : t("inShelterNo")}
-        </Badge>
+    <AdminPage title={animal.name} meta={meta}>
+      <div className="flex flex-wrap items-center gap-[18px] rounded-admin border border-ink/10 bg-surface p-[18px_20px]">
+        <AnimalThumb animal={animal} size={84} rounded={12} />
+        <div className="flex min-w-0 flex-col gap-2">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <h2 className="text-2xl">{animal.name}</h2>
+            <StatusPill tone={details?.inShelter ? "success" : "neutral"}>
+              {details?.inShelter ? t("internalDetails.inShelterYes") : t("internalDetails.inShelterNo")}
+            </StatusPill>
+            <StatusPill tone={animal.isPublished ? "accent" : "neutral"}>
+              {animal.isPublished ? t("publishedYes") : t("publishedNo")}
+            </StatusPill>
+          </div>
+          <div className="flex flex-wrap gap-[18px]">
+            <span className="flex flex-col gap-0.5">
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.13em] text-ink/50">
+                {t("columns.species")}
+              </span>
+              <span className="text-[13px] font-semibold">
+                {animal.species} · {t(`sexes.${animal.sex}`)}
+              </span>
+            </span>
+            <span className="flex flex-col gap-0.5">
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.13em] text-ink/50">
+                {t("detail.birthLabel")}
+              </span>
+              <span className="text-[13px] font-semibold">
+                {animal.birthYear ? `${animal.birthYear}` : "—"}
+                {age !== null ? ` · ${t("detail.ageYears", { age })}` : ""}
+              </span>
+            </span>
+            <span className="flex flex-col gap-0.5">
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.13em] text-ink/50">
+                {t("columns.microchip")}
+              </span>
+              <span className="font-mono text-[12.5px]">{details?.microchipNumber ?? "—"}</span>
+            </span>
+            <span className="flex flex-col gap-0.5">
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.13em] text-ink/50">
+                {t("detail.arrivalLabel")}
+              </span>
+              <span className="text-[13px] font-semibold">
+                {animal.arrivalDate
+                  ? `${new Date(animal.arrivalDate).toLocaleDateString(locale)}${
+                      latestIntake ? ` · ${t(`intakeOutcome.intakeReasons.${latestIntake.reason}`)}` : ""
+                    }`
+                  : t("detail.unknownArrival")}
+              </span>
+            </span>
+          </div>
+        </div>
+        <div className="ml-auto flex flex-wrap gap-2">
+          <AdminButtonLink href={`/animals/${id}`} target="_blank">
+            {t("detail.viewOnSite")}
+          </AdminButtonLink>
+          <AdminButtonLink href={`/admin/animals/${id}/edit`} variant="dark">
+            {t("detail.editRecord")}
+          </AdminButtonLink>
+          <DeleteAnimalDialog animalId={id} animalName={animal.name} />
+        </div>
       </div>
+
       <AnimalDetailTabs animalId={id} />
+
       {children}
-    </div>
+    </AdminPage>
   );
 }

@@ -2,8 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "@/i18n/navigation";
-import { Select } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminSelect } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 import type { AnimalOption } from "@/lib/animals";
 
 export function AddAnimalToVisitForm({
@@ -34,17 +34,17 @@ export function AddAnimalToVisitForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-3">
-      <Select value={animalId} onChange={(e) => setAnimalId(e.target.value)} className="max-w-xs">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2.5">
+      <AdminSelect value={animalId} onChange={(e) => setAnimalId(e.target.value)} className="max-w-xs">
         {animalOptions.map((animal) => (
           <option key={animal.id} value={animal.id}>
             {animal.name}
           </option>
         ))}
-      </Select>
-      <Button type="submit" variant="outline" disabled={pending}>
+      </AdminSelect>
+      <AdminButton type="submit" size="sm" disabled={pending}>
         {label}
-      </Button>
+      </AdminButton>
     </form>
   );
 }

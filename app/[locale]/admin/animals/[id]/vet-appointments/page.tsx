@@ -21,20 +21,35 @@ export default async function AnimalVetAppointmentsPage({
   const statusT = await getTranslations("admin.calendar.statuses");
 
   const columns: AdminTableColumn<VetVisitForAnimal>[] = [
-    { header: t("scheduledAt"), render: (row) => new Date(row.scheduledAt).toLocaleString() },
-    { header: t("reason"), render: (row) => row.reason },
-    { header: t("status"), render: (row) => statusT(row.status) },
-    { header: t("followUpDate"), render: (row) => row.followUpDate ?? "—" },
+    {
+      header: t("scheduledAt"),
+      className: "font-mono text-[11.5px] text-ink/66",
+      render: (row) => new Date(row.scheduledAt).toLocaleString(locale),
+    },
+    { header: t("reason"), className: "font-bold", render: (row) => row.reason },
+    { header: t("status"), className: "text-ink/66", render: (row) => statusT(row.status) },
+    {
+      header: t("followUpDate"),
+      className: "font-mono text-[11.5px] text-ink/66",
+      render: (row) => (row.followUpDate ? new Date(row.followUpDate).toLocaleDateString(locale) : "—"),
+    },
     {
       header: "",
       className: "text-right",
       render: (row) => (
-        <Link href={`/admin/calendar/${row.id}`} className="font-bold text-accent">
+        <Link
+          href={`/admin/calendar/${row.id}`}
+          className="inline-flex items-center rounded-[7px] border border-ink/14 bg-surface px-2.5 py-[5px] text-[12px] font-bold hover:border-ink"
+        >
           {t("view")}
         </Link>
       ),
     },
   ];
 
-  return <AdminTable columns={columns} rows={visits} emptyMessage={t("empty")} />;
+  return (
+    <div className="overflow-hidden rounded-admin border border-ink/10 bg-surface">
+      <AdminTable columns={columns} rows={visits} emptyMessage={t("empty")} minWidth={620} />
+    </div>
+  );
 }

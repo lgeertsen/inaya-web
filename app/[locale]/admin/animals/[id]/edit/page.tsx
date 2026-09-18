@@ -22,17 +22,13 @@ export default async function EditAnimalPage({
   const role = await getPageRole();
 
   if (role !== "admin") {
-    return (
-      <div className="flex flex-col gap-6">
-        <VolunteerPhotoPanel animal={animal} />
-      </div>
-    );
+    return <VolunteerPhotoPanel animal={animal} />;
   }
 
   const internalDetails = await getAnimalInternalDetails(supabase, id);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="rounded-admin border border-ink/10 bg-surface p-[18px]">
       <AnimalForm animal={animal} internalDetails={internalDetails} />
     </div>
   );

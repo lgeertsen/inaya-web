@@ -10,8 +10,8 @@ import {
   type AnimalTreatmentFormInput,
   type AnimalTreatmentFormValues,
 } from "@/lib/validation";
-import { Input, Select, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminSelect, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 
 const MEASUREMENT_UNITS = ["pill", "spoon", "ml", "cl"] as const;
 
@@ -69,56 +69,56 @@ export function AnimalTreatmentForm({ animalId }: { animalId: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("name")}</Label>
-          <Input {...register("name")} />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
+      <div className="grid grid-cols-2 gap-3.5">
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("name")}</AdminLabel>
+          <AdminInput {...register("name")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("medicine")}</Label>
-          <Input {...register("medicine")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("medicine")}</AdminLabel>
+          <AdminInput {...register("medicine")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("startDate")}</Label>
-          <Input type="date" {...register("startDate")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("startDate")}</AdminLabel>
+          <AdminInput type="date" {...register("startDate")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("endDate")}</Label>
-          <Input type="date" {...register("endDate")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("endDate")}</AdminLabel>
+          <AdminInput type="date" {...register("endDate")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("step")}</Label>
-          <Input type="number" min={1} {...register("step")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("step")}</AdminLabel>
+          <AdminInput type="number" min={1} {...register("step")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("amount")}</Label>
-          <Input type="number" step="0.1" min={0} {...register("amount")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("amount")}</AdminLabel>
+          <AdminInput type="number" step="0.1" min={0} {...register("amount")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("measurement")}</Label>
-          <Select {...register("measurement")}>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("measurement")}</AdminLabel>
+          <AdminSelect {...register("measurement")}>
             {MEASUREMENT_UNITS.map((unit) => (
               <option key={unit} value={unit}>
                 {t(`measurementUnits.${unit}`)}
               </option>
             ))}
-          </Select>
+          </AdminSelect>
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("dayStep")}</Label>
-          <Input type="number" min={1} {...register("dayStep")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("dayStep")}</AdminLabel>
+          <AdminInput type="number" min={1} {...register("dayStep")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("dayTimes")}</Label>
-          <Input type="number" min={1} {...register("dayTimes")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("dayTimes")}</AdminLabel>
+          <AdminInput type="number" min={1} {...register("dayTimes")} />
         </div>
       </div>
-      {serverError ? <p className="text-sm text-accent">Something went wrong.</p> : null}
+      {serverError ? <p className="text-sm text-danger">Something went wrong.</p> : null}
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" size="sm" disabled={isSubmitting}>
           {isSubmitting ? "…" : t("add")}
-        </Button>
+        </AdminButton>
       </div>
     </form>
   );

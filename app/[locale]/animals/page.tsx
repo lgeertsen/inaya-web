@@ -23,6 +23,7 @@ export default async function AnimalsPage({
   const supabase = await createClient();
   const animals = await getAnimals(supabase, {
     publishedOnly: true,
+    inShelterOnly: true,
     species,
   });
 
@@ -41,7 +42,7 @@ export default async function AnimalsPage({
       {animals.length === 0 ? (
         <p className="opacity-60 text-[15px]">{t("empty")}</p>
       ) : (
-        <div className="grid gap-4.5 grid-cols-[repeat(auto-fit,minmax(230px,1fr))]">
+        <div className="grid gap-4.5 grid-cols-[repeat(auto-fill,minmax(230px,1fr))]">
           {animals.map((animal) => (
             <AnimalCard key={animal.id} animal={animal} />
           ))}

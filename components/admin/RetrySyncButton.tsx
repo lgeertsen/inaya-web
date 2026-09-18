@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { RotateCw, Loader2 } from "lucide-react";
 import { useRouter } from "@/i18n/navigation";
+import { AdminButton } from "./ui/AdminButton";
 
 export function RetrySyncButton({ endpoint, label }: { endpoint: string; label: string }) {
   const router = useRouter();
@@ -17,18 +18,9 @@ export function RetrySyncButton({ endpoint, label }: { endpoint: string; label: 
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      disabled={loading || pending}
-      className="inline-flex items-center gap-1.5 rounded-pill border border-ink/15 px-3 py-1.5 text-sm font-bold hover:bg-ink/5 disabled:opacity-60"
-    >
-      {loading || pending ? (
-        <Loader2 size={14} className="animate-spin" />
-      ) : (
-        <RotateCw size={14} />
-      )}
+    <AdminButton size="xs" onClick={handleClick} disabled={loading || pending}>
+      {loading || pending ? <Loader2 size={13} className="animate-spin" /> : <RotateCw size={13} />}
       {label}
-    </button>
+    </AdminButton>
   );
 }

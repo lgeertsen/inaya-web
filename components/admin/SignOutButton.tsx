@@ -4,13 +4,33 @@ import { useLocale } from "next-intl";
 import { LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
-export function SignOutButton({ label }: { label: string }) {
+export function SignOutButton({
+  label,
+  iconOnly = false,
+}: {
+  label: string;
+  iconOnly?: boolean;
+}) {
   const locale = useLocale();
 
   async function handleClick() {
     const supabase = createClient();
     await supabase.auth.signOut();
     window.location.href = `/${locale}/admin/login`;
+  }
+
+  if (iconOnly) {
+    return (
+      <button
+        type="button"
+        onClick={handleClick}
+        title={label}
+        aria-label={label}
+        className="flex flex-none rounded-lg p-1.5 text-white/50 transition-colors hover:bg-white/8 hover:text-white"
+      >
+        <LogOut size={16} strokeWidth={2} />
+      </button>
+    );
   }
 
   return (

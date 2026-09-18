@@ -1,44 +1,55 @@
 import { getTranslations } from "next-intl/server";
-import { ButtonLink } from "@/components/ui/Button";
 import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getAnimals } from "@/lib/animals";
-import { listInternalDetailsSummaries } from "@/lib/animal-care";
+import { listInternalDetailsSummaries, listAllVaccinesByAnimal } from "@/lib/animal-care";
+import { AdminPage } from "@/components/admin/AdminPage";
 import { AnimalsTableClient } from "@/components/admin/AnimalsTableClient";
+import { VolunteerAnimalsCards } from "@/components/admin/VolunteerAnimalsCards";
 
-export default async function AdminAnimalsPage() {
+export default async function AdminAnimalsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const t = await getTranslations("admin.animals");
   const role = await getPageRole();
   const isAdmin = role === "admin";
+  const { q } = await searchParams;
   const supabase = await createClient();
-  const [animals, internalDetails] = await Promise.all([
+  const [animals, internalDetails, vaccinesByAnimal] = await Promise.all([
     getAnimals(supabase, { publishedOnly: false }),
     listInternalDetailsSummaries(supabase),
+    listAllVaccinesByAnimal(supabase),
   ]);
 
-  // Volunteers add photos, which only makes sense for animals still at the
-  // shelter — admins keep seeing the full history (adopted, deceased, ...).
-  // Filtered server-side so a volunteer's browser never receives the rest.
-  const visibleAnimals = isAdmin
-    ? animals
-    : animals.filter((animal) => internalDetails[animal.id]?.inShelter);
+  // This page only lists animals currently at the shelter — former animals
+  // (adopted, deceased, ...) live on the separate /admin/animals/archive
+  // page. Filtered server-side so a volunteer's browser never receives the rest.
+  const visibleAnimals = animals.filter((animal) => internalDetails[animal.id]?.inShelter);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl">{t("title")}</h1>
-        {isAdmin ? <ButtonLink href="/admin/animals/new">{t("add")}</ButtonLink> : null}
-      </div>
-
-      {visibleAnimals.length === 0 ? (
-        <p className="opacity-60 text-sm">{t("empty")}</p>
+    <AdminPage title={t("title")} meta={t("meta", { count: visibleAnimals.length })}>
+      {isAdmin ? (
+        visibleAnimals.length === 0 ? (
+          <p className="text-sm text-ink/60">{t("empty")}</p>
+        ) : (
+          <AnimalsTableClient
+            animals={visibleAnimals}
+            internalDetails={internalDetails}
+            vaccinesByAnimal={vaccinesByAnimal}
+            isAdmin={isAdmin}
+            initialSearch={q ?? ""}
+          />
+        )
       ) : (
-        <AnimalsTableClient
+        <VolunteerAnimalsCards
           animals={visibleAnimals}
           internalDetails={internalDetails}
-          isAdmin={isAdmin}
+          vaccinesByAnimal={vaccinesByAnimal}
+          initialSearch={q ?? ""}
         />
       )}
-    </div>
+    </AdminPage>
   );
 }

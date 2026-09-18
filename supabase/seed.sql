@@ -4,25 +4,25 @@
 -- render a graceful placeholder when an animal has no photos.
 
 insert into animals
-  (name, species, track, status, breed, sex, birth_year, size, bio_fr, bio_en, special_needs, is_published)
+  (name, species, track, breed, sex, birth_year, size, bio_fr, bio_en, special_needs, is_published)
 values
-  ('Nala', 'cat', 'adoption', 'available', null, 'female', 2018, 'medium',
+  ('Nala', 'cat', 'adoption', null, 'female', 2018, 'medium',
    'Nala est une chatte douce et curieuse, à l''aise avec les autres chats.',
    'Nala is a gentle, curious cat who gets along well with other cats.',
    false, true),
-  ('Milo', 'cat', 'adoption', 'pending', null, 'male', 2023, 'small',
+  ('Milo', 'cat', 'adoption', null, 'male', 2023, 'small',
    'Milo est un jeune chaton joueur, en cours de finalisation d''adoption.',
    'Milo is a playful young kitten, currently in the final steps of adoption.',
    false, true),
-  ('Pablo', 'dog', 'sponsorship', 'available', 'Croisé', 'male', 2013, 'large',
+  ('Pablo', 'dog', 'sponsorship', 'Croisé', 'male', 2013, 'large',
    'Pablo est un résident à vie du sanctuaire, parrainable dès 5€/mois.',
    'Pablo is a lifetime resident of the sanctuary, sponsorable from €5/month.',
    true, true),
-  ('Ysée', 'horse', 'sponsorship', 'available', null, 'female', 2007, 'large',
+  ('Ysée', 'horse', 'sponsorship', null, 'female', 2007, 'large',
    'Ysée coule une retraite paisible au pré avec les autres chevaux.',
    'Ysée enjoys a peaceful retirement in the pasture with the other horses.',
    false, true),
-  ('Romarin', 'goat', 'sponsorship', 'adopted', null, 'male', 2021, 'medium',
+  ('Romarin', 'goat', 'sponsorship', null, 'male', 2021, 'medium',
    'Romarin a rejoint une famille d''accueil chaleureuse.',
    'Romarin has joined a warm foster family.',
    false, true);
@@ -38,6 +38,12 @@ where animal_id = (select id from animals where name = 'Nala');
 insert into animal_intakes (animal_id, occurred_on, reason, description)
 select id, '2022-06-01', 'stray', 'Trouvée errante près du sanctuaire.'
 from animals where name = 'Nala';
+
+-- Romarin has already left (adopted) — this outcome is what now drives his
+-- public "no longer with us" state automatically (0012), no status field.
+insert into animal_outcomes (animal_id, occurred_on, reason, description)
+select id, '2024-03-10', 'adopted', 'Adopté par une famille d''accueil.'
+from animals where name = 'Romarin';
 
 insert into animal_vaccines (animal_id, name, administered_on, follow_up_date, follow_up_completed)
 select id, 'Rage', '2022-06-15', '2023-06-15', true

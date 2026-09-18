@@ -9,8 +9,8 @@ import {
   createVolunteerAccountSchema,
   type CreateVolunteerAccountValues,
 } from "@/lib/validation";
-import { Input, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 
 function generatePassword() {
   return crypto
@@ -57,41 +57,46 @@ export function CreateVolunteerAccountForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-w-md">
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("email")}</Label>
-        <Input type="email" {...register("email")} />
-        {errors.email ? <span className="text-xs text-accent">{errors.email.message}</span> : null}
+    <div className="flex min-w-0 flex-col gap-3.5 rounded-admin border border-ink/10 bg-surface p-[18px]">
+      <div className="flex flex-col gap-[5px]">
+        <h2 className="text-[14.5px]">{t("add")}</h2>
+        <p className="text-[12.5px] leading-[1.45] text-ink/60">{t("addDescription")}</p>
       </div>
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("password")}</Label>
-        <div className="flex gap-2">
-          <Input {...register("password")} />
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setValue("password", generatePassword(), { shouldValidate: true })}
-          >
-            {t("generatePassword")}
-          </Button>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("email")}</AdminLabel>
+          <AdminInput type="email" placeholder="prenom@inaya.farm" {...register("email")} />
+          {errors.email ? <span className="text-xs text-danger">{errors.email.message}</span> : null}
         </div>
-        {errors.password ? (
-          <span className="text-xs text-accent">{errors.password.message}</span>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("password")}</AdminLabel>
+          <div className="flex gap-[7px]">
+            <AdminInput className="min-w-0 flex-1 font-mono" {...register("password")} />
+            <AdminButton
+              type="button"
+              onClick={() => setValue("password", generatePassword(), { shouldValidate: true })}
+              className="whitespace-nowrap"
+            >
+              {t("generatePassword")}
+            </AdminButton>
+          </div>
+          {errors.password ? (
+            <span className="text-xs text-danger">{errors.password.message}</span>
+          ) : null}
+        </div>
+
+        {serverError ? <p className="text-sm text-danger">{t("error")}</p> : null}
+        {created ? (
+          <p className="rounded-lg bg-success-bg p-3 text-sm text-success">
+            {t("created", { email: created.email, password: created.password })}
+          </p>
         ) : null}
-      </div>
 
-      {serverError ? <p className="text-sm text-accent">{t("error")}</p> : null}
-      {created ? (
-        <p className="text-sm bg-accent/10 text-accent rounded-lg p-3">
-          {t("created", { email: created.email, password: created.password })}
-        </p>
-      ) : null}
-
-      <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" variant="dark" disabled={isSubmitting}>
           {isSubmitting ? "…" : t("add")}
-        </Button>
-      </div>
-    </form>
+        </AdminButton>
+      </form>
+    </div>
   );
 }

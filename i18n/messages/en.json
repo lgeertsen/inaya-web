@@ -17,10 +17,15 @@
     "team": "Our team",
     "animals": "Our animals",
     "adopt": "Adopt",
+    "calicivirus": "Calicivirus cats",
     "surrender": "Surrender an animal",
+    "volunteer": "Become a volunteer",
+    "fosterFamily": "Foster family",
     "help": "Help us",
     "contact": "Contact",
-    "donate": "Donate"
+    "donate": "Donate",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "home": {
     "eyebrow": "Villeneuve-sur-Lot · Lot-et-Garonne",
@@ -82,10 +87,7 @@
       "goat": "Goat",
       "other": "Other",
       "adoption": "Adoption",
-      "sponsorship": "Sponsorship",
-      "available": "Available",
-      "pending": "Adoption pending",
-      "adopted": "Adopted"
+      "sponsorship": "Sponsorship"
     },
     "sex": { "male": "Male", "female": "Female", "unknown": "Unknown" },
     "yearsOld": "{age, plural, one {# year} other {# years}}",
@@ -96,9 +98,7 @@
     "arrived": "Arrived in",
     "specialNeeds": "Special needs",
     "adoptionCta": "Start an adoption request",
-    "sponsorshipCta": "Sponsor {name}",
-    "adoptedNote": "{name} has found a forever family.",
-    "pendingNote": "A family is currently being confirmed for {name}."
+    "sponsorshipCta": "Sponsor {name}"
   },
   "adopt": {
     "title": "Adopting at Inaya",
@@ -128,7 +128,30 @@
       { "label": "Neutered male cat", "note": "", "price": "€240" },
       { "label": "Female kitten", "note": "sterilization included", "price": "€285" },
       { "label": "Male kitten", "note": "sterilization included", "price": "€240" }
-    ]
+    ],
+    "calicivirus": {
+      "eyebrow": "Cats with special needs",
+      "title": "Adopting a cat with calicivirus",
+      "intro": "Feline calicivirosis is part of cat flu (coryza syndrome). It affects some of our residents, without stopping them from living a wonderful life with a loving family.",
+      "whatTitle": "What is calicivirosis?",
+      "whatText": "Feline calicivirus (FCV) cannot be transmitted to humans. It spreads only between cats, mainly through oral, nasal or eye secretions, and by contact with contaminated surfaces.",
+      "symptomsTitle": "Symptoms",
+      "symptomsIntro": "These cats may experience flare-ups throughout their lives:",
+      "symptoms": [
+        "Fever, weakness and fatigue",
+        "Sneezing and loss of smell",
+        "Eye and nasal discharge",
+        "Mouth ulcers and gingivitis, which can cause difficulty eating and weight loss",
+        "Mobility difficulties"
+      ],
+      "treatmentTitle": "Treatment",
+      "treatmentText": "There is currently no effective antiviral treatment for calicivirus. Treatment therefore focuses on improving the cat's comfort and limiting complications. With good follow-up care, a cat with chronic calicivirosis can live for several years.",
+      "careTitle": "6 months of veterinary care included",
+      "careText": "Adopting a cat with calicivirus is a true act of kindness. The shelter covers calicivirus-related veterinary costs for 6 months from the adoption date.",
+      "closing": "They are all affectionate and just waiting for one thing: a wonderful family for life.",
+      "viewCatsCta": "See our cats up for adoption",
+      "procedureCta": "Learn about the adoption process"
+    }
   },
   "surrender": {
     "title": "Surrendering an animal",
@@ -140,6 +163,77 @@
       "You have the I-CAD identification card (blue A4 document), which you must sign on the back when surrendering the animal. If this document is missing, we will draw up a surrender certificate along with a copy of your ID.",
       "The surrender fee is €180 for a sterilized dog and €100 for a sterilized cat. This contribution helps the shelter feed and care for your animal (deworming, vaccination, flea treatment, Seresto collar, etc.), whether it stays with us for a short time or for years. If the animal isn't sterilized, the fee is doubled, since sterilization will be carried out here on intake by our veterinary clinic."
     ]
+  },
+  "volunteer": {
+    "title": "Become a volunteer",
+    "intro": "The association runs on the commitment of its volunteers. Whether you can give a single hour now and then or several afternoons a week, your help matters — for the animals and for the team.",
+    "tasksTitle": "What you can do with us",
+    "tasks": [
+      "Feed, groom and socialize the animals",
+      "Help maintain pens, pastures and litter areas",
+      "Assist during veterinary appointments",
+      "Lend a hand at open days and events"
+    ],
+    "conditionsTitle": "Before you join us",
+    "conditions": [
+      "Be available regularly or occasionally, on a schedule worked out together",
+      "Agree to follow the shelter's hygiene and safety guidelines",
+      "Be comfortable with direct contact with the animals (dogs, cats, horses, goats…)",
+      "Be an adult, or accompanied by a parent if a minor"
+    ],
+    "formTitle": "Apply to volunteer",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "emailPlaceholder": "Email",
+    "phonePlaceholder": "Phone",
+    "availabilityPlaceholder": "Your availability",
+    "availabilityOptions": {
+      "weekday": "Weekdays",
+      "weekend": "Weekends",
+      "occasional": "Occasionally",
+      "flexible": "Flexible"
+    },
+    "messagePlaceholder": "Tell us about yourself: experience with animals, motivation, availability…",
+    "submit": "Send my application",
+    "sending": "Sending…",
+    "sentMessage": "Thank you! Your application has been sent — we'll get back to you soon.",
+    "errorMessage": "Something went wrong. Please try again or email us directly."
+  },
+  "fosterFamily": {
+    "title": "Foster family",
+    "intro": "Becoming a foster family means offering an animal a temporary home during a convalescence or while waiting for a permanent adoption, while staying in touch with our team.",
+    "roleTitle": "The role of a foster family",
+    "role": [
+      "Temporarily house an animal during a convalescence or before its adoption",
+      "Socialize it and help it adjust to home life",
+      "Keep us informed of its behavior and health",
+      "Introduce it to prospective adopters with our agreement"
+    ],
+    "conditionsTitle": "Conditions to become a foster family",
+    "conditions": [
+      "Have housing suited to the animal you're hosting (a fenced garden for a dog, a secure space for a cat…)",
+      "Be able to handle the necessary trips to our partner veterinarian",
+      "Accept follow-up visits and stay in regular contact with the association",
+      "Veterinary and food costs can be covered by the association"
+    ],
+    "formTitle": "Apply to become a foster family",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "emailPlaceholder": "Email",
+    "phonePlaceholder": "Phone",
+    "cityPlaceholder": "City",
+    "housingTypePlaceholder": "Type of housing",
+    "housingTypeOptions": {
+      "house_garden": "House with garden",
+      "apartment": "Apartment",
+      "farm": "Farm / land",
+      "other": "Other"
+    },
+    "messagePlaceholder": "Tell us about your home: other animals, experience, type of animal you could host…",
+    "submit": "Send my application",
+    "sending": "Sending…",
+    "sentMessage": "Thank you! Your application has been sent — we'll get back to you soon.",
+    "errorMessage": "Something went wrong. Please try again or email us directly."
   },
   "help": {
     "title": "Help us",
@@ -206,35 +300,90 @@
     "linksTitle": "Links",
     "helpTitle": "Help us",
     "animalsTitle": "Animals",
+    "linkCalicivirus": "Cats with calicivirus",
     "linkAdopted": "Adopted animals",
     "linkThanks": "Thank you"
   },
   "admin": {
     "login": {
-      "title": "Admin sign in",
+      "title": "Sign in",
       "email": "Email",
       "password": "Password",
       "submit": "Sign in",
-      "error": "Incorrect email or password."
+      "error": "Incorrect email or password.",
+      "footer": "Access is limited to the shelter's team. Accounts are created by an administrator."
     },
     "nav": {
       "overview": "Overview",
       "animals": "Animals",
+      "animalsArchive": "Former animals",
       "calendar": "Calendar",
       "donations": "Donations",
       "accounts": "Volunteers",
       "profile": "My account",
       "signOut": "Sign out",
       "toggleMenu": "Open menu",
-      "closeMenu": "Close menu"
+      "closeMenu": "Close menu",
+      "groups": {
+        "pilotage": "Overview",
+        "refuge": "Shelter",
+        "association": "Association",
+        "compte": "Account"
+      },
+      "roleAdmin": "Admin",
+      "roleVolunteer": "Volunteer"
+    },
+    "header": {
+      "searchPlaceholder": "Search an animal, a donor…",
+      "addAnimal": "Add an animal"
     },
     "overview": {
       "title": "Overview",
-      "totalAnimals": "Total animals",
-      "published": "Published",
-      "inShelter": "In shelter",
-      "donationsTotal": "Donations received",
+      "published": "Published on the site",
+      "inShelter": "At the shelter",
+      "dogsPresent": "Dogs present",
+      "catsPresent": "Cats present",
+      "donationsTotal": "Donations (12 mo)",
       "upcomingVisits": "Upcoming visits",
+      "kpis": {
+        "outcomesThisYear": "{count} outcomes in {year}",
+        "nextVisitOn": "next on {date}",
+        "noUpcomingVisit": "no visit scheduled"
+      },
+      "chart": {
+        "title": "Donations received",
+        "caption12": "Last 12 months",
+        "caption6": "Last 6 months"
+      },
+      "attention": {
+        "title": "To review",
+        "empty": "Nothing to flag right now.",
+        "overdueVaccines": "Overdue vaccine reminders",
+        "overdueVaccinesMeta": "{names}",
+        "syncFailures": "Google Calendar sync failed",
+        "syncFailuresMeta": "{count, plural, one {# event} other {# events}}",
+        "unpublishedDrafts": "Unpublished records",
+        "unpublishedDraftsMeta": "Created more than 15 days ago",
+        "missingMicrochip": "Internal record missing a chip number",
+        "missingMicrochipMeta": "{count, plural, one {# animal} other {# animals}}",
+        "failedDonations": "Failed donation payment",
+        "failedDonationsMeta": "{count, plural, one {# donation to review} other {# donations to review}}"
+      },
+      "vetVisits": {
+        "title": "Upcoming vet visits",
+        "viewAll": "Calendar",
+        "empty": "No visits scheduled."
+      },
+      "recentArrivals": {
+        "title": "Recent arrivals",
+        "viewAll": "All animals",
+        "empty": "No recent arrivals."
+      },
+      "recentVolunteerPhotos": {
+        "title": "Recent volunteer photos",
+        "viewAll": "All animals",
+        "empty": "No volunteer photos yet."
+      },
       "bySpecies": {
         "title": "Animals by species"
       },
@@ -246,31 +395,40 @@
       }
     },
     "animals": {
-      "title": "Manage animals",
+      "title": "Animals",
       "add": "Add an animal",
       "edit": "Edit",
       "photos": "Photos",
-      "delete": "Delete",
-      "deleteConfirm": "Permanently delete this animal and its photos?",
       "publishedYes": "Published",
       "publishedNo": "Draft",
       "empty": "No animals yet.",
+      "meta": "{count, plural, one {# animal} other {# animals}} currently at the shelter",
+      "archiveTitle": "Former animals",
+      "archiveMeta": "{count, plural, one {# animal} other {# animals}} no longer at the shelter",
+      "archiveEmpty": "No former animals yet.",
+      "resultsCount": "{count} results",
       "searchPlaceholder": "Search by name, species, or chip number…",
       "allSpecies": "All species",
-      "allPresence": "All (present & not present)",
+      "tracks": { "adoption": "Adoption", "sponsorship": "Sponsorship" },
+      "publicationFilter": { "all": "Publication: all", "published": "Published", "draft": "Drafts" },
       "columns": {
         "name": "Name",
         "species": "Species",
         "microchip": "Chip number",
-        "trackStatus": "Track / status",
+        "care": "Care",
         "published": "Published",
         "inShelter": "In shelter"
+      },
+      "care": {
+        "overdue": "Reminder overdue",
+        "missingChip": "Missing chip",
+        "inProgress": "Vaccines in progress",
+        "upToDate": "Up to date"
       },
       "form": {
         "name": "Name",
         "microchip": "Microchip number",
         "species": "Species",
-        "status": "Status",
         "breed": "Breed",
         "sex": "Sex",
         "birthYear": "Birth year",
@@ -287,14 +445,18 @@
         "uploadPhoto": "Add a photo",
         "removePhoto": "Remove",
         "setCover": "Set as cover photo",
-        "coverBadge": "Shown on site"
+        "coverBadge": "Shown on site",
+        "setFocalPoint": "Set focal point",
+        "focalPointInstructions": "Click or drag on the photo to set the point that should always stay visible.",
+        "saveFocalPoint": "Save",
+        "cancelFocalPoint": "Cancel",
+        "uploadedBy": "Added by"
       },
       "tabs": {
-        "profile": "Profile",
-        "internalDetails": "Internal details",
-        "intakeOutcome": "Intake / Outcome",
-        "vaccines": "Vaccines",
-        "treatments": "Treatments",
+        "profile": "Public profile",
+        "photos": "Photos",
+        "internalDetails": "Internal record",
+        "intakeOutcome": "Intake / outcome",
         "vetAppointments": "Vet appointments"
       },
       "internalDetails": {
@@ -306,6 +468,24 @@
         "inShelterYes": "Present",
         "inShelterNo": "Not present",
         "save": "Save"
+      },
+      "sexes": { "male": "male", "female": "female", "unknown": "unknown sex" },
+      "detail": {
+        "viewOnSite": "View on site",
+        "editRecord": "Edit record",
+        "birthLabel": "Born",
+        "ageYears": "{age} years old",
+        "arrivalLabel": "Arrived",
+        "unknownArrival": "Arrival unknown",
+        "sinceDate": "at the shelter since {date}",
+        "historyTitle": "History",
+        "historyPublished": "Published on the site",
+        "deleteButton": "Delete",
+        "deleteTitle": "Delete {name}?",
+        "deleteBody": "This permanently deletes the animal record and its photos. Type the animal's name below to confirm.",
+        "deleteNamePlaceholder": "Type the animal's name",
+        "deleteConfirmButton": "Delete permanently",
+        "deleteCancel": "Cancel"
       },
       "intakeOutcome": {
         "title": "Intake / Outcome",
@@ -354,7 +534,11 @@
         "retrySync": "Retry sync",
         "delete": "Delete",
         "deleteConfirm": "Permanently delete this vaccine?",
-        "empty": "No vaccines recorded yet."
+        "empty": "No vaccines recorded yet.",
+        "dueBadge": "{count, plural, =0 {No reminders due} one {# reminder due} other {# reminders due}}",
+        "reminderOverdue": "Reminder {date} · due",
+        "reminderScheduled": "Reminder {date}",
+        "noReminder": "—"
       },
       "treatments": {
         "title": "Treatments",
@@ -390,18 +574,49 @@
     },
     "donations": {
       "title": "Donations received",
+      "meta": "Last 12 months · {total} received",
       "empty": "No donations recorded yet.",
       "searchPlaceholder": "Search by donor…",
-      "columns": { "date": "Date", "donor": "Donor", "amount": "Amount", "frequency": "Frequency", "status": "Status" }
+      "exportCsv": "Export CSV",
+      "columns": { "date": "Date", "donor": "Donor", "amount": "Amount", "frequency": "Frequency", "status": "Status" },
+      "frequencies": { "one_time": "One-time", "monthly": "Monthly" },
+      "statusLabels": {
+        "completed": "Completed",
+        "pending": "Pending",
+        "failed": "Failed",
+        "refunded": "Refunded"
+      },
+      "statusFilter": {
+        "all": "All statuses",
+        "completed": "Completed",
+        "pending": "Pending",
+        "failed": "Failed",
+        "refunded": "Refunded"
+      },
+      "kpis": {
+        "totalReceived": "Total received",
+        "totalReceivedDelta": "{sign}{percent} % over 12 months",
+        "totalReceivedNoData": "Last 12 months",
+        "activeMonthly": "Active monthly donations",
+        "activeMonthlyDetail": "{amount} / month recurring",
+        "average": "Average donation",
+        "averageDetail": "across {count} donations",
+        "toReview": "To review",
+        "toReviewDetail": "{failed} failed · {pending} pending"
+      }
     },
     "accounts": {
       "title": "Volunteer accounts",
+      "activeCount": "{count} active accounts",
       "add": "Create a volunteer account",
+      "addDescription": "Volunteers can only see animals currently at the shelter and can only add photos.",
       "email": "Email",
       "password": "Password",
       "generatePassword": "Generate",
       "createdAt": "Created",
-      "delete": "Delete",
+      "lastActivity": "Last activity",
+      "neverActive": "No activity yet",
+      "delete": "Revoke",
       "deleteConfirm": "Permanently delete this volunteer account? They will no longer be able to sign in.",
       "empty": "No volunteer accounts yet.",
       "error": "Something went wrong creating this account.",
@@ -413,14 +628,25 @@
       "confirmPassword": "Confirm new password",
       "save": "Save",
       "success": "Your password has been updated.",
-      "error": "Something went wrong updating your password."
+      "error": "Something went wrong updating your password.",
+      "session": {
+        "title": "Session",
+        "email": "Email",
+        "role": "Role",
+        "language": "Language",
+        "languageValue": "French",
+        "calendar": "Google Calendar",
+        "calendarConnected": "Connected",
+        "calendarNotConfigured": "Not configured"
+      }
     },
     "calendar": {
       "title": "Vet calendar",
+      "meta": "{month} · {count, plural, one {# visit} other {# visits}}",
       "monthView": "Month",
       "weekView": "Week",
       "today": "Today",
-      "addVisit": "Add a visit",
+      "addVisit": "Schedule a visit",
       "save": "Save",
       "animals": "Animals",
       "notes": "Notes",

@@ -10,14 +10,12 @@ import {
   type AnimalFormWithMicrochipInput,
   type AnimalFormWithMicrochipValues,
 } from "@/lib/validation";
-import { Input, Select, Textarea, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminSelect, AdminTextarea, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 import type { Animal } from "@/lib/animals";
 import type { AnimalInternalDetails } from "@/lib/animal-care";
-import { PhotoUploader } from "./PhotoUploader";
 
 const SPECIES = ["cat", "dog", "horse", "goat", "other"] as const;
-const STATUSES = ["available", "pending", "adopted"] as const;
 const SEXES = ["male", "female", "unknown"] as const;
 
 export function AnimalForm({
@@ -42,7 +40,6 @@ export function AnimalForm({
           name: animal.name,
           species: animal.species,
           track: animal.track ?? "adoption",
-          status: animal.status,
           breed: animal.breed ?? "",
           sex: animal.sex,
           birthYear: animal.birthYear ?? undefined,
@@ -59,7 +56,6 @@ export function AnimalForm({
           name: "",
           species: "cat",
           track: "adoption",
-          status: "available",
           sex: "unknown",
           specialNeeds: false,
           isPublished: true,
@@ -107,124 +103,98 @@ export function AnimalForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 max-w-2xl">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1.5 col-span-2">
-          <Label>{t("name")}</Label>
-          <Input {...register("name")} />
-          {errors.name ? <span className="text-xs text-accent">{errors.name.message}</span> : null}
+    <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-2xl flex-col gap-5">
+      <div className="grid grid-cols-2 gap-3.5">
+        <div className="col-span-2 flex flex-col gap-[5px]">
+          <AdminLabel>{t("name")}</AdminLabel>
+          <AdminInput {...register("name")} />
+          {errors.name ? <span className="text-xs text-danger">{errors.name.message}</span> : null}
         </div>
 
-        <div className="flex flex-col gap-1.5 col-span-2">
-          <Label>{t("microchip")}</Label>
-          <Input {...register("microchipNumber")} />
+        <div className="col-span-2 flex flex-col gap-[5px]">
+          <AdminLabel>{t("microchip")}</AdminLabel>
+          <AdminInput className="font-mono" {...register("microchipNumber")} />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("species")}</Label>
-          <Select {...register("species")}>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("species")}</AdminLabel>
+          <AdminSelect {...register("species")}>
             {SPECIES.map((s) => (
               <option key={s} value={s}>
                 {s}
               </option>
             ))}
-          </Select>
+          </AdminSelect>
         </div>
 
         <input type="hidden" {...register("track")} />
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("status")}</Label>
-          <Select {...register("status")}>
-            {STATUSES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </Select>
-        </div>
-
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("sex")}</Label>
-          <Select {...register("sex")}>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("sex")}</AdminLabel>
+          <AdminSelect {...register("sex")}>
             {SEXES.map((s) => (
               <option key={s} value={s}>
                 {s}
               </option>
             ))}
-          </Select>
+          </AdminSelect>
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("breed")}</Label>
-          <Input {...register("breed")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("breed")}</AdminLabel>
+          <AdminInput {...register("breed")} />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("size")}</Label>
-          <Input {...register("size")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("size")}</AdminLabel>
+          <AdminInput {...register("size")} />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("birthYear")}</Label>
-          <Input type="number" {...register("birthYear")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("birthYear")}</AdminLabel>
+          <AdminInput type="number" {...register("birthYear")} />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("birthMonth")}</Label>
-          <Input type="number" min={1} max={12} {...register("birthMonth")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("birthMonth")}</AdminLabel>
+          <AdminInput type="number" min={1} max={12} {...register("birthMonth")} />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("arrivalDate")}</Label>
-          <Input type="date" {...register("arrivalDate")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("arrivalDate")}</AdminLabel>
+          <AdminInput type="date" {...register("arrivalDate")} />
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("bioFr")}</Label>
-        <Textarea rows={4} {...register("bioFr")} />
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("bioFr")}</AdminLabel>
+        <AdminTextarea rows={4} {...register("bioFr")} />
       </div>
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("bioEn")}</Label>
-        <Textarea rows={4} {...register("bioEn")} />
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("bioEn")}</AdminLabel>
+        <AdminTextarea rows={4} {...register("bioEn")} />
       </div>
 
-      <div className="flex gap-6">
-        <label className="flex items-center gap-2 text-sm">
+      <div className="flex gap-5">
+        <label className="flex items-center gap-2 text-[12.5px] font-semibold">
           <input type="checkbox" {...register("specialNeeds")} />
           {t("specialNeeds")}
         </label>
-        <label className="flex items-center gap-2 text-sm">
+        <label className="flex items-center gap-2 text-[12.5px] font-semibold">
           <input type="checkbox" {...register("isPublished")} />
           {t("isPublished")}
         </label>
       </div>
 
       {serverError ? (
-        <p className="text-sm text-accent">Something went wrong saving this animal.</p>
+        <p className="text-sm text-danger">Something went wrong saving this animal.</p>
       ) : null}
 
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" variant="dark" disabled={isSubmitting}>
           {isSubmitting ? "…" : t("save")}
-        </Button>
+        </AdminButton>
       </div>
-
-      {animal ? (
-        <div className="pt-6 border-t border-ink/10 flex flex-col gap-3">
-          <Label>{t("photos")}</Label>
-          <PhotoUploader
-            animalId={animal.id}
-            photos={animal.photos}
-            uploadLabel={t("uploadPhoto")}
-            removeLabel={t("removePhoto")}
-            setCoverLabel={t("setCover")}
-            coverBadgeLabel={t("coverBadge")}
-            canManage
-          />
-        </div>
-      ) : null}
     </form>
   );
 }

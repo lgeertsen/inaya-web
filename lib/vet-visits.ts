@@ -126,6 +126,23 @@ export async function listVetVisits(
   return (data ?? []).map(toVetVisitWithAnimals);
 }
 
+/** Top `limit` non-canceled visits from `fromIso` onward, for the overview dashboard. */
+export async function listUpcomingVetVisits(
+  supabase: SupabaseClient,
+  fromIso: string,
+  limit: number,
+): Promise<VetVisitWithAnimals[]> {
+  const { data, error } = await supabase
+    .from("vet_visits")
+    .select(VISIT_SELECT)
+    .gte("scheduled_at", fromIso)
+    .neq("status", "canceled")
+    .order("scheduled_at", { ascending: true })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []).map(toVetVisitWithAnimals);
+}
+
 export async function getVetVisit(
   supabase: SupabaseClient,
   id: string,

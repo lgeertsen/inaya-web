@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -8,6 +8,7 @@
   --color-accent: #df17cb;
   --color-accent-hover: #b00f9f;
   --color-accent-light: #ff7bee;
+  --color-accent-bg: #fdeafb;
 
   --color-success: #1e8a5f;
   --color-success-bg: #e4f5ec;
@@ -28,11 +29,29 @@
   --radius-card: 22px;
   --radius-panel: 28px;
   --radius-pill: 999px;
+  --radius-admin: 14px;
+  --radius-admin-sm: 12px;
 
   --shadow-card: 0 2px 10px rgba(27, 26, 28, 0.06);
   --shadow-card-hover: 0 14px 30px rgba(27, 26, 28, 0.14);
 
   --container-content: 1240px;
+}
+
+/*
+ * Admin-only token overrides (see theme/tokens.ts). Sourced from the Claude
+ * Design "Inaya Admin Redesign" mockup, which refines the base palette
+ * slightly for the admin dashboard. Scoped to `.admin-scope` (applied on
+ * AdminShell's root) so the public site keeps the original tokens above —
+ * Tailwind's `bg-background`/`text-ink`/etc. utilities resolve these CSS
+ * vars at paint time, so nesting under this class is enough; no utility
+ * classes need to change.
+ */
+.admin-scope {
+  --color-background: #f4f3f1;
+  --color-ink: #17161a;
+  --color-sidebar: #17161a;
+  --color-sidebar-border: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {

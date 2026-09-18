@@ -50,6 +50,12 @@ export async function Footer() {
           <Link href="/surrender" className="text-[14.5px] text-white/72 hover:text-accent-light">
             {nav("surrender")}
           </Link>
+          <Link href="/volunteer" className="text-[14.5px] text-white/72 hover:text-accent-light">
+            {nav("volunteer")}
+          </Link>
+          <Link href="/foster-family" className="text-[14.5px] text-white/72 hover:text-accent-light">
+            {nav("fosterFamily")}
+          </Link>
         </div>
 
         <div className="flex flex-col gap-2.5">
@@ -61,6 +67,12 @@ export async function Footer() {
           </Link>
           <Link href="/adopt" className="text-[14.5px] text-white/72 hover:text-accent-light">
             {nav("adopt")}
+          </Link>
+          <Link
+            href="/adopt/calicivirus"
+            className="text-[14.5px] text-white/72 hover:text-accent-light"
+          >
+            {t("linkCalicivirus")}
           </Link>
           <Link
             href="/animals?status=adopted"

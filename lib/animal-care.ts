@@ -337,6 +337,51 @@ export async function listAnimalVaccines(
   return (data ?? []).map(toVaccine);
 }
 
+/** Bulk variant of listAnimalVaccines, for list views that need every animal's vaccines at once. */
+export async function listAllVaccinesByAnimal(
+  supabase: SupabaseClient,
+): Promise<Record<string, AnimalVaccine[]>> {
+  const { data, error } = await supabase
+    .from("animal_vaccines")
+    .select("*")
+    .order("administered_on", { ascending: false });
+  if (error) throw error;
+
+  const byAnimal: Record<string, AnimalVaccine[]> = {};
+  for (const row of data ?? []) {
+    const vaccine = toVaccine(row);
+    (byAnimal[vaccine.animalId] ??= []).push(vaccine);
+  }
+  return byAnimal;
+}
+
+export type CareStatus = "overdue" | "missingChip" | "inProgress" | "upToDate";
+
+/**
+ * Derives a single at-a-glance care status for an animal from its vaccine
+ * follow-ups and microchip presence (used by the "Soins" column on the
+ * animals list). Priority: an overdue reminder always wins (health risk),
+ * then a missing microchip (identification risk, only relevant while the
+ * animal is physically at the shelter), then an in-progress vaccine series,
+ * else up to date.
+ */
+export function getCareStatus(
+  vaccines: AnimalVaccine[],
+  hasMicrochip: boolean,
+  inShelter: boolean,
+  now: Date = new Date(),
+): CareStatus {
+  const isDue = (v: AnimalVaccine) =>
+    Boolean(v.followUpDate) && !v.followUpCompleted && new Date(v.followUpDate!) < now;
+  const isPending = (v: AnimalVaccine) =>
+    Boolean(v.followUpDate) && !v.followUpCompleted && new Date(v.followUpDate!) >= now;
+
+  if (vaccines.some(isDue)) return "overdue";
+  if (!hasMicrochip && inShelter) return "missingChip";
+  if (vaccines.some(isPending)) return "inProgress";
+  return "upToDate";
+}
+
 export async function getAnimalVaccine(
   supabase: SupabaseClient,
   vaccineId: string,

@@ -12,6 +12,7 @@ export const colors = {
   accent: "#df17cb",
   accentHover: "#b00f9f",
   accentLight: "#ff7bee",
+  accentBg: "#fdeafb",
 
   // Semantic status colors — additive, admin-dashboard use only (badges,
   // sync/donation/animal status). Do not repurpose the brand colors above.
@@ -26,6 +27,21 @@ export const colors = {
   sidebar: "#1b1a1c",
   sidebarHover: "#2c282e",
   sidebarActive: "rgba(223, 23, 203, 0.18)",
+  sidebarBorder: "rgba(255, 255, 255, 0.08)",
+} as const;
+
+/**
+ * Admin-only overrides, sourced from the later "Inaya Admin Redesign"
+ * mockup. Applied via the `.admin-scope` class in app/globals.css (scoped to
+ * AdminShell), not the shared `@theme` block above — the public site keeps
+ * `colors.background`/`colors.ink` as-is. Every other token (accent,
+ * success/warning/danger, sidebarHover/Active) is unchanged between the two
+ * mockups and stays defined once, above.
+ */
+export const adminColors = {
+  background: "#f4f3f1",
+  ink: "#17161a",
+  sidebar: "#17161a",
   sidebarBorder: "rgba(255, 255, 255, 0.08)",
 } as const;
 

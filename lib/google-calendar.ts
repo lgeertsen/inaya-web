@@ -34,6 +34,19 @@ function getVaccineCalendarId(): string {
   return calendarId;
 }
 
+/**
+ * The Calendar integration is a single shared service-account connection
+ * (not per-admin OAuth), so "connected" just means the required env vars are
+ * present — used by the admin profile page's session card.
+ */
+export function isGoogleCalendarConfigured(): boolean {
+  return Boolean(
+    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL &&
+      process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY &&
+      process.env.GOOGLE_CALENDAR_ID,
+  );
+}
+
 // All-day Google Calendar events use an exclusive end date, so a one-day
 // reminder needs start = date and end = date + 1 day. Pure string/UTC
 // arithmetic (same reasoning as computeVisitEndAt in lib/vet-visits.ts)

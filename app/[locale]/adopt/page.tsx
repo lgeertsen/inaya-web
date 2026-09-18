@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
+import { Link } from "@/i18n/navigation";
 
 interface PriceRow {
   label: string;
@@ -59,6 +60,11 @@ export default async function AdoptPage() {
           </div>
         </div>
         <p className="text-[15px] mt-6 opacity-85">{t("unsterilizedNote")}</p>
+        <p className="text-[15px] mt-4 opacity-85">
+          <Link href="/adopt/calicivirus" className="text-accent font-bold hover:underline">
+            {t("calicivirus.title")}
+          </Link>
+        </p>
       </Card>
     </Container>
   );

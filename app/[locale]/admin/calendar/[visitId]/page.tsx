@@ -5,13 +5,14 @@ import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getVetVisit, type VetVisitAnimal } from "@/lib/vet-visits";
 import { listAnimalOptions } from "@/lib/animals";
+import { AdminPage } from "@/components/admin/AdminPage";
 import { VetVisitForm } from "@/components/admin/VetVisitForm";
 import { RetrySyncButton } from "@/components/admin/RetrySyncButton";
 import { DeleteRowButton } from "@/components/admin/DeleteRowButton";
 import { ToggleCheckbox } from "@/components/admin/ToggleCheckbox";
 import { AddAnimalToVisitForm } from "@/components/admin/AddAnimalToVisitForm";
 import { AdminTable, type AdminTableColumn } from "@/components/admin/AdminTable";
-import { Badge } from "@/components/ui/Badge";
+import { StatusPill } from "@/components/admin/ui/StatusPill";
 
 export default async function VetVisitDetailPage({
   params,
@@ -58,51 +59,49 @@ export default async function VetVisitDetailPage({
           endpoint={`/api/admin/vet-visits/${visitId}/animals/${row.animalId}`}
           label={t("removeAnimal")}
           confirmMessage={t("removeAnimalConfirm")}
+          iconOnly
         />
       ),
     },
   ];
 
+  const scheduledLabel = new Date(visit.scheduledAt).toLocaleString(locale, {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
+
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="text-2xl">{visit.reason}</h1>
-        <div className="flex items-center gap-3">
-          <Badge
-            tone={visit.googleSyncError ? "danger" : visit.googleEventId ? "success" : "warning"}
-            title={visit.googleSyncError ?? undefined}
-          >
-            {visit.googleSyncError
-              ? t("syncFailed")
-              : visit.googleEventId
-                ? t("syncSynced")
-                : t("syncPending")}
-          </Badge>
-          <RetrySyncButton
-            endpoint={`/api/admin/vet-visits/${visit.id}/retry-sync`}
-            label={t("retrySync")}
-          />
-          <DeleteRowButton
-            endpoint={`/api/admin/vet-visits/${visit.id}`}
-            label={t("delete")}
-            confirmMessage={t("deleteConfirm")}
-          />
-        </div>
+    <AdminPage title={visit.reason} meta={scheduledLabel}>
+      <div className="flex flex-wrap items-center gap-2.5">
+        <StatusPill tone={visit.googleSyncError ? "danger" : visit.googleEventId ? "success" : "warning"}>
+          {visit.googleSyncError ? t("syncFailed") : visit.googleEventId ? t("syncSynced") : t("syncPending")}
+        </StatusPill>
+        <RetrySyncButton endpoint={`/api/admin/vet-visits/${visit.id}/retry-sync`} label={t("retrySync")} />
+        <DeleteRowButton
+          endpoint={`/api/admin/vet-visits/${visit.id}`}
+          label={t("delete")}
+          confirmMessage={t("deleteConfirm")}
+        />
       </div>
 
-      <VetVisitForm visit={visit} animalOptions={animalOptions} />
+      <div className="rounded-admin border border-ink/10 bg-surface p-[18px]">
+        <VetVisitForm visit={visit} animalOptions={animalOptions} />
+      </div>
 
-      <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-bold">{t("animals")}</h2>
-        <AdminTable
-          columns={animalColumns}
-          rows={visit.animals.map((a) => ({ ...a, id: a.animalId }))}
-          emptyMessage={t("empty")}
-        />
+      <div className="flex flex-col gap-3">
+        <h2 className="text-[14.5px]">{t("animals")}</h2>
+        <div className="overflow-hidden rounded-admin border border-ink/10 bg-surface">
+          <AdminTable
+            columns={animalColumns}
+            rows={visit.animals.map((a) => ({ ...a, id: a.animalId }))}
+            emptyMessage={t("empty")}
+            minWidth={560}
+          />
+        </div>
         {availableToAdd.length > 0 ? (
           <AddAnimalToVisitForm visitId={visit.id} animalOptions={availableToAdd} label={t("addAnimal")} />
         ) : null}
       </div>
-    </div>
+    </AdminPage>
   );
 }

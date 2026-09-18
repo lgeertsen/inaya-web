@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { vetVisitFormSchema, type VetVisitFormValues } from "@/lib/validation";
-import { Input, Select, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminSelect, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 import { AnimalMultiSelect } from "@/components/admin/AnimalMultiSelect";
 import type { AnimalOption } from "@/lib/animals";
 import type { VetVisitWithAnimals } from "@/lib/vet-visits";
@@ -78,31 +78,31 @@ export function VetVisitForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-w-2xl">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("scheduledAt")}</Label>
-          <Input type="datetime-local" {...register("scheduledAt")} />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
+      <div className="grid grid-cols-2 gap-3.5">
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("scheduledAt")}</AdminLabel>
+          <AdminInput type="datetime-local" {...register("scheduledAt")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("status")}</Label>
-          <Select {...register("status")}>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("status")}</AdminLabel>
+          <AdminSelect {...register("status")}>
             {STATUSES.map((status) => (
               <option key={status} value={status}>
                 {t(`statuses.${status}`)}
               </option>
             ))}
-          </Select>
+          </AdminSelect>
         </div>
-        <div className="flex flex-col gap-1.5 col-span-2">
-          <Label>{t("reason")}</Label>
-          <Input {...register("reason")} />
+        <div className="col-span-2 flex flex-col gap-[5px]">
+          <AdminLabel>{t("reason")}</AdminLabel>
+          <AdminInput {...register("reason")} />
         </div>
       </div>
 
       {!visit ? (
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("animals")}</Label>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("animals")}</AdminLabel>
           <Controller
             name="animalIds"
             control={control}
@@ -118,12 +118,12 @@ export function VetVisitForm({
         </div>
       ) : null}
 
-      {serverError ? <p className="text-sm text-accent">Something went wrong.</p> : null}
+      {serverError ? <p className="text-sm text-danger">Something went wrong.</p> : null}
 
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" variant="dark" disabled={isSubmitting}>
           {isSubmitting ? "…" : visit ? t("save") : t("addVisit")}
-        </Button>
+        </AdminButton>
       </div>
     </form>
   );

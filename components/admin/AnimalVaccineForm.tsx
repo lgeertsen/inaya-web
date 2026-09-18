@@ -10,8 +10,8 @@ import {
   type AnimalVaccineFormInput,
   type AnimalVaccineFormValues,
 } from "@/lib/validation";
-import { Input, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 
 export function AnimalVaccineForm({ animalId }: { animalId: string }) {
   const t = useTranslations("admin.animals.vaccines");
@@ -47,30 +47,30 @@ export function AnimalVaccineForm({ animalId }: { animalId: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="grid grid-cols-3 gap-4">
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("name")}</Label>
-          <Input {...register("name")} />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
+      <div className="grid grid-cols-3 gap-3.5">
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("name")}</AdminLabel>
+          <AdminInput {...register("name")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("administeredOn")}</Label>
-          <Input type="date" {...register("administeredOn")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("administeredOn")}</AdminLabel>
+          <AdminInput type="date" {...register("administeredOn")} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("followUpDate")}</Label>
-          <Input type="date" {...register("followUpDate")} />
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("followUpDate")}</AdminLabel>
+          <AdminInput type="date" {...register("followUpDate")} />
         </div>
       </div>
-      <label className="flex items-center gap-2 text-sm">
+      <label className="flex items-center gap-2 text-[12.5px] font-semibold">
         <input type="checkbox" {...register("followUpCompleted")} />
         {t("followUpCompleted")}
       </label>
-      {serverError ? <p className="text-sm text-accent">Something went wrong.</p> : null}
+      {serverError ? <p className="text-sm text-danger">Something went wrong.</p> : null}
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" size="sm" disabled={isSubmitting}>
           {isSubmitting ? "…" : t("add")}
-        </Button>
+        </AdminButton>
       </div>
     </form>
   );

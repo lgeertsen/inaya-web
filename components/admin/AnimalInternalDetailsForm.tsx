@@ -9,8 +9,8 @@ import {
   animalInternalDetailsFormSchema,
   type AnimalInternalDetailsFormValues,
 } from "@/lib/validation";
-import { Input, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 import type { AnimalInternalDetails } from "@/lib/animal-care";
 
 export function AnimalInternalDetailsForm({
@@ -55,31 +55,27 @@ export function AnimalInternalDetailsForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 max-w-2xl">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("microchip")}</Label>
-          <Input {...register("microchipNumber")} />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("coat")}</Label>
-          <Input {...register("coat")} />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>{t("birthDate")}</Label>
-          <Input type="date" {...register("birthDate")} />
-        </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[11px]">
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("microchip")}</AdminLabel>
+        <AdminInput className="font-mono" {...register("microchipNumber")} />
+      </div>
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("coat")}</AdminLabel>
+        <AdminInput {...register("coat")} />
+      </div>
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("birthDate")}</AdminLabel>
+        <AdminInput type="date" className="font-mono" {...register("birthDate")} />
       </div>
 
       {serverError ? (
-        <p className="text-sm text-accent">Something went wrong saving this animal.</p>
+        <p className="text-sm text-danger">Something went wrong saving this animal.</p>
       ) : null}
 
-      <div>
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "…" : t("save")}
-        </Button>
-      </div>
+      <AdminButton type="submit" variant="dark">
+        {isSubmitting ? "…" : t("save")}
+      </AdminButton>
     </form>
   );
 }

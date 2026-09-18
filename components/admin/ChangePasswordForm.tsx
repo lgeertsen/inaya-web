@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { changePasswordSchema, type ChangePasswordValues } from "@/lib/validation";
-import { Input, Label } from "@/components/ui/Field";
-import { Button } from "@/components/ui/Button";
+import { AdminInput, AdminLabel } from "@/components/admin/ui/AdminField";
+import { AdminButton } from "@/components/admin/ui/AdminButton";
 
 export function ChangePasswordForm() {
   const t = useTranslations("admin.profile");
@@ -43,31 +43,29 @@ export function ChangePasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-w-md">
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("newPassword")}</Label>
-        <Input type="password" autoComplete="new-password" {...register("password")} />
-        {errors.password ? (
-          <span className="text-xs text-accent">{errors.password.message}</span>
-        ) : null}
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[11px]">
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("newPassword")}</AdminLabel>
+        <AdminInput type="password" autoComplete="new-password" {...register("password")} />
+        {errors.password ? <span className="text-xs text-danger">{errors.password.message}</span> : null}
       </div>
-      <div className="flex flex-col gap-1.5">
-        <Label>{t("confirmPassword")}</Label>
-        <Input type="password" autoComplete="new-password" {...register("confirmPassword")} />
+      <div className="flex flex-col gap-[5px]">
+        <AdminLabel>{t("confirmPassword")}</AdminLabel>
+        <AdminInput type="password" autoComplete="new-password" {...register("confirmPassword")} />
         {errors.confirmPassword ? (
-          <span className="text-xs text-accent">{errors.confirmPassword.message}</span>
+          <span className="text-xs text-danger">{errors.confirmPassword.message}</span>
         ) : null}
       </div>
 
-      {serverError ? <p className="text-sm text-accent">{t("error")}</p> : null}
+      {serverError ? <p className="text-sm text-danger">{t("error")}</p> : null}
       {success ? (
-        <p className="text-sm bg-accent/10 text-accent rounded-lg p-3">{t("success")}</p>
+        <p className="rounded-lg bg-success-bg p-3 text-sm text-success">{t("success")}</p>
       ) : null}
 
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <AdminButton type="submit" variant="dark" disabled={isSubmitting}>
           {isSubmitting ? "…" : t("save")}
-        </Button>
+        </AdminButton>
       </div>
     </form>
   );

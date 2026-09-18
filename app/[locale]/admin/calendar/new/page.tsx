@@ -4,6 +4,7 @@ import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { listAnimalOptions } from "@/lib/animals";
 import { VetVisitForm } from "@/components/admin/VetVisitForm";
+import { AdminPage } from "@/components/admin/AdminPage";
 
 export default async function NewVetVisitPage({
   searchParams,
@@ -20,9 +21,10 @@ export default async function NewVetVisitPage({
   const t = await getTranslations("admin.calendar");
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl">{t("addVisit")}</h1>
-      <VetVisitForm animalOptions={animalOptions} initialScheduledAt={date ? `${date}T09:00` : undefined} />
-    </div>
+    <AdminPage title={t("addVisit")} meta={t("title")}>
+      <div className="max-w-2xl rounded-admin border border-ink/10 bg-surface p-[18px]">
+        <VetVisitForm animalOptions={animalOptions} initialScheduledAt={date ? `${date}T09:00` : undefined} />
+      </div>
+    </AdminPage>
   );
 }

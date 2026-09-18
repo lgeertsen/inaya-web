@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 import { requireAdmin, requireStaff } from "@/lib/auth";
-import { addAnimalPhoto, deleteAnimalPhoto, setFeaturedPhoto, PHOTO_BUCKET } from "@/lib/animals";
+import {
+  addAnimalPhoto,
+  deleteAnimalPhoto,
+  setFeaturedPhoto,
+  setPhotoFocalPoint,
+  PHOTO_BUCKET,
+} from "@/lib/animals";
 
 const MAX_DIMENSION = 1600;
 const WEBP_QUALITY = 80;
@@ -28,6 +34,9 @@ export async function POST(
     if (!details?.in_shelter) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
+    // Powers the "Dernière activité" column on /admin/accounts — see
+    // 0008_volunteer_last_active.sql for why this is column-grant-restricted.
+    await supabase.from("profiles").update({ last_active_at: new Date().toISOString() }).eq("id", user.id);
   }
 
   const formData = await request.formData();
@@ -39,6 +48,7 @@ export async function POST(
     .eq("animal_id", id);
 
   let position = count ?? 0;
+  const hadNoPhotos = position === 0;
 
   for (const file of files) {
     const path = `${id}/${crypto.randomUUID()}.webp`;
@@ -71,7 +81,7 @@ export async function POST(
       return NextResponse.json({ error: uploadError.message }, { status: 500 });
     }
 
-    await addAnimalPhoto(supabase, id, path, position, user.id);
+    await addAnimalPhoto(supabase, id, path, position, user.id, hadNoPhotos && position === 0);
     position += 1;
   }
 
@@ -86,9 +96,20 @@ export async function PATCH(
   if (!user) return response;
 
   const { id } = await params;
-  const { photoId } = await request.json();
+  const { photoId, focalX, focalY } = await request.json();
   if (!photoId) {
     return NextResponse.json({ error: "missing_photo_id" }, { status: 400 });
+  }
+
+  if (focalX !== undefined || focalY !== undefined) {
+    if (
+      typeof focalX !== "number" || typeof focalY !== "number" ||
+      focalX < 0 || focalX > 1 || focalY < 0 || focalY > 1
+    ) {
+      return NextResponse.json({ error: "invalid_focal_point" }, { status: 400 });
+    }
+    await setPhotoFocalPoint(supabase, id, photoId, focalX, focalY);
+    return NextResponse.json({ ok: true });
   }
 
   await setFeaturedPhoto(supabase, id, photoId);
