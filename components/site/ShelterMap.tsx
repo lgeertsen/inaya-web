@@ -40,7 +40,7 @@ let mapsLoader: Promise<void> | null = null;
 
 function loadGoogleMaps(apiKey: string): Promise<void> {
   if (mapsLoader) return mapsLoader;
-  if (window.google?.maps?.importLibrary) return Promise.resolve();
+  if (typeof window.google?.maps?.importLibrary === "function") return Promise.resolve();
 
   mapsLoader = new Promise((resolve, reject) => {
     // With loading=async, `onload` can fire before google.maps.importLibrary exists —
