@@ -49,7 +49,10 @@ export function VetCalendar({
   }
 
   function navigate(nextView: View, nextDate: Date) {
-    router.push(`/admin/calendar?view=${nextView}&date=${toDateKey(nextDate)}`);
+    router.push({
+      pathname: "/admin/calendar",
+      query: { view: nextView, date: toDateKey(nextDate) },
+    });
   }
 
   const todayKey = toDateKey(new Date());
@@ -148,7 +151,7 @@ export function VetCalendar({
                     {String(day.getDate()).padStart(2, "0")}
                   </span>
                   <Link
-                    href={`/admin/calendar/new?date=${key}`}
+                    href={{ pathname: "/admin/calendar/new", query: { date: key } }}
                     className="font-mono text-[11px] text-ink/25 hover:text-accent"
                   >
                     +
@@ -160,7 +163,7 @@ export function VetCalendar({
                     return (
                       <Link
                         key={visit.id}
-                        href={`/admin/calendar/${visit.id}`}
+                        href={{ pathname: "/admin/calendar/[visitId]", params: { visitId: visit.id } }}
                         className={`flex flex-col gap-px rounded-[6px] p-[4px_6px] ${colors.bg}`}
                         title={visit.reason}
                       >

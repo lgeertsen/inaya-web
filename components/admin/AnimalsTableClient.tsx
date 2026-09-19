@@ -65,7 +65,7 @@ export function AnimalsTableClient({
       sortable: true,
       sortAccessor: (row) => row.name.toLowerCase(),
       render: (row) => (
-        <Link href={`/admin/animals/${row.id}/edit`} className="flex items-center gap-2.5 hover:text-accent">
+        <Link href={{ pathname: "/admin/animals/[id]/edit", params: { id: row.id } }} className="flex items-center gap-2.5 hover:text-accent">
           <AnimalThumb animal={row} />
           <span className="flex flex-col gap-px">
             <span className="text-[13px] font-bold">{row.name}</span>

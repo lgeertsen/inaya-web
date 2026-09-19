@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
@@ -17,6 +17,8 @@ import type { AnimalInternalDetails } from "@/lib/animal-care";
 
 const SPECIES = ["cat", "dog", "horse", "goat", "other"] as const;
 const SEXES = ["male", "female", "unknown"] as const;
+const TEMPERAMENTS = ["wild", "semi_wild", "tame"] as const;
+const LOCATIONS = ["shelter", "foster_family", "cat_bar"] as const;
 
 export function AnimalForm({
   animal,
@@ -32,6 +34,7 @@ export function AnimalForm({
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<AnimalFormWithMicrochipInput, unknown, AnimalFormWithMicrochipValues>({
     resolver: zodResolver(animalFormWithMicrochipSchema),
@@ -40,6 +43,7 @@ export function AnimalForm({
           name: animal.name,
           species: animal.species,
           track: animal.track ?? "adoption",
+          location: animal.location,
           breed: animal.breed ?? "",
           sex: animal.sex,
           birthYear: animal.birthYear ?? undefined,
@@ -49,6 +53,7 @@ export function AnimalForm({
           bioFr: animal.bioFr ?? "",
           bioEn: animal.bioEn ?? "",
           specialNeeds: animal.specialNeeds,
+          temperament: animal.temperament ?? "",
           isPublished: animal.isPublished,
           microchipNumber: internalDetails?.microchipNumber ?? "",
         }
@@ -56,17 +61,23 @@ export function AnimalForm({
           name: "",
           species: "cat",
           track: "adoption",
+          location: "shelter",
           sex: "unknown",
           specialNeeds: false,
+          temperament: "",
           isPublished: true,
           microchipNumber: "",
         },
   });
 
+  const isCat = useWatch({ control, name: "species" }) === "cat";
+
   async function onSubmit(values: AnimalFormWithMicrochipValues) {
     setServerError(false);
 
     const { microchipNumber, ...animalValues } = values;
+    // Temperament is cat-only: clear any stale value if the species was changed away from cat.
+    if (animalValues.species !== "cat") animalValues.temperament = null;
 
     const res = await fetch(
       animal ? `/api/admin/animals/${animal.id}` : "/api/admin/animals",
@@ -96,7 +107,7 @@ export function AnimalForm({
     }
 
     if (!animal) {
-      router.push(`/admin/animals/${animalId}/edit`);
+      router.push({ pathname: "/admin/animals/[id]/edit", params: { id: animalId } });
     } else {
       router.refresh();
     }
@@ -129,6 +140,17 @@ export function AnimalForm({
 
         <input type="hidden" {...register("track")} />
 
+        <div className="col-span-2 flex flex-col gap-[5px]">
+          <AdminLabel>{t("location")}</AdminLabel>
+          <AdminSelect {...register("location")}>
+            {LOCATIONS.map((value) => (
+              <option key={value} value={value}>
+                {t(`locations.${value}`)}
+              </option>
+            ))}
+          </AdminSelect>
+        </div>
+
         <div className="flex flex-col gap-[5px]">
           <AdminLabel>{t("sex")}</AdminLabel>
           <AdminSelect {...register("sex")}>
@@ -139,6 +161,20 @@ export function AnimalForm({
             ))}
           </AdminSelect>
         </div>
+
+        {isCat ? (
+          <div className="flex flex-col gap-[5px]">
+            <AdminLabel>{t("temperament")}</AdminLabel>
+            <AdminSelect {...register("temperament")}>
+              <option value="">{t("temperamentUnset")}</option>
+              {TEMPERAMENTS.map((value) => (
+                <option key={value} value={value}>
+                  {t(`temperaments.${value}`)}
+                </option>
+              ))}
+            </AdminSelect>
+          </div>
+        ) : null}
 
         <div className="flex flex-col gap-[5px]">
           <AdminLabel>{t("breed")}</AdminLabel>

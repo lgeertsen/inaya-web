@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { Select } from "@/components/ui/Field";
 
@@ -9,7 +9,6 @@ const SPECIES = ["cat", "dog", "horse", "goat", "other"] as const;
 
 export function AnimalFilterBar() {
   const t = useTranslations("animals.filters");
-  const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -20,8 +19,8 @@ export function AnimalFilterBar() {
     } else {
       params.delete(key);
     }
-    const query = params.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname);
+    // The filter bar only renders on the static /animals route, so no dynamic params apply.
+    router.replace({ pathname: "/animals", query: Object.fromEntries(params.entries()) });
   }
 
   return (

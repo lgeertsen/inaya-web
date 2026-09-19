@@ -71,7 +71,7 @@ export function VetVisitForm({
 
     if (!visit) {
       const saved = await res.json();
-      router.push(`/admin/calendar/${saved.id}`);
+      router.push({ pathname: "/admin/calendar/[visitId]", params: { visitId: saved.id } });
     } else {
       router.refresh();
     }

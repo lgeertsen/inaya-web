@@ -10,6 +10,7 @@ import {
   CalendarDays,
   HeartHandshake,
   Users,
+  PenLine,
   KeyRound,
   Menu,
   X,
@@ -19,8 +20,18 @@ import { SignOutButton } from "./SignOutButton";
 import { getInitialsFromEmail } from "@/lib/format";
 import type { Role } from "@/lib/auth";
 
+type AdminNavHref =
+  | "/admin"
+  | "/admin/animals"
+  | "/admin/animals/archive"
+  | "/admin/calendar"
+  | "/admin/donations"
+  | "/admin/accounts"
+  | "/admin/texts"
+  | "/admin/profile";
+
 interface NavItem {
-  href: string;
+  href: AdminNavHref;
   icon: LucideIcon;
   key: string;
   adminOnly: boolean;
@@ -59,6 +70,7 @@ const NAV_GROUPS: { key: string; items: NavItem[] }[] = [
     items: [
       { href: "/admin/donations", icon: HeartHandshake, key: "donations", adminOnly: true, exact: false },
       { href: "/admin/accounts", icon: Users, key: "accounts", adminOnly: true, exact: false },
+      { href: "/admin/texts", icon: PenLine, key: "texts", adminOnly: true, exact: false },
     ],
   },
   {

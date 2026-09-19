@@ -4,17 +4,23 @@ import { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
+type StaticPublicHref = Exclude<
+  keyof typeof routing.pathnames,
+  `${string}[${string}` | `/admin${string}`
+>;
+
 interface NavChild {
-  href: string;
+  href: StaticPublicHref;
   key: string;
 }
 
 interface NavGroup {
-  href: string;
+  href: StaticPublicHref;
   key: string;
   children?: NavChild[];
 }

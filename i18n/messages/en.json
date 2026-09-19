@@ -99,6 +99,14 @@
     "sexLabel": "Sex",
     "arrived": "Arrived in",
     "specialNeeds": "Special needs",
+    "temperament": "Temperament",
+    "temperaments": { "wild": "Feral", "semi_wild": "Semi-feral", "tame": "Tame" },
+    "location": "Location",
+    "locations": {
+      "shelter": "At the shelter",
+      "foster_family": "With a foster family",
+      "cat_bar": "At the PawPao cat café"
+    },
     "adoptionCta": "Start an adoption request",
     "sponsorshipCta": "Sponsor {name}"
   },
@@ -167,23 +175,22 @@
     ]
   },
   "volunteer": {
-    "title": "Become a volunteer",
-    "intro": "The association runs on the commitment of its volunteers. Whether you can give a single hour now and then or several afternoons a week, your help matters — for the animals and for the team.",
-    "tasksTitle": "What you can do with us",
-    "tasks": [
-      "Feed, groom and socialize the animals",
-      "Help maintain pens, pastures and litter areas",
-      "Assist during veterinary appointments",
-      "Lend a hand at open days and events"
-    ],
+    "title": "Join us",
+    "intro": "Being a volunteer with us is far more than giving a little of your time. It's choosing to be there for those who cannot speak, who have sometimes known abandonment, fear or loneliness. It's sharing values of solidarity, mutual support and respect, and understanding that every gesture, even the simplest, matters. Because at the sanctuary, it isn't only cuddles, tender looks and moments of connection.",
+    "dailyLifeBody": "There's also the everyday work. Cleaning the enclosures. Picking up waste. Disinfecting. Carrying, washing, repairing. Preparing meals, handing out food, changing the water. Maintaining fences. Starting over, day after day. These are physical, repetitive tasks — sometimes hard and often messy. But behind each one, there's an animal sleeping somewhere clean, eating its fill, drinking fresh water, able to live in a healthy, safe environment. Being a volunteer means accepting to get your hands dirty to give them a better life.",
+    "closingBody": "It's giving your energy when you're tired. It's showing up even when it's raining. It's sometimes doing things no one sees, but that concretely change the animals' lives. Because caring for them isn't just about loving them. It's taking care of them, every day — even in the least glamorous tasks. A few hours a week, one day now and then, or more… it doesn't matter. Every presence counts. Every gesture counts. Every helping hand counts. And maybe, at the end of that tiring day, when you meet their gaze, you'll understand why you did it:",
+    "closingHighlight": "For them. Simply that.",
     "conditionsTitle": "Before you join us",
     "conditions": [
-      "Be available regularly or occasionally, on a schedule worked out together",
-      "Agree to follow the shelter's hygiene and safety guidelines",
-      "Be comfortable with direct contact with the animals (dogs, cats, horses, goats…)",
-      "Be an adult, or accompanied by a parent if a minor"
+      "You love animals",
+      "You'd like to give your time to animals in distress",
+      "You have team spirit",
+      "You follow health protocols and safety rules",
+      "You understand that volunteering at a shelter is demanding work, physically, mentally and emotionally",
+      "You commit to at least one morning a week (8:30am – 12:30pm)"
     ],
-    "formTitle": "Apply to volunteer",
+    "phoneCta": "Call us at 06 11 50 13 17",
+    "formTitle": "Wonderful! Welcome to the team",
     "firstNamePlaceholder": "First name",
     "lastNamePlaceholder": "Last name",
     "emailPlaceholder": "Email",
@@ -252,6 +259,7 @@
   "teaming": {
     "title": "€1 a month to support the sanctuary",
     "intro": "What if just €1 a month could make a real difference for animals in distress? That's only €12 a year — your gift on Teaming helps the sanctuary cover care, medication, hospital stays, and everything our animals need for their well-being.",
+    "flyerAlt": "\"Join our Teaming network\" flyer: €1 a month to save lives, with the link and QR code to the fundraiser.",
     "howTitle": "Supporting us is simple:",
     "step1": { "title": "1. Head to Teaming", "text": "Go to the Teaming website, the platform that manages donations for good causes." },
     "step2": { "title": "2. Create your account", "text": "Signing up is quick and free." },
@@ -337,6 +345,7 @@
       "calendar": "Calendar",
       "donations": "Donations",
       "accounts": "Volunteers",
+      "texts": "Site texts",
       "profile": "My account",
       "signOut": "Sign out",
       "toggleMenu": "Open menu",
@@ -455,6 +464,15 @@
         "bioFr": "Bio (FR)",
         "bioEn": "Bio (EN)",
         "specialNeeds": "Special needs",
+        "temperament": "Temperament",
+        "temperamentUnset": "Not set",
+        "temperaments": { "wild": "Feral", "semi_wild": "Semi-feral", "tame": "Tame" },
+        "location": "Location",
+        "locations": {
+          "shelter": "At the shelter",
+          "foster_family": "Foster family",
+          "cat_bar": "PawPao cat café"
+        },
         "isPublished": "Publish on site",
         "save": "Save",
         "cancel": "Cancel",
@@ -687,6 +705,172 @@
         "pending": "Pending",
         "completed": "Completed",
         "canceled": "Canceled"
+      }
+    },
+    "texts": {
+      "meta": "{count} editable texts",
+      "intro": "Pick a page: it is shown on the right exactly as on the website. Click any text to edit it — the change appears live before you save. French and English are edited separately.",
+      "search": {
+        "placeholder": "Search a text across the whole site…",
+        "noResults": "No text matches.",
+        "more": "{count} more results — refine your search."
+      },
+      "card": {
+        "strings": "{count, plural, one {# text} other {# texts}}",
+        "edited": "{count, plural, one {# edited} other {# edited}}",
+        "lastEdit": "Last edit: {when}"
+      },
+      "pages": {
+        "home": {
+          "name": "Home",
+          "description": "Headline, sanctuary presentation, “How to help” cards, contact."
+        },
+        "site": {
+          "name": "Banner, header & footer",
+          "description": "Announcement bar, navigation menu and footer, shown on every page."
+        },
+        "about": {
+          "name": "About",
+          "description": "Presentation of the association and its story."
+        },
+        "team": {
+          "name": "Our team",
+          "description": "Team presentation page."
+        },
+        "animals": {
+          "name": "Our animals",
+          "description": "Animal list and filters."
+        },
+        "animal-detail": {
+          "name": "Animal profile",
+          "description": "An animal's presentation page: age, sex, temperament, adoption or sponsorship."
+        },
+        "adopt": {
+          "name": "Adopt",
+          "description": "Adoption procedure and prices for dogs and cats."
+        },
+        "calicivirus": {
+          "name": "Calicivirus cats",
+          "description": "Information about adopting calicivirus-positive cats."
+        },
+        "surrender": {
+          "name": "Surrender an animal",
+          "description": "Conditions and steps to hand over an animal."
+        },
+        "help": {
+          "name": "Help us",
+          "description": "Donations, sponsorship, adoption and bank transfer."
+        },
+        "volunteer": {
+          "name": "Become a volunteer",
+          "description": "Life at the sanctuary, conditions and application form."
+        },
+        "foster-family": {
+          "name": "Foster family",
+          "description": "Role, conditions and form to become a foster family."
+        },
+        "teaming": {
+          "name": "Teaming",
+          "description": "Support the sanctuary with €1 a month through Teaming."
+        },
+        "contact": {
+          "name": "Contact",
+          "description": "Contact details, contact form and map."
+        },
+        "donate": {
+          "name": "Donate",
+          "description": "Donation and sponsorship form."
+        },
+        "donate-success": {
+          "name": "Donation: confirmation",
+          "description": "Page shown after a successful donation."
+        },
+        "donate-cancel": {
+          "name": "Donation: cancelled",
+          "description": "Page shown when a donation is cancelled."
+        },
+        "other": {
+          "name": "Other texts",
+          "description": "Texts that don't belong to any particular page."
+        }
+      },
+      "back": "All pages",
+      "switchPage": "Switch page",
+      "language": "Language",
+      "viewport": {
+        "label": "Preview size",
+        "desktop": "Desktop",
+        "mobile": "Mobile"
+      },
+      "showAll": "Highlight texts",
+      "openLive": "View page",
+      "previewHint": "Click a text on the page to edit it, or hover a field to locate it.",
+      "badge": "Selected text",
+      "loadingPreview": "Loading preview…",
+      "scanning": "Analysing the page…",
+      "noResults": "No text matches your search.",
+      "emptyTab": "No texts in this section.",
+      "searchPlaceholder": "Filter this page's texts…",
+      "hiddenExplain": "These texts belong to this page but aren't visible on screen: error or confirmation messages, closed menus, form texts… They can still be edited here.",
+      "leaveConfirm": "You have unsaved changes. Leave anyway?",
+      "tabs": {
+        "content": "On the page",
+        "chrome": "Banner, header, footer",
+        "hidden": "Not visible here"
+      },
+      "roles": {
+        "title": "Main heading",
+        "subtitle": "Subheading",
+        "paragraph": "Paragraph",
+        "link": "Link",
+        "button": "Button",
+        "list": "List item",
+        "option": "Dropdown option",
+        "image": "Image description",
+        "field": "Hint inside a form field",
+        "label": "Label",
+        "other": "Text"
+      },
+      "regions": {
+        "banner": "Banner",
+        "header": "Header",
+        "page": "Content",
+        "footer": "Footer"
+      },
+      "languages": {
+        "fr": "French",
+        "en": "English"
+      },
+      "field": {
+        "unsaved": "Unsaved",
+        "modified": "Edited",
+        "under": "Under “{heading}”",
+        "variables": "Variables to keep:",
+        "previewAfterSave": "This text contains variables: the preview updates after saving.",
+        "sharedWith": "Another text has exactly the same wording ({keys}); it is edited separately.",
+        "undo": "Undo my change",
+        "resetToOriginal": "Restore original text",
+        "moreInfo": "Original text and other language",
+        "original": "Original text",
+        "otherLanguage": "{language} version"
+      },
+      "problems": {
+        "empty": "The text cannot be empty.",
+        "invalid": "Invalid text: check the curly braces '{' '}'.",
+        "tags": "The text must not contain tags < >.",
+        "placeholders": "Keep the original variables exactly: {names}",
+        "unknown_key": "This text no longer exists on the site."
+      },
+      "save": {
+        "saved": "Saved — the site is up to date.",
+        "failed": "Saving failed. Please try again.",
+        "unsaved": "{count, plural, one {# unsaved change} other {# unsaved changes}}",
+        "otherLanguage": "{count} of them in {language}",
+        "noChanges": "No changes",
+        "fixProblems": "{count, plural, one {# text to fix} other {# texts to fix}} before saving.",
+        "discard": "Discard all",
+        "saving": "Saving…",
+        "save": "Save"
       }
     }
   }

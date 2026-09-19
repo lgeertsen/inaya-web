@@ -12,6 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@formatjs/icu-messageformat-parser": "3.5.18",
     "@hookform/resolvers": "^5.9.1",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.109.0",

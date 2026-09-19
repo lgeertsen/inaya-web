@@ -114,6 +114,20 @@ export default async function AnimalDetailPage({
                 <dd>{t(`sex.${animal.sex}`)}</dd>
               </div>
             ) : null}
+            <div>
+              <dt className="uppercase tracking-[0.1em] text-[11px] opacity-50 font-bold">
+                {t("location")}
+              </dt>
+              <dd>{t(`locations.${animal.location}`)}</dd>
+            </div>
+            {animal.species === "cat" && animal.temperament ? (
+              <div>
+                <dt className="uppercase tracking-[0.1em] text-[11px] opacity-50 font-bold">
+                  {t("temperament")}
+                </dt>
+                <dd>{t(`temperaments.${animal.temperament}`)}</dd>
+              </div>
+            ) : null}
             {animal.specialNeeds ? (
               <div>
                 <dt className="uppercase tracking-[0.1em] text-[11px] opacity-50 font-bold">
@@ -128,7 +142,7 @@ export default async function AnimalDetailPage({
             {animal.track === "adoption" ? (
               <ButtonLink href="/adopt">{t("adoptionCta")}</ButtonLink>
             ) : (
-              <ButtonLink href={`/donate?animalId=${animal.id}`}>
+              <ButtonLink href={{ pathname: "/donate", query: { animalId: animal.id } }}>
                 {t("sponsorshipCta", { name: animal.name })}
               </ButtonLink>
             )}

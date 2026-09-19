@@ -41,7 +41,7 @@ export default async function CalicivirusAdoptionPage() {
         <p className="text-[15.5px] leading-relaxed opacity-85">{t("careText")}</p>
         <p className="text-[16px] font-bold">{t("closing")}</p>
         <div className="flex flex-wrap gap-4">
-          <ButtonLink href="/animals?species=cat">{t("viewCatsCta")}</ButtonLink>
+          <ButtonLink href={{ pathname: "/animals", query: { species: "cat" } }}>{t("viewCatsCta")}</ButtonLink>
           <ButtonLink href="/adopt" variant="outline">
             {t("procedureCta")}
           </ButtonLink>

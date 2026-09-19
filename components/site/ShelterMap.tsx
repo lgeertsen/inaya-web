@@ -39,14 +39,17 @@ const PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" 
 let mapsLoader: Promise<void> | null = null;
 
 function loadGoogleMaps(apiKey: string): Promise<void> {
-  if (window.google?.maps) return Promise.resolve();
   if (mapsLoader) return mapsLoader;
+  if (window.google?.maps?.importLibrary) return Promise.resolve();
 
   mapsLoader = new Promise((resolve, reject) => {
+    // With loading=async, `onload` can fire before google.maps.importLibrary exists —
+    // the callback param is Google's "API ready" signal.
+    const callbackName = "__initShelterMap";
+    (window as unknown as Record<string, () => void>)[callbackName] = () => resolve();
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&loading=async&v=weekly`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&loading=async&v=weekly&callback=${callbackName}`;
     script.async = true;
-    script.onload = () => resolve();
     script.onerror = () => reject(new Error("Failed to load Google Maps"));
     document.head.appendChild(script);
   });

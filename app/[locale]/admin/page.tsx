@@ -113,7 +113,7 @@ export default async function AdminOverviewPage() {
       label: t("attention.overdueVaccines"),
       meta: t("attention.overdueVaccinesMeta", { names: attention.overdueVaccineAnimalNames.slice(0, 3).join(" · ") }),
       tone: "danger" as const,
-      href: "/admin/animals",
+      href: "/admin/animals" as const,
     },
     attention.syncFailureCount > 0 && {
       key: "syncFailures",
@@ -121,7 +121,7 @@ export default async function AdminOverviewPage() {
       label: t("attention.syncFailures"),
       meta: t("attention.syncFailuresMeta", { count: attention.syncFailureCount }),
       tone: "danger" as const,
-      href: "/admin/calendar",
+      href: "/admin/calendar" as const,
     },
     attention.unpublishedDraftCount > 0 && {
       key: "unpublishedDrafts",
@@ -129,7 +129,7 @@ export default async function AdminOverviewPage() {
       label: t("attention.unpublishedDrafts"),
       meta: t("attention.unpublishedDraftsMeta"),
       tone: "warning" as const,
-      href: "/admin/animals",
+      href: "/admin/animals" as const,
     },
     attention.missingMicrochipCount > 0 && {
       key: "missingMicrochip",
@@ -137,7 +137,7 @@ export default async function AdminOverviewPage() {
       label: t("attention.missingMicrochip"),
       meta: t("attention.missingMicrochipMeta", { count: attention.missingMicrochipCount }),
       tone: "warning" as const,
-      href: "/admin/animals",
+      href: "/admin/animals" as const,
     },
     attention.failedDonationCount > 0 && {
       key: "failedDonations",
@@ -145,7 +145,7 @@ export default async function AdminOverviewPage() {
       label: t("attention.failedDonations"),
       meta: t("attention.failedDonationsMeta", { count: attention.failedDonationCount }),
       tone: "danger" as const,
-      href: "/admin/donations",
+      href: "/admin/donations" as const,
     },
   ].filter((item): item is Exclude<typeof item, false> => Boolean(item));
 
@@ -283,7 +283,7 @@ export default async function AdminOverviewPage() {
               return (
                 <Link
                   key={visit.id}
-                  href={`/admin/calendar/${visit.id}`}
+                  href={{ pathname: "/admin/calendar/[visitId]", params: { visitId: visit.id } }}
                   className="flex items-center gap-3.5 border-b border-ink/7 p-[12px_18px] last:border-0 hover:bg-ink/[0.02]"
                 >
                   <span className="flex w-[46px] flex-none flex-col items-center justify-center rounded-[9px] bg-ink/4 p-[6px_0] leading-[1.1]">
@@ -329,7 +329,7 @@ export default async function AdminOverviewPage() {
               recentArrivals.map((animal) => (
                 <Link
                   key={animal.id}
-                  href={`/admin/animals/${animal.id}/edit`}
+                  href={{ pathname: "/admin/animals/[id]/edit", params: { id: animal.id } }}
                   className="flex items-center gap-2.5 border-b border-ink/7 p-[10px_18px] last:border-0 hover:bg-ink/[0.02]"
                 >
                   <AnimalThumb animal={animal} size={34} rounded={9} />
@@ -387,7 +387,7 @@ export default async function AdminOverviewPage() {
             {recentVolunteerPhotos.map((photo) => (
               <Link
                 key={photo.id}
-                href={`/admin/animals/${photo.animalId}/edit`}
+                href={{ pathname: "/admin/animals/[id]/edit", params: { id: photo.animalId } }}
                 className="flex w-[104px] flex-none flex-col gap-1.5"
               >
                 <Image

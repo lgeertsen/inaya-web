@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import type { ComponentProps, ComponentType } from "react";
 import { Link } from "@/i18n/navigation";
 import { Card } from "@/components/ui/Card";
 
@@ -6,7 +6,7 @@ interface StatCardProps {
   label: string;
   value: string | number;
   icon: ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
-  href?: string;
+  href?: ComponentProps<typeof Link>["href"];
   sublabel?: string;
 }
 

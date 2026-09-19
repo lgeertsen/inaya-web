@@ -31,6 +31,14 @@ components.
    comparing `jq 'keys'` output at the relevant path) rather than just checking the one key you
    added — it's easy to leave one locale with a stray or missing nested key.
 
-5. **Don't add a key to only one locale.** If you're unsure of the translation, add a reasonable
+5. **Remember admin overrides win.** Admins can edit any public string from `/admin/texts`; those
+   edits live in the `site_texts` table and take precedence over `fr.json`/`en.json`. So changing
+   the default of a key an admin already edited will not change what visitors see, and renaming or
+   removing a key orphans its override row (harmless, ignored). If you add a new top-level
+   namespace, map it to a page in `lib/site-text-pages.ts` so it appears under the right page in
+   the editor (otherwise it lands under "Autres textes"). Placeholders like `{count}` must stay
+   identical between the default and any edit — the API enforces this.
+
+6. **Don't add a key to only one locale.** If you're unsure of the translation, add a reasonable
    placeholder in the other locale rather than omitting the key — a missing key will surface as a
    runtime/build error from `next-intl`, not a silent fallback.

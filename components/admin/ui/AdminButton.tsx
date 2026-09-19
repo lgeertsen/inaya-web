@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ComponentProps } from "react";
 import { Link } from "@/i18n/navigation";
 
 /**
@@ -45,8 +45,8 @@ export function AdminButton({
   );
 }
 
-interface AdminButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
+interface AdminButtonLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+  href: ComponentProps<typeof Link>["href"];
   size?: Size;
   variant?: Variant;
 }

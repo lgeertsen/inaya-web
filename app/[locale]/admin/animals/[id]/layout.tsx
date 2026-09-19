@@ -115,10 +115,13 @@ export default async function AnimalDetailLayout({
           </div>
         </div>
         <div className="ml-auto flex flex-wrap gap-2">
-          <AdminButtonLink href={`/animals/${id}`} target="_blank">
+          <AdminButtonLink href={{ pathname: "/animals/[id]", params: { id } }} target="_blank">
             {t("detail.viewOnSite")}
           </AdminButtonLink>
-          <AdminButtonLink href={`/admin/animals/${id}/edit`} variant="dark">
+          <AdminButtonLink
+            href={{ pathname: "/admin/animals/[id]/edit", params: { id } }}
+            variant="dark"
+          >
             {t("detail.editRecord")}
           </AdminButtonLink>
           <DeleteAnimalDialog animalId={id} animalName={animal.name} />

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getPathname } from "@/i18n/navigation";
 import { getStripe } from "@/lib/stripe";
 import { donateCheckoutSchema } from "@/lib/validation";
 
@@ -24,8 +25,8 @@ export async function POST(request: NextRequest) {
   const session = await getStripe().checkout.sessions.create({
     mode: frequency === "monthly" ? "subscription" : "payment",
     line_items: [{ price_data: priceData, quantity: 1 }],
-    success_url: `${origin}/${locale}/donate/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/${locale}/donate/cancel`,
+    success_url: `${origin}${getPathname({ href: "/donate/success", locale })}?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${origin}${getPathname({ href: "/donate/cancel", locale })}`,
     metadata: {
       frequency,
       ...(animalId ? { animalId } : {}),

@@ -24,7 +24,7 @@ export function AdminPage({ title, meta, children }: AdminPageProps) {
   function handleSearch(event: FormEvent) {
     event.preventDefault();
     const trimmed = query.trim();
-    router.push(trimmed ? `/admin/animals?q=${encodeURIComponent(trimmed)}` : "/admin/animals");
+    router.push(trimmed ? { pathname: "/admin/animals", query: { q: trimmed } } : "/admin/animals");
   }
 
   return (

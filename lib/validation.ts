@@ -3,6 +3,8 @@ import { z } from "zod";
 export const animalSpeciesSchema = z.enum(["cat", "dog", "horse", "goat", "other"]);
 export const animalTrackSchema = z.enum(["adoption", "sponsorship"]);
 export const animalSexSchema = z.enum(["male", "female", "unknown"]);
+export const animalTemperamentSchema = z.enum(["wild", "tame", "semi_wild"]);
+export const animalLocationSchema = z.enum(["shelter", "foster_family", "cat_bar"]);
 
 const emptyToUndefined = (val: unknown) => (val === "" || val === null ? undefined : val);
 
@@ -10,6 +12,7 @@ export const animalFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   species: animalSpeciesSchema,
   track: animalTrackSchema,
+  location: animalLocationSchema,
   breed: z.string().trim().optional().nullable(),
   sex: animalSexSchema,
   birthYear: z.preprocess(
@@ -29,6 +32,11 @@ export const animalFormSchema = z.object({
   bioEn: z.string().optional().nullable(),
   specialNeeds: z.boolean(),
   calicivirus: z.boolean(),
+  // Cat-only. The form's empty "not set" option arrives as "" → null so a PATCH clears it.
+  temperament: z.preprocess(
+    (val) => (val === "" ? null : val),
+    animalTemperamentSchema.nullable().optional(),
+  ),
   isPublished: z.boolean(),
 });
 
@@ -226,3 +234,21 @@ export const fosterFamilyApplicationSchema = z.object({
 });
 
 export type FosterFamilyApplicationValues = z.infer<typeof fosterFamilyApplicationSchema>;
+
+// Admin-editable site texts (see lib/site-texts.ts). Key existence and ICU
+// placeholder parity against the shipped default are checked in the route
+// handler, since they need the message files.
+export const siteTextLocaleSchema = z.enum(["fr", "en"]);
+
+export const saveSiteTextsSchema = z.object({
+  locale: siteTextLocaleSchema,
+  changes: z
+    .array(
+      z.object({
+        key: z.string().min(1).max(200),
+        value: z.string().trim().min(1, "Text cannot be empty").max(4000),
+      }),
+    )
+    .min(1)
+    .max(200),
+});

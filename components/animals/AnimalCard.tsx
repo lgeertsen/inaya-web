@@ -19,7 +19,7 @@ export async function AnimalCard({ animal }: { animal: Animal }) {
   ].filter(Boolean);
 
   return (
-    <Link href={`/animals/${animal.id}`} className="block h-full">
+    <Link href={{ pathname: "/animals/[id]", params: { id: animal.id } }} className="block h-full">
       <Card className="overflow-hidden flex flex-col h-full">
         <div className="relative aspect-4/5 bg-[radial-gradient(circle_at_50%_38%,#fdeefa_0%,#f3eef2_55%,#e9e6e8_100%)]">
           {cover ? (

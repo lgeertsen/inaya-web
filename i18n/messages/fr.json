@@ -99,6 +99,14 @@
     "sexLabel": "Sexe",
     "arrived": "Arrivé(e) en",
     "specialNeeds": "Besoins spécifiques",
+    "temperament": "Caractère",
+    "temperaments": { "wild": "Sauvage", "semi_wild": "Semi-sauvage", "tame": "Apprivoisé" },
+    "location": "Lieu de vie",
+    "locations": {
+      "shelter": "Au refuge",
+      "foster_family": "En famille d'accueil",
+      "cat_bar": "Au bar à chat PawPao"
+    },
     "adoptionCta": "Faire une demande d'adoption",
     "sponsorshipCta": "Parrainer {name}"
   },
@@ -167,23 +175,22 @@
     ]
   },
   "volunteer": {
-    "title": "Devenir bénévole",
-    "intro": "L'association fonctionne grâce à l'engagement de ses bénévoles. Que vous puissiez donner une heure ponctuelle ou plusieurs demi-journées par semaine, votre aide compte pour les animaux comme pour l'équipe.",
-    "tasksTitle": "Ce que vous pouvez faire avec nous",
-    "tasks": [
-      "Nourrir, brosser et sociabiliser les animaux",
-      "Entretenir les box, pâturages et litières",
-      "Aider lors des rendez-vous vétérinaires",
-      "Prêter main forte lors des journées portes ouvertes et événements"
-    ],
+    "title": "Rejoignez-nous",
+    "intro": "Être bénévole chez nous, c'est bien plus que donner un peu de son temps. C'est choisir d'être là pour ceux qui ne peuvent pas parler, ceux qui ont parfois connu l'abandon, la peur ou la solitude. C'est partager des valeurs de solidarité, d'entraide et de respect, et comprendre que chaque geste, même le plus simple, a son importance. Car au refuge, il n'y a pas que les caresses, les regards attendrissants et les moments de complicité.",
+    "dailyLifeBody": "Il y a aussi le quotidien. Nettoyer les enclos. Ramasser les excréments. Désinfecter. Porter, laver, réparer. Préparer les repas, distribuer la nourriture, changer l'eau. Entretenir les clôtures. Recommencer, jour après jour. Ce sont des tâches physiques, répétitives, parfois difficiles et souvent salissantes. Mais derrière chacune d'elles, il y a un animal qui dort dans un endroit propre, qui mange à sa faim, qui boit une eau fraîche, qui peut vivre dans un environnement sain et sécurisé. Être bénévole, c'est accepter de se salir les mains pour leur offrir une vie meilleure.",
+    "closingBody": "C'est donner de son énergie quand on est fatigué. C'est venir même quand il pleut. C'est parfois faire des choses que personne ne voit, mais qui changent concrètement la vie des animaux. Parce que s'occuper d'eux, ce n'est pas seulement les aimer. C'est prendre soin d'eux, chaque jour. Même dans les tâches les moins belles. Quelques heures par semaine, une journée de temps en temps, ou davantage… peu importe. Chaque présence compte. Chaque geste compte. Chaque main tendue compte. Et peut-être qu'au bout de cette journée fatigante, lorsque vous croiserez leur regard, vous comprendrez pourquoi vous l'avez fait :",
+    "closingHighlight": "Pour eux. Tout simplement.",
     "conditionsTitle": "Avant de nous rejoindre",
     "conditions": [
-      "Être disponible régulièrement ou ponctuellement, selon un planning établi ensemble",
-      "Accepter de suivre les consignes d'hygiène et de sécurité du refuge",
-      "Être à l'aise avec le contact direct des animaux (chiens, chats, chevaux, chèvres…)",
-      "Être majeur, ou accompagné d'un parent si mineur"
+      "Vous êtes amoureux des animaux",
+      "Vous aimeriez consacrer votre temps aux animaux en détresse",
+      "Vous avez l'esprit d'équipe",
+      "Vous respectez les protocoles sanitaires et les règles de sécurité",
+      "Vous comprenez que le bénévolat dans un refuge est un travail assez lourd sur le plan physique, mental et émotionnel",
+      "Vous vous engagez au moins une matinée par semaine (8h30 - 12h30)"
     ],
-    "formTitle": "Faire une demande de bénévolat",
+    "phoneCta": "Appelez-nous au 06 11 50 13 17",
+    "formTitle": "Génial ! Bienvenu(e) pour renforcer notre équipe",
     "firstNamePlaceholder": "Prénom",
     "lastNamePlaceholder": "Nom",
     "emailPlaceholder": "E-mail",
@@ -252,6 +259,7 @@
   "teaming": {
     "title": "1 € par mois pour soutenir le sanctuaire",
     "intro": "Et si seulement 1 € par mois pouvait faire une vraie différence pour les animaux en détresse ? Soit 12 € par an, votre don sur Teaming aide le sanctuaire à faire face aux soins, aux médicaments, aux hospitalisations et à toutes les dépenses indispensables au bien-être de nos animaux.",
+    "flyerAlt": "Affiche « Rejoignez notre réseau Teaming » : 1 euro par mois pour sauver des vies, avec le lien et le QR code vers la collecte.",
     "howTitle": "Pour nous soutenir, c'est très simple :",
     "step1": { "title": "1. Rendez-vous sur Teaming", "text": "Direction le site de Teaming, la plateforme qui gère les dons pour les bonnes causes." },
     "step2": { "title": "2. Créez votre compte", "text": "L'inscription est rapide et gratuite." },
@@ -337,6 +345,7 @@
       "calendar": "Calendrier",
       "donations": "Dons",
       "accounts": "Bénévoles",
+      "texts": "Textes du site",
       "profile": "Mon compte",
       "signOut": "Se déconnecter",
       "toggleMenu": "Ouvrir le menu",
@@ -455,6 +464,15 @@
         "bioFr": "Description (FR)",
         "bioEn": "Description (EN)",
         "specialNeeds": "Besoins spécifiques",
+        "temperament": "Caractère",
+        "temperamentUnset": "Non renseigné",
+        "temperaments": { "wild": "Sauvage", "semi_wild": "Semi-sauvage", "tame": "Apprivoisé" },
+        "location": "Lieu de vie",
+        "locations": {
+          "shelter": "Au refuge",
+          "foster_family": "Famille d'accueil",
+          "cat_bar": "Bar à chat PawPao"
+        },
         "isPublished": "Publier sur le site",
         "save": "Enregistrer",
         "cancel": "Annuler",
@@ -687,6 +705,172 @@
         "pending": "En attente",
         "completed": "Terminé",
         "canceled": "Annulé"
+      }
+    },
+    "texts": {
+      "meta": "{count} textes modifiables",
+      "intro": "Choisissez une page : elle s'affiche à droite exactement comme sur le site. Cliquez sur un texte pour le modifier — le changement apparaît en direct avant d'être enregistré. Le français et l'anglais se modifient séparément.",
+      "search": {
+        "placeholder": "Rechercher un texte sur tout le site…",
+        "noResults": "Aucun texte ne correspond.",
+        "more": "{count} autres résultats — précisez votre recherche."
+      },
+      "card": {
+        "strings": "{count, plural, one {# texte} other {# textes}}",
+        "edited": "{count, plural, one {# modifié} other {# modifiés}}",
+        "lastEdit": "Dernière modification : {when}"
+      },
+      "pages": {
+        "home": {
+          "name": "Accueil",
+          "description": "Titre, présentation du sanctuaire, cartes « Comment aider », coordonnées."
+        },
+        "site": {
+          "name": "Bannière, en-tête & pied de page",
+          "description": "Bandeau d'annonce, menu de navigation et pied de page, affichés sur toutes les pages."
+        },
+        "about": {
+          "name": "À propos",
+          "description": "Présentation de l'association et de son histoire."
+        },
+        "team": {
+          "name": "Notre équipe",
+          "description": "Page de présentation de l'équipe."
+        },
+        "animals": {
+          "name": "Nos animaux",
+          "description": "Liste des animaux et filtres."
+        },
+        "animal-detail": {
+          "name": "Fiche d'un animal",
+          "description": "Page de présentation d'un animal : âge, sexe, tempérament, adoption ou parrainage."
+        },
+        "adopt": {
+          "name": "Adopter",
+          "description": "Procédure d'adoption et tarifs pour chiens et chats."
+        },
+        "calicivirus": {
+          "name": "Chats calicivirus",
+          "description": "Informations sur l'adoption des chats porteurs du calicivirus."
+        },
+        "surrender": {
+          "name": "Céder un animal",
+          "description": "Conditions et démarche pour confier un animal."
+        },
+        "help": {
+          "name": "Aidez-nous",
+          "description": "Dons, parrainage, adoption et virement bancaire."
+        },
+        "volunteer": {
+          "name": "Devenir bénévole",
+          "description": "Vie au sanctuaire, conditions et formulaire de candidature."
+        },
+        "foster-family": {
+          "name": "Famille d'accueil",
+          "description": "Rôle, conditions et formulaire pour devenir famille d'accueil."
+        },
+        "teaming": {
+          "name": "Teaming",
+          "description": "Soutenir le sanctuaire avec 1 € par mois via Teaming."
+        },
+        "contact": {
+          "name": "Contact",
+          "description": "Coordonnées, formulaire de contact et plan d'accès."
+        },
+        "donate": {
+          "name": "Faire un don",
+          "description": "Formulaire de don et de parrainage."
+        },
+        "donate-success": {
+          "name": "Don : confirmation",
+          "description": "Page affichée après un don réussi."
+        },
+        "donate-cancel": {
+          "name": "Don : annulation",
+          "description": "Page affichée si le don est annulé."
+        },
+        "other": {
+          "name": "Autres textes",
+          "description": "Textes qui n'appartiennent à aucune page en particulier."
+        }
+      },
+      "back": "Toutes les pages",
+      "switchPage": "Changer de page",
+      "language": "Langue",
+      "viewport": {
+        "label": "Taille de l'aperçu",
+        "desktop": "Ordinateur",
+        "mobile": "Mobile"
+      },
+      "showAll": "Repérer les textes",
+      "openLive": "Voir la page",
+      "previewHint": "Cliquez sur un texte de la page pour le modifier, ou survolez un champ pour le repérer.",
+      "badge": "Texte sélectionné",
+      "loadingPreview": "Chargement de l'aperçu…",
+      "scanning": "Analyse de la page…",
+      "noResults": "Aucun texte ne correspond à votre recherche.",
+      "emptyTab": "Aucun texte dans cette section.",
+      "searchPlaceholder": "Filtrer les textes de cette page…",
+      "hiddenExplain": "Ces textes appartiennent à cette page mais ne sont pas visibles à l'écran : messages d'erreur ou de confirmation, menus fermés, textes de formulaires… Ils restent modifiables ici.",
+      "leaveConfirm": "Vous avez des modifications non enregistrées. Quitter quand même ?",
+      "tabs": {
+        "content": "Sur la page",
+        "chrome": "Bannière, en-tête, pied de page",
+        "hidden": "Non visibles ici"
+      },
+      "roles": {
+        "title": "Titre principal",
+        "subtitle": "Sous-titre",
+        "paragraph": "Paragraphe",
+        "link": "Lien",
+        "button": "Bouton",
+        "list": "Élément de liste",
+        "option": "Option d'une liste déroulante",
+        "image": "Description d'une image",
+        "field": "Aide dans un champ de formulaire",
+        "label": "Libellé",
+        "other": "Texte"
+      },
+      "regions": {
+        "banner": "Bannière",
+        "header": "En-tête",
+        "page": "Contenu",
+        "footer": "Pied de page"
+      },
+      "languages": {
+        "fr": "français",
+        "en": "anglais"
+      },
+      "field": {
+        "unsaved": "Non enregistré",
+        "modified": "Modifié",
+        "under": "Sous « {heading} »",
+        "variables": "Variables à conserver :",
+        "previewAfterSave": "Ce texte contient des variables : l'aperçu se met à jour après l'enregistrement.",
+        "sharedWith": "Un autre texte a exactement le même contenu ({keys}) ; il se modifie séparément.",
+        "undo": "Annuler ma modification",
+        "resetToOriginal": "Rétablir le texte d'origine",
+        "moreInfo": "Texte d'origine et autre langue",
+        "original": "Texte d'origine",
+        "otherLanguage": "Version en {language}"
+      },
+      "problems": {
+        "empty": "Le texte ne peut pas être vide.",
+        "invalid": "Texte invalide : vérifiez les accolades '{' '}'.",
+        "tags": "Le texte ne doit pas contenir de balises < >.",
+        "placeholders": "Conservez exactement les variables d'origine : {names}",
+        "unknown_key": "Ce texte n'existe plus sur le site."
+      },
+      "save": {
+        "saved": "Enregistré — le site est à jour.",
+        "failed": "L'enregistrement a échoué. Réessayez.",
+        "unsaved": "{count, plural, one {# modification non enregistrée} other {# modifications non enregistrées}}",
+        "otherLanguage": "dont {count} en {language}",
+        "noChanges": "Aucune modification",
+        "fixProblems": "{count, plural, one {# texte à corriger} other {# textes à corriger}} avant d'enregistrer.",
+        "discard": "Tout annuler",
+        "saving": "Enregistrement…",
+        "save": "Enregistrer"
       }
     }
   }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
@@ -12,9 +13,19 @@ export default async function TeamingPage() {
 
   return (
     <Container className="py-16 flex flex-col gap-12">
-      <div className="max-w-[860px] flex flex-col gap-3">
-        <h1 className="text-[clamp(32px,4.5vw,52px)] leading-[1.05]">{t("title")}</h1>
-        <p className="text-[17px] leading-relaxed opacity-78">{t("intro")}</p>
+      <div className="flex flex-wrap gap-10 items-start">
+        <div className="max-w-[860px] flex flex-col gap-3 flex-1 min-w-[280px]">
+          <h1 className="text-[clamp(32px,4.5vw,52px)] leading-[1.05]">{t("title")}</h1>
+          <p className="text-[17px] leading-relaxed opacity-78">{t("intro")}</p>
+        </div>
+        <div className="relative w-full max-w-[280px] aspect-[884/1250] rounded-panel overflow-hidden shadow-card shrink-0">
+          <Image
+            src="/images/teaming-flyer.png"
+            alt={t("flyerAlt")}
+            fill
+            className="object-cover"
+          />
+        </div>
       </div>
 
       <div>

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, AnchorHTMLAttributes, ComponentProps } from "react";
 import { Link } from "@/i18n/navigation";
 
 const base =
@@ -23,8 +23,8 @@ export function Button({ variant = "primary", className = "", ...props }: Button
   return <button className={`${base} ${variants[variant]} ${className}`} {...props} />;
 }
 
-interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
+interface ButtonLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+  href: ComponentProps<typeof Link>["href"];
   variant?: Variant;
 }
 

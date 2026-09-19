@@ -85,7 +85,7 @@ export function VolunteerAnimalsCards({
           {filtered.map((animal) => (
             <Link
               key={animal.id}
-              href={`/admin/animals/${animal.id}/edit`}
+              href={{ pathname: "/admin/animals/[id]/edit", params: { id: animal.id } }}
               className="flex items-center gap-3.5 rounded-admin border border-ink/10 bg-surface p-3.5 active:border-ink/25"
             >
               <AnimalThumb animal={animal} size={64} rounded={12} />

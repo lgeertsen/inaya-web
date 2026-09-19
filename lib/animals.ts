@@ -3,6 +3,8 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 export type AnimalSpecies = "cat" | "dog" | "horse" | "goat" | "other";
 export type AnimalTrack = "adoption" | "sponsorship";
 export type AnimalSex = "male" | "female" | "unknown";
+export type AnimalTemperament = "wild" | "tame" | "semi_wild";
+export type AnimalLocation = "shelter" | "foster_family" | "cat_bar";
 
 export const PHOTO_BUCKET = "animal-photos";
 
@@ -43,6 +45,7 @@ export interface Animal {
   species: AnimalSpecies;
   track: AnimalTrack;
   inShelter: boolean;
+  location: AnimalLocation;
   breed: string | null;
   sex: AnimalSex;
   birthYear: number | null;
@@ -53,6 +56,8 @@ export interface Animal {
   bioEn: string | null;
   specialNeeds: boolean;
   calicivirus: boolean;
+  /** Cat-only; null when not set (and always for other species). */
+  temperament: AnimalTemperament | null;
   isPublished: boolean;
   createdAt: string;
   updatedAt: string;
@@ -63,6 +68,7 @@ export interface AnimalInsert {
   name: string;
   species: AnimalSpecies;
   track: AnimalTrack;
+  location?: AnimalLocation;
   breed?: string | null;
   sex: AnimalSex;
   birthYear?: number | null;
@@ -73,6 +79,7 @@ export interface AnimalInsert {
   bioEn?: string | null;
   specialNeeds?: boolean;
   calicivirus?: boolean;
+  temperament?: AnimalTemperament | null;
   isPublished?: boolean;
 }
 
@@ -113,6 +120,7 @@ function toAnimal(supabase: SupabaseClient, row: Row): Animal {
     species: row.species,
     track: row.track,
     inShelter: row.in_shelter,
+    location: row.location ?? "shelter",
     breed: row.breed,
     sex: row.sex,
     birthYear: row.birth_year,
@@ -123,6 +131,7 @@ function toAnimal(supabase: SupabaseClient, row: Row): Animal {
     bioEn: row.bio_en,
     specialNeeds: row.special_needs,
     calicivirus: row.calicivirus,
+    temperament: row.temperament ?? null,
     isPublished: row.is_published,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
@@ -138,6 +147,7 @@ function toRow(values: Partial<AnimalInsert>): Record<string, unknown> {
   if (values.name !== undefined) row.name = values.name;
   if (values.species !== undefined) row.species = values.species;
   if (values.track !== undefined) row.track = values.track;
+  if (values.location !== undefined) row.location = values.location;
   if (values.breed !== undefined) row.breed = values.breed;
   if (values.sex !== undefined) row.sex = values.sex;
   if (values.birthYear !== undefined) row.birth_year = values.birthYear;
@@ -148,6 +158,7 @@ function toRow(values: Partial<AnimalInsert>): Record<string, unknown> {
   if (values.bioEn !== undefined) row.bio_en = values.bioEn;
   if (values.specialNeeds !== undefined) row.special_needs = values.specialNeeds;
   if (values.calicivirus !== undefined) row.calicivirus = values.calicivirus;
+  if (values.temperament !== undefined) row.temperament = values.temperament;
   if (values.isPublished !== undefined) row.is_published = values.isPublished;
   return row;
 }

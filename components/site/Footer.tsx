@@ -78,7 +78,7 @@ export async function Footer() {
             {t("linkCalicivirus")}
           </Link>
           <Link
-            href="/animals?status=adopted"
+            href={{ pathname: "/animals", query: { status: "adopted" } }}
             className="text-[14.5px] text-white/72 hover:text-accent-light"
           >
             {t("linkAdopted")}

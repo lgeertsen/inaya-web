@@ -38,7 +38,7 @@ export default async function AnimalVetAppointmentsPage({
       className: "text-right",
       render: (row) => (
         <Link
-          href={`/admin/calendar/${row.id}`}
+          href={{ pathname: "/admin/calendar/[visitId]", params: { visitId: row.id } }}
           className="inline-flex items-center rounded-[7px] border border-ink/14 bg-surface px-2.5 py-[5px] text-[12px] font-bold hover:border-ink"
         >
           {t("view")}
