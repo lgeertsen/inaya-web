@@ -1,6 +1,10 @@
 import { getTranslations } from "next-intl/server";
+import { HandHeart, Phone, Sprout } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
+import { ButtonAnchor } from "@/components/ui/Button";
+import { IconList } from "@/components/ui/IconList";
+import { SiteImage } from "@/components/site/SiteImage";
 import { VolunteerForm } from "@/components/site/VolunteerForm";
 
 const PHONE_URL = "tel:+33611501317";
@@ -11,35 +15,35 @@ export default async function VolunteerPage() {
 
   return (
     <Container className="py-16">
-      <div className="grid gap-4.5 md:grid-cols-2 items-start">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-3">
-            <h1 className="text-[clamp(32px,4.5vw,48px)] leading-[1.05]">{t("title")}</h1>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 items-start">
+        <div className="flex min-w-0 flex-col gap-8">
+          <div className="flex flex-col gap-4">
+            <h1 className="text-[clamp(34px,4.6vw,52px)] leading-[1.03]">{t("title")}</h1>
             <p className="text-[17px] leading-relaxed opacity-78">{t("intro")}</p>
           </div>
 
+          <SiteImage slot="volunteer.hero" label={t("images.hero")} tone="pink" icon={HandHeart} />
+
           <Card className="p-6 sm:p-9 hover:shadow-card hover:translate-y-0">
-            <h2 className="text-xl mb-4">{t("conditionsTitle")}</h2>
-            <ul className="flex flex-col gap-3 list-disc pl-5 text-[15.5px] leading-relaxed opacity-85">
-              {conditions.map((condition, i) => (
-                <li key={i}>{condition}</li>
-              ))}
-            </ul>
+            <h2 className="text-xl mb-5">{t("conditionsTitle")}</h2>
+            <IconList items={conditions} />
           </Card>
 
-          <div className="flex flex-col gap-4 text-[15.5px] leading-relaxed opacity-85">
-            <p>{t("dailyLifeBody")}</p>
-            <p>{t("closingBody")}</p>
-          </div>
+          <p className="text-[16px] leading-relaxed opacity-85">{t("dailyLifeBody")}</p>
 
-          <p className="text-xl font-semibold">{t("closingHighlight")}</p>
+          <SiteImage slot="volunteer.daily" label={t("images.daily")} icon={Sprout} />
 
-          <a
-            href={PHONE_URL}
-            className="self-start inline-flex items-center justify-center gap-2 rounded-pill font-bold text-[14.5px] px-6 py-3.5 transition-colors bg-accent text-white shadow-[0_6px_18px_rgba(223,23,203,0.28)] hover:bg-accent-hover whitespace-nowrap"
-          >
-            {t("phoneCta")}
-          </a>
+          <p className="text-[16px] leading-relaxed opacity-85">{t("closingBody")}</p>
+
+          <Card className="p-6 sm:p-9 bg-accent text-white flex flex-col gap-5 items-start hover:shadow-card hover:translate-y-0">
+            <p className="font-display font-extrabold text-[clamp(26px,3.2vw,36px)] leading-[1.08]">
+              {t("closingHighlight")}
+            </p>
+            <ButtonAnchor href={PHONE_URL} variant="light" className="text-center">
+              <Phone aria-hidden size={16} strokeWidth={2.25} />
+              {t("phoneCta")}
+            </ButtonAnchor>
+          </Card>
         </div>
 
         <VolunteerForm />

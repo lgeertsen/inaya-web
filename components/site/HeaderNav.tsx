@@ -128,7 +128,7 @@ export function HeaderNav({ logo }: { logo: ReactNode }) {
       {/* Mobile */}
       <div className="flex lg:hidden items-center justify-between w-full">
         {logo}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-none items-center gap-1 min-[380px]:gap-3">
           <LocaleSwitcher />
           <button
             type="button"

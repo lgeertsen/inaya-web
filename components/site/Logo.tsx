@@ -15,19 +15,19 @@ export async function Logo({ size = 46, showTagline = true, variant = "dark" }: 
   const common = await getTranslations("common");
 
   return (
-    <span className="flex items-center gap-3">
+    <span className="flex items-center gap-2 min-[380px]:gap-3">
       <Image
         src="/logo.png"
         alt=""
         width={Math.round((size * LOGO_WIDTH) / LOGO_HEIGHT)}
         height={size}
         style={{ width: "auto", height: size }}
-        className={variant === "light" ? "invert" : undefined}
+        className={`max-[379px]:h-[38px]! ${variant === "light" ? "invert" : ""}`}
         priority
       />
       <span className="flex flex-col leading-tight">
         <span
-          className={`font-display font-extrabold text-[19px] ${
+          className={`font-display font-extrabold text-[16px] min-[380px]:text-[19px] ${
             variant === "light" ? "text-white" : "text-ink"
           }`}
         >

@@ -1,27 +1,57 @@
 import { getTranslations } from "next-intl/server";
-import { Container } from "@/components/ui/Container";
+import { HeartHandshake, Hourglass } from "lucide-react";
 import { Card } from "@/components/ui/Card";
+import { ButtonLink } from "@/components/ui/Button";
+import { SiteImage } from "@/components/site/SiteImage";
+import { StepCard } from "@/components/ui/StepCard";
+import { PageHero } from "@/components/site/PageHero";
+import { Section } from "@/components/site/Section";
 
 export default async function SurrenderPage() {
-  const t = await getTranslations("surrender");
+  const [t, nav] = await Promise.all([getTranslations("surrender"), getTranslations("nav")]);
   const conditions = t.raw("conditions") as string[];
 
   return (
-    <Container className="py-16 flex flex-col gap-8 max-w-[860px]!">
-      <div className="flex flex-col gap-3">
-        <h1 className="text-[clamp(32px,4.5vw,52px)] leading-[1.05]">{t("title")}</h1>
-        <p className="text-[17px] opacity-75">{t("intro")}</p>
-      </div>
+    <div className="pb-24">
+      <PageHero
+        title={t("title")}
+        intro={t("intro")}
+        image={
+          <SiteImage
+            slot="surrender.hero"
+            label={t("images.hero")}
+            tone="pink"
+            icon={HeartHandshake}
+          />
+        }
+      />
 
-      <Card className="p-6 sm:p-9 hover:shadow-card hover:translate-y-0">
-        <p className="text-[15.5px] leading-relaxed opacity-80 mb-6">{t("waitlistNote")}</p>
-        <h2 className="text-xl mb-4">{t("conditionsTitle")}</h2>
-        <ol className="flex flex-col gap-4 list-decimal pl-5 text-[15.5px] leading-relaxed opacity-85">
+      <Section>
+        <Card className="p-6 sm:p-9 flex gap-5 items-start bg-accent-bg hover:shadow-card hover:translate-y-0">
+          <span
+            aria-hidden
+            className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-accent"
+          >
+            <Hourglass size={20} strokeWidth={1.75} />
+          </span>
+          <p className="text-[16px] leading-relaxed opacity-85 max-w-[72ch]">{t("waitlistNote")}</p>
+        </Card>
+      </Section>
+
+      <Section title={t("conditionsTitle")}>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {conditions.map((condition, i) => (
-            <li key={i}>{condition}</li>
+            <StepCard key={i} number={i + 1}>
+              {condition}
+            </StepCard>
           ))}
-        </ol>
-      </Card>
-    </Container>
+        </div>
+        <div>
+          <ButtonLink href="/contact" variant="dark">
+            {nav("contact")}
+          </ButtonLink>
+        </div>
+      </Section>
+    </div>
   );
 }

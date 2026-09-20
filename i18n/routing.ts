@@ -40,6 +40,7 @@ export const routing = defineRouting({
     "/admin/accounts": "/admin/accounts",
     "/admin/texts": "/admin/texts",
     "/admin/texts/[page]": "/admin/texts/[page]",
+    "/admin/images": "/admin/images",
     "/admin/profile": "/admin/profile",
   },
 });

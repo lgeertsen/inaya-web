@@ -11,6 +11,7 @@ import {
   HeartHandshake,
   Users,
   PenLine,
+  ImageIcon,
   KeyRound,
   Menu,
   X,
@@ -28,6 +29,7 @@ type AdminNavHref =
   | "/admin/donations"
   | "/admin/accounts"
   | "/admin/texts"
+  | "/admin/images"
   | "/admin/profile";
 
 interface NavItem {
@@ -71,6 +73,7 @@ const NAV_GROUPS: { key: string; items: NavItem[] }[] = [
       { href: "/admin/donations", icon: HeartHandshake, key: "donations", adminOnly: true, exact: false },
       { href: "/admin/accounts", icon: Users, key: "accounts", adminOnly: true, exact: false },
       { href: "/admin/texts", icon: PenLine, key: "texts", adminOnly: true, exact: false },
+      { href: "/admin/images", icon: ImageIcon, key: "images", adminOnly: true, exact: false },
     ],
   },
   {

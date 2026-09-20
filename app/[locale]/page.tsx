@@ -1,5 +1,16 @@
 import { getTranslations } from "next-intl/server";
+import {
+  HandCoins,
+  HandHeart,
+  HeartHandshake,
+  House,
+  PawPrint,
+  Repeat,
+  ScrollText,
+  Sprout,
+} from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { SiteImage } from "@/components/site/SiteImage";
 import { Link } from "@/i18n/navigation";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -22,12 +33,12 @@ export default async function HomePage() {
   ]);
 
   const helpItems = [
-    "donation",
-    "sponsorship",
-    "adoption",
-    "volunteer",
-    "legacy",
-    "teaming",
+    { key: "donation", icon: HandCoins },
+    { key: "sponsorship", icon: HeartHandshake },
+    { key: "adoption", icon: House },
+    { key: "volunteer", icon: HandHeart },
+    { key: "legacy", icon: ScrollText },
+    { key: "teaming", icon: Repeat },
   ] as const;
   const stats = [
     { value: String(residentCount), labelKey: "statResidents" },
@@ -38,12 +49,20 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-11 px-6">
-        <Container className="px-0">
-          <div className="relative rounded-panel overflow-hidden min-h-[560px] flex items-end bg-[repeating-linear-gradient(135deg,#d2d0d1_0_14px,#c9c7c8_14px_28px)]">
+      <section className="pt-11">
+        <Container>
+          <div className="relative rounded-panel overflow-hidden min-h-[560px] flex items-end">
+            <SiteImage
+              slot="home.hero"
+              label={home("images.hero")}
+              icon={PawPrint}
+              align="top"
+              flat
+              className="absolute inset-0"
+            />
             <div className="relative w-full px-6 pb-11 pt-[150px] bg-gradient-to-t from-[rgba(12,11,12,0.9)] via-[rgba(12,11,12,0.7)] to-transparent">
               <div className="flex flex-wrap items-end gap-8">
-                <div className="flex-1 min-w-[280px] basis-[460px] flex flex-col gap-5">
+                <div className="flex-1 min-w-[min(100%,280px)] basis-[460px] flex flex-col gap-5">
                   <Eyebrow className="text-accent-light">{home("eyebrow")}</Eyebrow>
                   <h1 className="text-white text-[clamp(40px,6.2vw,76px)] leading-[0.98]">
                     {home("title")}
@@ -58,16 +77,16 @@ export default async function HomePage() {
                     </ButtonLink>
                   </div>
                 </div>
-                <div className="flex-none basis-[360px] grid grid-cols-3 gap-2.5">
+                <div className="flex-none basis-[360px] max-w-full grid grid-cols-3 gap-2.5">
                   {stats.map(({ value, labelKey }) => (
                     <div
                       key={labelKey}
-                      className="bg-white/10 border border-white/22 rounded-2xl px-2 py-3.5"
+                      className="bg-white/10 border border-white/22 rounded-2xl px-1.5 sm:px-2 py-3.5"
                     >
-                      <div className="font-display font-extrabold text-2xl text-white">
+                      <div className="font-display font-extrabold text-xl sm:text-2xl text-white">
                         {value}
                       </div>
-                      <div className="text-[10px] uppercase tracking-normal text-white/70 break-words">
+                      <div className="text-[10px] uppercase tracking-normal text-white/70 break-words hyphens-auto">
                         {home(labelKey)}
                       </div>
                     </div>
@@ -80,16 +99,16 @@ export default async function HomePage() {
       </section>
 
       {/* Featured animals */}
-      <section className="pt-21 px-6">
-        <Container className="px-0">
+      <section className="pt-21">
+        <Container>
           <div className="flex flex-wrap items-end gap-6 mb-7">
-            <div className="flex-1 min-w-[280px] basis-[420px]">
+            <div className="flex-1 min-w-[min(100%,280px)] basis-[420px]">
               <Eyebrow>{home("animalsEyebrow")}</Eyebrow>
               <h2 className="text-[clamp(30px,4vw,46px)] leading-[1.05] mt-3">
                 {home("animalsTitle")}
               </h2>
             </div>
-            <p className="flex-1 min-w-[260px] basis-[320px] text-base leading-relaxed opacity-72">
+            <p className="flex-1 min-w-[min(100%,260px)] basis-[320px] text-base leading-relaxed opacity-72">
               {home("animalsIntro")}
             </p>
             <ButtonLink href="/animals" variant="outline" className="whitespace-nowrap">
@@ -105,10 +124,10 @@ export default async function HomePage() {
       </section>
 
       {/* About teaser */}
-      <section className="pt-24 px-6">
-        <Container className="px-0">
+      <section className="pt-24">
+        <Container>
           <Card className="p-6 sm:p-10 flex flex-wrap gap-10 items-center hover:shadow-card hover:translate-y-0">
-            <div className="flex-1 min-w-[280px] basis-[380px] flex flex-col gap-5">
+            <div className="flex-1 min-w-[min(100%,280px)] basis-[380px] flex flex-col gap-5">
               <Eyebrow>{home("aboutEyebrow")}</Eyebrow>
               <h2 className="text-[clamp(28px,3.6vw,44px)] leading-[1.06]">
                 {home("aboutTitle")}
@@ -121,37 +140,50 @@ export default async function HomePage() {
                 </ButtonLink>
               </div>
             </div>
-            <div className="flex-1 min-w-[260px] basis-[360px] aspect-5/4 rounded-2xl bg-[repeating-linear-gradient(135deg,#dedcdd_0_12px,#d5d3d4_12px_24px)]" />
+            <SiteImage
+              slot="home.about"
+              label={home("images.about")}
+              icon={Sprout}
+              className="flex-1 min-w-[min(100%,260px)] basis-[360px]"
+            />
           </Card>
         </Container>
       </section>
 
       {/* Ways to help */}
-      <section className="pt-24 px-6">
-        <Container className="px-0">
+      <section className="pt-24">
+        <Container>
           <div className="max-w-[620px] mb-8 flex flex-col gap-3">
             <Eyebrow>{home("helpEyebrow")}</Eyebrow>
             <h2 className="text-[clamp(30px,4vw,46px)] leading-[1.05]">{home("helpTitle")}</h2>
             <p className="text-[16.5px] leading-relaxed opacity-72">{home("helpIntro")}</p>
           </div>
           <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-            {helpItems.map((key) => {
+            {helpItems.map(({ key, icon }) => {
               const cardContent = (
                 <>
-                  <h3 className="text-[19px]">{helpCards(`${key}.title`)}</h3>
-                  <p className="text-[14.5px] leading-relaxed opacity-70">
-                    {helpCards(`${key}.text`)}
-                  </p>
+                  <SiteImage
+                    slot={`home.${key}`}
+                    label={helpCards(`${key}.image`)}
+                    icon={icon}
+                    flat
+                  />
+                  <div className="p-5 flex flex-col gap-2">
+                    <h3 className="text-[19px]">{helpCards(`${key}.title`)}</h3>
+                    <p className="text-[14.5px] leading-relaxed opacity-70">
+                      {helpCards(`${key}.text`)}
+                    </p>
+                  </div>
                 </>
               );
               return key === "teaming" ? (
-                <Card key={key} className="p-0">
-                  <Link href="/teaming" className="p-5 flex flex-col gap-2">
+                <Card key={key} className="overflow-hidden">
+                  <Link href="/teaming" className="flex flex-col">
                     {cardContent}
                   </Link>
                 </Card>
               ) : (
-                <Card key={key} className="p-5 flex flex-col gap-2">
+                <Card key={key} className="overflow-hidden flex flex-col">
                   {cardContent}
                 </Card>
               );
@@ -161,10 +193,10 @@ export default async function HomePage() {
       </section>
 
       {/* Donate CTA */}
-      <section className="pt-21 px-6">
-        <Container className="px-0">
+      <section className="pt-21">
+        <Container>
           <div className="bg-accent rounded-panel p-6 sm:p-12 text-white flex flex-wrap items-center gap-8">
-            <div className="flex-1 min-w-[280px] basis-[420px] flex flex-col gap-3.5">
+            <div className="flex-1 min-w-[min(100%,280px)] basis-[420px] flex flex-col gap-3.5">
               <h2 className="text-[clamp(28px,3.6vw,42px)] leading-[1.08] text-white">
                 {home("donateTitle")}
               </h2>
@@ -172,7 +204,7 @@ export default async function HomePage() {
                 {home("donateBody")}
               </p>
             </div>
-            <div className="flex-none basis-[280px] flex flex-col gap-2.5 w-full sm:w-auto">
+            <div className="flex-none basis-[280px] max-w-full flex flex-col gap-2.5 w-full sm:w-auto">
               <ButtonLink href="/donate" variant="light" className="justify-center">
                 {home("donateCta")}
               </ButtonLink>
@@ -182,8 +214,8 @@ export default async function HomePage() {
       </section>
 
       {/* Contact teaser */}
-      <section className="py-24 px-6">
-        <Container className="px-0">
+      <section className="py-24">
+        <Container>
           <Card className="p-6 sm:p-10 flex flex-wrap items-center gap-6 justify-between hover:shadow-card hover:translate-y-0">
             <div className="flex flex-col gap-2 max-w-[46ch]">
               <h2 className="text-[clamp(26px,3vw,36px)] leading-[1.08]">

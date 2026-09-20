@@ -30,6 +30,10 @@
   },
   "home": {
     "eyebrow": "Villeneuve-sur-Lot · Lot-et-Garonne",
+    "images": {
+      "hero": "Photo : les animaux du sanctuaire",
+      "about": "Photo : le sanctuaire et ses 4 hectares"
+    },
     "title": "Un refuge pour vieillir en paix",
     "body": "Nous accueillons tous les animaux quadrupèdes — jeunes ou vieux, sains ou malades. Chats, chiens, chèvres et chevaux reçoivent ici des soins, un endroit paisible et un environnement sûr pour la vie.",
     "ctaAnimals": "Rencontrer nos animaux",
@@ -58,15 +62,20 @@
     "contactIntro": "Écrivez-nous : nous répondons à chaque message, même si cela prend parfois quelques jours."
   },
   "helpCards": {
-    "donation": { "title": "Faire un don", "text": "Ponctuel ou mensuel, avec réduction fiscale de 66 % de la somme versée." },
-    "sponsorship": { "title": "Parrainer un animal", "text": "À partir de 5 €/mois, un lien privilégié avec votre pensionnaire préféré." },
-    "adoption": { "title": "Adopter", "text": "Les animaux qui peuvent repartir cherchent un foyer calme et patient." },
-    "volunteer": { "title": "Bénévolat", "text": "Un coup de main sur place : soins, entretien, aménagement des enclos." },
-    "legacy": { "title": "Legs", "text": "Transmettre une partie de vos biens pour protéger les animaux après vous." },
-    "teaming": { "title": "Teaming", "text": "1 € par mois, soit 12 € par an, sans aucune commission pour soutenir durablement le sanctuaire." }
+    "donation": { "title": "Faire un don", "text": "Ponctuel ou mensuel, avec réduction fiscale de 66 % de la somme versée.", "image": "Photo : un pensionnaire qui reçoit des soins" },
+    "sponsorship": { "title": "Parrainer un animal", "text": "À partir de 5 €/mois, un lien privilégié avec votre pensionnaire préféré.", "image": "Photo : un filleul et son parrain" },
+    "adoption": { "title": "Adopter", "text": "Les animaux qui peuvent repartir cherchent un foyer calme et patient.", "image": "Photo : un animal adopté dans son nouveau foyer" },
+    "volunteer": { "title": "Bénévolat", "text": "Un coup de main sur place : soins, entretien, aménagement des enclos.", "image": "Photo : des bénévoles au travail" },
+    "legacy": { "title": "Legs", "text": "Transmettre une partie de vos biens pour protéger les animaux après vous.", "image": "Photo : un animal âgé au repos" },
+    "teaming": { "title": "Teaming", "text": "1 € par mois, soit 12 € par an, sans aucune commission pour soutenir durablement le sanctuaire.", "image": "Photo : les chevaux du sanctuaire" }
   },
   "about": {
     "title": "À propos de nous",
+    "images": {
+      "hero": "Photo : les animaux du sanctuaire",
+      "story1": "Photo : les premiers chats accueillis",
+      "story2": "Photo : la ponette Inaya"
+    },
     "body1": "Depuis des dizaines d'années, nous accueillons des animaux en détresse en leur offrant un foyer. Au tout début, nous avons commencé notre chemin en stérilisant des chats abandonnés, après, nous nous sommes occupés des chiens, et plus tard nous avons aussi accueilli des chevaux âgés.",
     "body2": "Notre sanctuaire a continué à évoluer jusqu'au printemps 2019, où nous nous sommes trouvés au bord du gouffre financier. Une ponette, qui s'appelle Inaya, a été très malade et a dû être hospitalisée deux fois. Elle a eu besoin de traitements et de nourriture très coûteux. Cela nous a financièrement mis la corde au cou. Les coûts élevés pour Inaya ont mis en péril la continuité de notre activité et nous ont fait réaliser que nous ne pouvions pas continuer seuls à assumer les soins pour tous les animaux. Raison pour laquelle nous avons constitué notre association afin d'être soutenus dans notre mission. Grâce à Inaya, nous avons compris que ce projet devait être partagé avec de nombreux amis d'animaux, et c'est la raison pour laquelle notre association porte son nom.",
     "body3": "Aujourd'hui, nous poursuivons notre passion d'accueillir et de soigner les animaux en détresse. Nous sommes en plein développement pour agrandir notre sanctuaire et accueillir plus de protégés, leur offrant un havre de paix pour vieillir en toute sérénité."
@@ -112,6 +121,12 @@
   },
   "adopt": {
     "title": "Adopter à Inaya",
+    "images": {
+      "hero": "Photo : un animal adopté dans son nouveau foyer",
+      "dogs": "Photo : des chiens à adopter",
+      "cats": "Photo : des chats à adopter",
+      "calicivirus": "Photo : un chat porteur du calicivirus"
+    },
     "intro": "Vous aimeriez adopter un chien ou un chat à Inaya ?",
     "procedureTitle": "La procédure à suivre",
     "steps": [
@@ -141,6 +156,11 @@
     ],
     "calicivirus": {
       "eyebrow": "Chats à besoins spécifiques",
+      "images": {
+        "hero": "Photo : un chat porteur du calicivirus",
+        "what": "Photo : un chat au repos",
+        "symptoms": "Photo : un chat soigné par l'équipe"
+      },
       "title": "Adopter un chat porteur du calicivirus",
       "intro": "La calicivirose fait partie du syndrome coryza du chat. Elle touche certains de nos pensionnaires et ne les empêche pas de vivre une belle vie aux côtés d'une famille aimante.",
       "whatTitle": "Qu'est-ce que la calicivirose ?",
@@ -165,6 +185,9 @@
   },
   "surrender": {
     "title": "Céder un animal",
+    "images": {
+      "hero": "Photo : un chien et un chat au refuge"
+    },
     "intro": "Vous voulez céder votre animal ?",
     "waitlistNote": "Sachez que notre sanctuaire est souvent plein à cause du grand nombre de sauvetages, des urgences et des imprévus… Pour cette raison, il y a une liste d'attente pour une durée indéfinie.",
     "conditionsTitle": "Pour céder un chien ou un chat, il y a plusieurs conditions :",
@@ -176,6 +199,10 @@
   },
   "volunteer": {
     "title": "Rejoignez-nous",
+    "images": {
+      "hero": "Photo : des bénévoles avec les animaux",
+      "daily": "Photo : le quotidien au refuge"
+    },
     "intro": "Être bénévole chez nous, c'est bien plus que donner un peu de son temps. C'est choisir d'être là pour ceux qui ne peuvent pas parler, ceux qui ont parfois connu l'abandon, la peur ou la solitude. C'est partager des valeurs de solidarité, d'entraide et de respect, et comprendre que chaque geste, même le plus simple, a son importance. Car au refuge, il n'y a pas que les caresses, les regards attendrissants et les moments de complicité.",
     "dailyLifeBody": "Il y a aussi le quotidien. Nettoyer les enclos. Ramasser les excréments. Désinfecter. Porter, laver, réparer. Préparer les repas, distribuer la nourriture, changer l'eau. Entretenir les clôtures. Recommencer, jour après jour. Ce sont des tâches physiques, répétitives, parfois difficiles et souvent salissantes. Mais derrière chacune d'elles, il y a un animal qui dort dans un endroit propre, qui mange à sa faim, qui boit une eau fraîche, qui peut vivre dans un environnement sain et sécurisé. Être bénévole, c'est accepter de se salir les mains pour leur offrir une vie meilleure.",
     "closingBody": "C'est donner de son énergie quand on est fatigué. C'est venir même quand il pleut. C'est parfois faire des choses que personne ne voit, mais qui changent concrètement la vie des animaux. Parce que s'occuper d'eux, ce n'est pas seulement les aimer. C'est prendre soin d'eux, chaque jour. Même dans les tâches les moins belles. Quelques heures par semaine, une journée de temps en temps, ou davantage… peu importe. Chaque présence compte. Chaque geste compte. Chaque main tendue compte. Et peut-être qu'au bout de cette journée fatigante, lorsque vous croiserez leur regard, vous comprendrez pourquoi vous l'avez fait :",
@@ -210,6 +237,9 @@
   },
   "fosterFamily": {
     "title": "Famille d'accueil",
+    "images": {
+      "hero": "Photo : un animal chez sa famille d'accueil"
+    },
     "intro": "Devenir famille d'accueil, c'est offrir un foyer temporaire à un animal le temps d'une convalescence ou en attendant son adoption définitive, tout en restant en lien avec notre équipe.",
     "roleTitle": "Le rôle d'une famille d'accueil",
     "role": [
@@ -246,6 +276,12 @@
   },
   "help": {
     "title": "Aidez-nous",
+    "images": {
+      "hero": "Photo : le sanctuaire et ses pensionnaires",
+      "gift": "Photo : un don qui nourrit les animaux",
+      "sponsorship": "Photo : un filleul et son parrain",
+      "adoption": "Photo : un animal adopté dans son nouveau foyer"
+    },
     "intro": "En tant qu'organisation à but non lucratif, nous sommes constamment à la recherche de fonds pour assurer la continuation des soins des animaux. La plus grande partie de nos fonds est dépensée à l'alimentation quotidienne de tous nos animaux : foin, nourriture sèche, compléments alimentaires et entretien des pâturages. Il y a aussi les frais médicaux fixes tels que la stérilisation et la castration, l'achat de produits de déparasitage et de traitements préventifs contre puces, tiques et poux. Ensuite, il y a les produits de nettoyage et de désinfection, les frais dentaires et l'entretien des sabots. Enfin, il y a parfois des coûts inattendus et lourds en cas de maladie ou d'accident. La liste est longue.",
     "howTitle": "Comment pouvez-vous nous aider ?",
     "gift": { "title": "Don", "text": "En faisant une donation unique qui pérennise notre futur proche." },
@@ -253,6 +289,8 @@
     "adoption": { "title": "Adoption", "text": "Parfois, nous recherchons des familles adoptives. Notre sanctuaire étant limité en espace, certains animaux ne peuvent pas rester indéfiniment. Les candidats à l'adoption sont présélectionnés et versent une contribution au profit des animaux qui restent." },
     "bankTransferTitle": "Vous voulez nous soutenir par virement ?",
     "iban": "FR76 1330 6003 8623 1286 2576 314",
+    "ibanLabel": "IBAN",
+    "bicLabel": "BIC",
     "bic": "AGRIFRPP833",
     "donateCta": "Faire un don en ligne"
   },
@@ -260,6 +298,9 @@
     "title": "1 € par mois pour soutenir le sanctuaire",
     "intro": "Et si seulement 1 € par mois pouvait faire une vraie différence pour les animaux en détresse ? Soit 12 € par an, votre don sur Teaming aide le sanctuaire à faire face aux soins, aux médicaments, aux hospitalisations et à toutes les dépenses indispensables au bien-être de nos animaux.",
     "flyerAlt": "Affiche « Rejoignez notre réseau Teaming » : 1 euro par mois pour sauver des vies, avec le lien et le QR code vers la collecte.",
+    "images": {
+      "impact": "Photo : les animaux que votre euro aide à soigner"
+    },
     "howTitle": "Pour nous soutenir, c'est très simple :",
     "step1": { "title": "1. Rendez-vous sur Teaming", "text": "Direction le site de Teaming, la plateforme qui gère les dons pour les bonnes causes." },
     "step2": { "title": "2. Créez votre compte", "text": "L'inscription est rapide et gratuite." },
@@ -346,6 +387,7 @@
       "donations": "Dons",
       "accounts": "Bénévoles",
       "texts": "Textes du site",
+      "images": "Photos du site",
       "profile": "Mon compte",
       "signOut": "Se déconnecter",
       "toggleMenu": "Ouvrir le menu",
@@ -705,6 +747,37 @@
         "pending": "En attente",
         "completed": "Terminé",
         "canceled": "Annulé"
+      }
+    },
+    "images": {
+      "meta": "{filled} sur {total} photos ajoutées",
+      "intro": "Chaque emplacement ci-dessous est un espace photo du site public, encore vide tant qu'aucune photo n'y est ajoutée. Choisissez une photo : elle est adaptée automatiquement et apparaît tout de suite sur le site. Les mêmes photos servent en français et en anglais ; leur description (texte alternatif) se modifie dans « Textes du site ».",
+      "empty": "Pas encore de photo",
+      "shape": {
+        "fill": "Remplit tout l'espace",
+        "1/1": "Carré",
+        "5/4": "Format 5:4",
+        "4/3": "Format 4:3",
+        "3/2": "Format 3:2",
+        "16/9": "Format 16:9 (large)",
+        "3/4": "Format 3:4 (portrait)",
+        "2/3": "Format 2:3 (portrait)"
+      },
+      "upload": "Ajouter une photo",
+      "replace": "Remplacer",
+      "uploading": "Envoi…",
+      "focalPoint": "Cadrage",
+      "focalPointInstructions": "Cliquez sur la partie de la photo qui doit toujours rester visible quand elle est recadrée.",
+      "saveFocalPoint": "Enregistrer",
+      "cancelFocalPoint": "Annuler",
+      "remove": "Retirer",
+      "confirmRemove": "Retirer cette photo ? L'emplacement vide réapparaîtra sur le site.",
+      "viewPage": "Voir la page",
+      "updated": "Ajoutée {when}",
+      "errors": {
+        "file_too_large": "Cette photo est trop lourde (15 Mo maximum).",
+        "invalid_image": "Ce fichier n'est pas une image lisible.",
+        "generic": "L'opération a échoué, réessayez."
       }
     },
     "texts": {

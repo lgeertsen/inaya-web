@@ -11,7 +11,7 @@ export default async function ContactPage() {
 
   return (
     <Container className="py-16">
-      <div className="grid gap-4.5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4.5 md:grid-cols-2">
         <Card className="p-6 sm:p-10 flex flex-col gap-6 hover:shadow-card hover:translate-y-0">
           <div className="flex flex-col gap-3">
             <Eyebrow>{t("addressLabel")}</Eyebrow>

@@ -59,6 +59,19 @@ namespaces there (unmapped keys fall into an "Autres textes" bucket). The editor
 public page in an iframe and finds each string in the DOM by matching rendered text
 (`components/admin/texts/preview-controller.ts`), so the public components need no extra markup.
 
+## Site images
+
+Public-page photo spots are `<SiteImage slot="…">` (`components/site/SiteImage.tsx`), never a bare
+`ImagePlaceholder`. Admins upload the photos from `/admin/images`; until one exists the slot renders
+its placeholder. The slots are a registry in `lib/site-images.ts` (stable id, owning page, aspect
+ratio, `sizes`, and the message key whose text is the photo's `alt`/caption) — a new spot needs a
+registry entry plus a `<SiteImage>` at the call site, and its aspect lives only in the registry.
+Uploads live in the `site_images` table (`0016_site_images.sql`, one row per slot) and the public,
+admin-write-only `site-images` bucket; uploads (POST), crop focus (PATCH) and removal (DELETE) go
+through `/api/admin/site-images/[slot]`, which converts to WebP, gives every upload a fresh storage path, and
+invalidates the `site-images` cache tag (same pattern as `site_texts`). One photo serves both
+locales; only its alt text is per-locale.
+
 ## Design tokens
 
 `theme/tokens.ts` is the source of truth for design tokens and is manually mirrored into the

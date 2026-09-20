@@ -5,7 +5,7 @@ import { HeaderNav } from "./HeaderNav";
 
 export async function Header() {
   const logo = (
-    <Link href="/" className="flex items-center gap-3">
+    <Link href="/" className="flex min-w-0 items-center gap-3">
       <Logo size={46} showTagline={false} />
     </Link>
   );

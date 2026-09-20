@@ -30,6 +30,10 @@
   },
   "home": {
     "eyebrow": "Villeneuve-sur-Lot · Lot-et-Garonne",
+    "images": {
+      "hero": "Photo: the sanctuary's animals",
+      "about": "Photo: the sanctuary and its 4 hectares"
+    },
     "title": "A refuge to grow old in peace",
     "body": "We welcome every four-legged animal — young or old, healthy or sick. Cats, dogs, goats and horses find care, a peaceful place, and a safe environment for life here.",
     "ctaAnimals": "Meet our animals",
@@ -58,15 +62,20 @@
     "contactIntro": "Write to us: we answer every message, even if it sometimes takes a few days."
   },
   "helpCards": {
-    "donation": { "title": "Donate", "text": "One-time or monthly, with a 66% tax deduction on the amount given." },
-    "sponsorship": { "title": "Sponsor an animal", "text": "From €5/month, a special bond with your favorite resident." },
-    "adoption": { "title": "Adopt", "text": "Animals available for adoption are looking for a calm, patient home." },
-    "volunteer": { "title": "Volunteer", "text": "Lend a hand on-site: care, upkeep, building and fixing enclosures." },
-    "legacy": { "title": "Bequests", "text": "Pass on part of your estate to protect the animals after you." },
-    "teaming": { "title": "Teaming", "text": "€1 a month, just €12 a year, with zero commission for lasting support of the sanctuary." }
+    "donation": { "title": "Donate", "text": "One-time or monthly, with a 66% tax deduction on the amount given.", "image": "Photo: a resident receiving care" },
+    "sponsorship": { "title": "Sponsor an animal", "text": "From €5/month, a special bond with your favorite resident.", "image": "Photo: a sponsored animal and its sponsor" },
+    "adoption": { "title": "Adopt", "text": "Animals available for adoption are looking for a calm, patient home.", "image": "Photo: an adopted animal in its new home" },
+    "volunteer": { "title": "Volunteer", "text": "Lend a hand on-site: care, upkeep, building and fixing enclosures.", "image": "Photo: volunteers at work" },
+    "legacy": { "title": "Bequests", "text": "Pass on part of your estate to protect the animals after you.", "image": "Photo: an elderly animal at rest" },
+    "teaming": { "title": "Teaming", "text": "€1 a month, just €12 a year, with zero commission for lasting support of the sanctuary.", "image": "Photo: the sanctuary's horses" }
   },
   "about": {
     "title": "About us",
+    "images": {
+      "hero": "Photo: the sanctuary's animals",
+      "story1": "Photo: the first cats we took in",
+      "story2": "Photo: Inaya the pony"
+    },
     "body1": "For decades we have opened our home to animals in distress, giving them a place to live. We started by sterilizing abandoned cats, then took in dogs, and later also welcomed elderly horses.",
     "body2": "Our sanctuary kept growing until the spring of 2019, when we found ourselves on the edge of financial collapse. A young pony named Inaya became very ill and had to be hospitalized twice. She needed costly treatment and food, which put us under serious financial strain. The high cost of caring for Inaya put the continuity of our work at risk and made us realize we could no longer bear the care of every animal alone. That's why we set up our association, to be supported in our mission. Thanks to Inaya, we understood that this project needed to be shared with many animal lovers — which is why our association carries her name.",
     "body3": "Today we carry on our passion for rescuing and caring for animals in distress. We are working hard to expand our sanctuary and welcome more animals in need, offering them a peaceful haven to grow old in."
@@ -112,6 +121,12 @@
   },
   "adopt": {
     "title": "Adopting at Inaya",
+    "images": {
+      "hero": "Photo: an adopted animal in its new home",
+      "dogs": "Photo: dogs available for adoption",
+      "cats": "Photo: cats available for adoption",
+      "calicivirus": "Photo: a cat with calicivirus"
+    },
     "intro": "Would you like to adopt a dog or cat at Inaya?",
     "procedureTitle": "Procedure to follow",
     "steps": [
@@ -141,6 +156,11 @@
     ],
     "calicivirus": {
       "eyebrow": "Cats with special needs",
+      "images": {
+        "hero": "Photo: a cat with calicivirus",
+        "what": "Photo: a cat at rest",
+        "symptoms": "Photo: a cat being cared for by the team"
+      },
       "title": "Adopting a cat with calicivirus",
       "intro": "Feline calicivirosis is part of cat flu (coryza syndrome). It affects some of our residents, without stopping them from living a wonderful life with a loving family.",
       "whatTitle": "What is calicivirosis?",
@@ -165,6 +185,9 @@
   },
   "surrender": {
     "title": "Surrendering an animal",
+    "images": {
+      "hero": "Photo: a dog and a cat at the shelter"
+    },
     "intro": "Do you need to give up your animal?",
     "waitlistNote": "Our sanctuary is often full because of the large number of rescues, emergencies and unexpected arrivals — for this reason, there is a waiting list of indefinite length.",
     "conditionsTitle": "To surrender a dog or cat, several conditions apply:",
@@ -176,6 +199,10 @@
   },
   "volunteer": {
     "title": "Join us",
+    "images": {
+      "hero": "Photo: volunteers with the animals",
+      "daily": "Photo: everyday life at the shelter"
+    },
     "intro": "Being a volunteer with us is far more than giving a little of your time. It's choosing to be there for those who cannot speak, who have sometimes known abandonment, fear or loneliness. It's sharing values of solidarity, mutual support and respect, and understanding that every gesture, even the simplest, matters. Because at the sanctuary, it isn't only cuddles, tender looks and moments of connection.",
     "dailyLifeBody": "There's also the everyday work. Cleaning the enclosures. Picking up waste. Disinfecting. Carrying, washing, repairing. Preparing meals, handing out food, changing the water. Maintaining fences. Starting over, day after day. These are physical, repetitive tasks — sometimes hard and often messy. But behind each one, there's an animal sleeping somewhere clean, eating its fill, drinking fresh water, able to live in a healthy, safe environment. Being a volunteer means accepting to get your hands dirty to give them a better life.",
     "closingBody": "It's giving your energy when you're tired. It's showing up even when it's raining. It's sometimes doing things no one sees, but that concretely change the animals' lives. Because caring for them isn't just about loving them. It's taking care of them, every day — even in the least glamorous tasks. A few hours a week, one day now and then, or more… it doesn't matter. Every presence counts. Every gesture counts. Every helping hand counts. And maybe, at the end of that tiring day, when you meet their gaze, you'll understand why you did it:",
@@ -210,6 +237,9 @@
   },
   "fosterFamily": {
     "title": "Foster family",
+    "images": {
+      "hero": "Photo: an animal with its foster family"
+    },
     "intro": "Becoming a foster family means offering an animal a temporary home during a convalescence or while waiting for a permanent adoption, while staying in touch with our team.",
     "roleTitle": "The role of a foster family",
     "role": [
@@ -246,6 +276,12 @@
   },
   "help": {
     "title": "Help us",
+    "images": {
+      "hero": "Photo: the sanctuary and its residents",
+      "gift": "Photo: a donation that feeds the animals",
+      "sponsorship": "Photo: a sponsored animal and its sponsor",
+      "adoption": "Photo: an adopted animal in its new home"
+    },
     "intro": "As a non-profit organization, we are constantly looking for funding to keep caring for our animals. Most of our funds go toward daily food for all the animals — hay, dry food, supplements — and the upkeep of pastures. There are also fixed medical costs such as sterilization and castration, deworming products, and flea and tick prevention. Then there are cleaning and disinfecting supplies, dental care, and hoof care. And on top of that, there are sometimes heavy, unexpected costs in case of illness or accident. The list is long.",
     "howTitle": "How can you help us?",
     "gift": { "title": "Donation", "text": "Make a one-time donation that helps secure our near future." },
@@ -253,6 +289,8 @@
     "adoption": { "title": "Adoption", "text": "Sometimes we look for adoptive families. Since our sanctuary has limited space, some animals cannot stay indefinitely. Adoption candidates are screened and pay a contribution that benefits the animals who remain." },
     "bankTransferTitle": "Prefer a bank transfer?",
     "iban": "FR76 1330 6003 8623 1286 2576 314",
+    "ibanLabel": "IBAN",
+    "bicLabel": "BIC",
     "bic": "AGRIFRPP833",
     "donateCta": "Donate online"
   },
@@ -260,6 +298,9 @@
     "title": "€1 a month to support the sanctuary",
     "intro": "What if just €1 a month could make a real difference for animals in distress? That's only €12 a year — your gift on Teaming helps the sanctuary cover care, medication, hospital stays, and everything our animals need for their well-being.",
     "flyerAlt": "\"Join our Teaming network\" flyer: €1 a month to save lives, with the link and QR code to the fundraiser.",
+    "images": {
+      "impact": "Photo: the animals your euro helps to care for"
+    },
     "howTitle": "Supporting us is simple:",
     "step1": { "title": "1. Head to Teaming", "text": "Go to the Teaming website, the platform that manages donations for good causes." },
     "step2": { "title": "2. Create your account", "text": "Signing up is quick and free." },
@@ -346,6 +387,7 @@
       "donations": "Donations",
       "accounts": "Volunteers",
       "texts": "Site texts",
+      "images": "Site photos",
       "profile": "My account",
       "signOut": "Sign out",
       "toggleMenu": "Open menu",
@@ -705,6 +747,37 @@
         "pending": "Pending",
         "completed": "Completed",
         "canceled": "Canceled"
+      }
+    },
+    "images": {
+      "meta": "{filled} of {total} photos added",
+      "intro": "Each slot below is a photo space on the public site, empty until a photo is added. Pick a photo: it is resized automatically and appears on the site right away. The same photos are used in French and English; their description (alt text) is edited under “Site texts”.",
+      "empty": "No photo yet",
+      "shape": {
+        "fill": "Fills the whole space",
+        "1/1": "Square",
+        "5/4": "5:4 format",
+        "4/3": "4:3 format",
+        "3/2": "3:2 format",
+        "16/9": "16:9 format (wide)",
+        "3/4": "3:4 format (portrait)",
+        "2/3": "2:3 format (portrait)"
+      },
+      "upload": "Add a photo",
+      "replace": "Replace",
+      "uploading": "Uploading…",
+      "focalPoint": "Crop focus",
+      "focalPointInstructions": "Click the part of the photo that should always stay visible when it is cropped.",
+      "saveFocalPoint": "Save",
+      "cancelFocalPoint": "Cancel",
+      "remove": "Remove",
+      "confirmRemove": "Remove this photo? The empty placeholder will show on the site again.",
+      "viewPage": "View page",
+      "updated": "Added {when}",
+      "errors": {
+        "file_too_large": "This photo is too large (15 MB maximum).",
+        "invalid_image": "This file is not a readable image.",
+        "generic": "That didn't work, please try again."
       }
     },
     "texts": {

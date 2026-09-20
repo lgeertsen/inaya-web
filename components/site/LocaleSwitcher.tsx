@@ -25,7 +25,7 @@ export function LocaleSwitcher() {
             )
           }
           aria-current={locale === activeLocale}
-          className={`px-2.5 py-1 rounded-pill uppercase transition-colors ${
+          className={`px-2 min-[380px]:px-2.5 py-1 rounded-pill uppercase transition-colors ${
             locale === activeLocale ? "bg-ink text-white" : "text-ink/50 hover:text-ink"
           }`}
         >

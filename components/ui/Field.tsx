@@ -34,7 +34,14 @@ export function Select({
   className = "",
   ...props
 }: SelectHTMLAttributes<HTMLSelectElement> & { dark?: boolean }) {
-  return <select className={`${dark ? fieldClassDark : fieldClass} ${className}`} {...props} />;
+  // The native dropdown list paints its own light background but inherits the field's white text
+  // in the dark variant, so options need explicit colours.
+  return (
+    <select
+      className={`${dark ? fieldClassDark : fieldClass} [&>option]:bg-white [&>option]:text-ink ${className}`}
+      {...props}
+    />
+  );
 }
 
 export function Label({ className = "", ...props }: LabelHTMLAttributes<HTMLLabelElement>) {

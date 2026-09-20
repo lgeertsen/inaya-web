@@ -36,7 +36,7 @@ export default async function AnimalDetailPage({
         ← {t("backToList")}
       </Link>
 
-      <div className="mt-6 grid gap-10 md:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2">
         <div className="flex flex-col gap-3">
           <div className="relative aspect-4/5 rounded-panel overflow-hidden bg-[radial-gradient(circle_at_50%_38%,#fdeefa_0%,#f3eef2_55%,#e9e6e8_100%)]">
             {cover ? (
