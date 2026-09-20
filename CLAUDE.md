@@ -77,6 +77,19 @@ No test framework or CI is configured yet — don't assume `npm test` exists. Ve
 `npm run lint`, `npm run build`, and manual browser checks via the `inaya-web-dev` launch config in
 `.claude/launch.json`.
 
+Everything under `/admin` needs a login, and Claude must not type credentials into forms (even
+ones in `.env.local`). To verify admin UI in the Browser pane, ask the user to sign in there
+themselves first; the session then persists. Don't spend time trying to reach `/admin` logged out.
+The public site (e.g. `/fr`) can be checked without a login.
+
+**Text editor preview (`components/admin/texts/`).** `PreviewFrame` measures its container and sizes
+a scaled iframe to fit. Keep that measurement independent of its own content: the container is
+`absolute inset-0` inside a `relative` wrapper, is `overflow-hidden`, and the frame's border is
+subtracted from the measured space on both axes. Anything that makes the frame even 1px larger than
+the measured space, or lets the container's height follow its content, creates a resize feedback
+loop (page grows, or layout flickers several times a second). Below `lg` the layout stacks and the
+preview column must be `flex-none` so its `70vh` height applies.
+
 ## Deployment
 
 Heroku, via `Procfile`.
