@@ -17,6 +17,7 @@ const TABS = [
     pathname: "/admin/animals/[id]/vet-appointments",
     key: "vetAppointments",
   },
+  { segment: "foster", pathname: "/admin/animals/[id]/foster", key: "foster" },
 ] as const;
 
 export function AnimalDetailTabs({ animalId }: { animalId: string }) {

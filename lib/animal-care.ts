@@ -47,6 +47,10 @@ export interface AnimalIntake {
   occurredOn: string;
   reason: AnimalIntakeReason;
   description: string | null;
+  contactName: string | null;
+  contactPhone: string | null;
+  contactAddress: string | null;
+  documentRef: string | null;
   recordedBy: string | null;
   createdAt: string;
 }
@@ -55,6 +59,10 @@ export interface AnimalIntakeInsert {
   occurredOn: string;
   reason: AnimalIntakeReason;
   description?: string | null;
+  contactName?: string | null;
+  contactPhone?: string | null;
+  contactAddress?: string | null;
+  documentRef?: string | null;
 }
 
 export interface AnimalOutcome {
@@ -63,6 +71,10 @@ export interface AnimalOutcome {
   occurredOn: string;
   reason: AnimalOutcomeReason;
   description: string | null;
+  contactName: string | null;
+  contactPhone: string | null;
+  contactAddress: string | null;
+  documentRef: string | null;
   recordedBy: string | null;
   createdAt: string;
 }
@@ -71,6 +83,10 @@ export interface AnimalOutcomeInsert {
   occurredOn: string;
   reason: AnimalOutcomeReason;
   description?: string | null;
+  contactName?: string | null;
+  contactPhone?: string | null;
+  contactAddress?: string | null;
+  documentRef?: string | null;
 }
 
 export interface AnimalVaccine {
@@ -212,6 +228,10 @@ function toIntake(row: Row): AnimalIntake {
     occurredOn: row.occurred_on,
     reason: row.reason,
     description: row.description,
+    contactName: row.contact_name,
+    contactPhone: row.contact_phone,
+    contactAddress: row.contact_address,
+    documentRef: row.document_ref,
     recordedBy: row.recorded_by,
     createdAt: row.created_at,
   };
@@ -224,6 +244,10 @@ function toOutcome(row: Row): AnimalOutcome {
     occurredOn: row.occurred_on,
     reason: row.reason,
     description: row.description,
+    contactName: row.contact_name,
+    contactPhone: row.contact_phone,
+    contactAddress: row.contact_address,
+    documentRef: row.document_ref,
     recordedBy: row.recorded_by,
     createdAt: row.created_at,
   };
@@ -255,6 +279,10 @@ export async function createAnimalIntake(
       occurred_on: values.occurredOn,
       reason: values.reason,
       description: values.description,
+      contact_name: values.contactName,
+      contact_phone: values.contactPhone,
+      contact_address: values.contactAddress,
+      document_ref: values.documentRef,
       recorded_by: recordedBy,
     })
     .select("*")
@@ -294,6 +322,10 @@ export async function createAnimalOutcome(
       occurred_on: values.occurredOn,
       reason: values.reason,
       description: values.description,
+      contact_name: values.contactName,
+      contact_phone: values.contactPhone,
+      contact_address: values.contactAddress,
+      document_ref: values.documentRef,
       recorded_by: recordedBy,
     })
     .select("*")

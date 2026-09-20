@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { isCheckinOverdue, listOpenPlacements } from "./foster";
 
 /**
  * Raw counts behind the overview page's "À traiter" panel. Kept as plain
@@ -12,6 +13,8 @@ export interface AttentionSignals {
   unpublishedDraftCount: number;
   missingMicrochipCount: number;
   failedDonationCount: number;
+  overdueFosterCheckinCount: number;
+  overdueFosterCheckinAnimalNames: string[];
 }
 
 const FIFTEEN_DAYS_MS = 15 * 24 * 60 * 60 * 1000;
@@ -27,6 +30,7 @@ export async function getAttentionSignals(supabase: SupabaseClient): Promise<Att
     { count: unpublishedDraftCount },
     { data: missingChipRows },
     { count: failedDonationCount },
+    openFosterPlacements,
   ] = await Promise.all([
     supabase
       .from("animal_vaccines")
@@ -52,7 +56,12 @@ export async function getAttentionSignals(supabase: SupabaseClient): Promise<Att
       .is("microchip_number", null)
       .eq("in_shelter", true),
     supabase.from("donations").select("id", { count: "exact", head: true }).eq("status", "failed"),
+    // One optional signal must not take the whole overview down (e.g. if the
+    // foster migration hasn't been applied to this database yet).
+    listOpenPlacements(supabase).catch(() => []),
   ]);
+
+  const overdueFosterPlacements = openFosterPlacements.filter(isCheckinOverdue);
 
   return {
     overdueVaccineCount: overdueVaccines?.length ?? 0,
@@ -64,5 +73,7 @@ export async function getAttentionSignals(supabase: SupabaseClient): Promise<Att
     unpublishedDraftCount: unpublishedDraftCount ?? 0,
     missingMicrochipCount: missingChipRows?.length ?? 0,
     failedDonationCount: failedDonationCount ?? 0,
+    overdueFosterCheckinCount: overdueFosterPlacements.length,
+    overdueFosterCheckinAnimalNames: overdueFosterPlacements.map((placement) => placement.animalName),
   };
 }

@@ -139,6 +139,16 @@ export default async function AdminOverviewPage() {
       tone: "warning" as const,
       href: "/admin/animals" as const,
     },
+    attention.overdueFosterCheckinCount > 0 && {
+      key: "fosterCheckins",
+      count: attention.overdueFosterCheckinCount,
+      label: t("attention.fosterCheckins"),
+      meta: t("attention.fosterCheckinsMeta", {
+        names: attention.overdueFosterCheckinAnimalNames.slice(0, 3).join(" · "),
+      }),
+      tone: "warning" as const,
+      href: "/admin/foster" as const,
+    },
     attention.failedDonationCount > 0 && {
       key: "failedDonations",
       count: attention.failedDonationCount,

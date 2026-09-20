@@ -39,6 +39,31 @@ Migrations live in `supabase/migrations/`, applied manually against the remote p
 no local Supabase CLI stack (no `config.toml`, no `functions/`). See the `supabase-migration`
 skill for the conventions new migrations should follow.
 
+## Foster families
+
+Admin-only (`/admin/foster`, plus a "Famille d'accueil" tab on each animal); data layer in
+`lib/foster.ts`, schema in `0017_foster.sql`. `foster_families` (contact details — personal data,
+admin-only RLS) → `foster_placements` (history; the row with `ended_on is null` is the current
+stay, at most one per animal) → `foster_checkins` (call/visit/message log; the next check-in is due
+`checkin_interval_days` after the last one, computed in `lib/foster.ts`, and overdue ones feed the
+overview's "À traiter" panel). `animals.location` is derived: DB triggers set it to `foster_family`
+when a placement opens and back to `shelter` when it ends, and recording an outcome
+(`animal_outcomes`) auto-closes an open placement — so `AnimalForm` locks the location select while
+a placement is open. A family can be linked to a volunteer login (`foster_families.user_id`,
+unique) so it can upload photos; the only volunteer-facing read is the `my_foster_animal_ids()`
+security-definer RPC (ids only), which `/admin/animals` uses to list a fosterer's own animals first.
+Families with placement history can't be deleted (FK `restrict`) — set them `inactive`.
+
+## Entries/exits register
+
+Admin-only (`/admin/register`), the yearly legal register: on-page summary plus a French PDF from
+`GET /api/admin/register/pdf?year=` (`jspdf` + `jspdf-autotable`; labels always from the `fr`
+`admin.register` namespace, never the browsing locale). Data layer in `lib/register.ts`, PDF in
+`lib/register-pdf.ts`. It's event-based: one row per `animal_intakes` / `animal_outcomes` row, with
+the Provenance / Destinataire contact fields and `document_ref` added in `0018_register_contacts.sql`.
+Several of our reasons fold into one register column (`owner_surrender`+`abandoned`,
+`deceased`+`euthanized`) — see `toIntakeCause` / `toOutcomeCause`.
+
 ## i18n
 
 `next-intl`. French is the default locale; routes are locale-prefixed under `app/[locale]/`. All

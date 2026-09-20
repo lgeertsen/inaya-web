@@ -56,6 +56,11 @@ export default async function AnimalIntakeOutcomePage({
     },
     { header: t("description"), className: "text-ink/66", render: (row) => row.description ?? "—" },
     {
+      header: t("contact.column"),
+      className: "text-ink/66",
+      render: (row) => [row.contactName, row.contactPhone].filter(Boolean).join(" · ") || "—",
+    },
+    {
       header: "",
       className: "text-right",
       render: (row) => (

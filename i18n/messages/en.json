@@ -383,7 +383,9 @@
       "overview": "Overview",
       "animals": "Animals",
       "animalsArchive": "Former animals",
+      "register": "Register",
       "calendar": "Calendar",
+      "foster": "Foster families",
       "donations": "Donations",
       "accounts": "Volunteers",
       "texts": "Site texts",
@@ -434,6 +436,8 @@
         "unpublishedDraftsMeta": "Created more than 15 days ago",
         "missingMicrochip": "Internal record missing a chip number",
         "missingMicrochipMeta": "{count, plural, one {# animal} other {# animals}}",
+        "fosterCheckins": "Overdue foster check-ins",
+        "fosterCheckinsMeta": "{names}",
         "failedDonations": "Failed donation payment",
         "failedDonationsMeta": "{count, plural, one {# donation to review} other {# donations to review}}"
       },
@@ -487,6 +491,7 @@
         "published": "Published",
         "inShelter": "In shelter"
       },
+      "fosterMine": "Fostered by me",
       "care": {
         "overdue": "Reminder overdue",
         "missingChip": "Missing chip",
@@ -515,6 +520,7 @@
           "foster_family": "Foster family",
           "cat_bar": "PawPao cat café"
         },
+        "locationLocked": "Managed from the \"Foster family\" tab while the animal is placed.",
         "isPublished": "Publish on site",
         "save": "Save",
         "cancel": "Cancel",
@@ -534,7 +540,8 @@
         "photos": "Photos",
         "internalDetails": "Internal record",
         "intakeOutcome": "Intake / outcome",
-        "vetAppointments": "Vet appointments"
+        "vetAppointments": "Vet appointments",
+        "foster": "Foster family"
       },
       "internalDetails": {
         "title": "Internal details",
@@ -578,6 +585,15 @@
         "delete": "Delete",
         "deleteConfirm": "Permanently delete this event?",
         "empty": "No intake or outcome recorded yet.",
+        "contact": {
+          "column": "Contact",
+          "intakeTitle": "Origin",
+          "outcomeTitle": "Recipient",
+          "name": "Name",
+          "phone": "Phone",
+          "address": "Address",
+          "documentRef": "Supporting document no."
+        },
         "intakeReasons": {
           "stray": "Stray",
           "police_surrender": "Police surrender",
@@ -649,6 +665,69 @@
         "empty": "No vet visits recorded yet."
       }
     },
+    "register": {
+      "title": "Entries / exits register",
+      "meta": "Year {year}",
+      "yearLabel": "Year",
+      "download": "Download PDF",
+      "pdfTitle": "Entries and exits register {year}",
+      "generatedOn": "Generated on {date}",
+      "page": "Page {current} / {total}",
+      "entriesTitle": "Entries",
+      "exitsTitle": "Exits",
+      "total": "TOTAL",
+      "species": "Species",
+      "presentAt": "Present on {date}",
+      "today": "Today",
+      "entriesHeading": "ENTRIES {species} {year}",
+      "exitsHeading": "EXITS {species} {year}",
+      "noEntries": "No entries recorded for this year.",
+      "noExits": "No exits recorded for this year.",
+      "speciesNames": {
+        "cat": "Chats",
+        "dog": "Chiens",
+        "goat": "Caprins",
+        "horse": "Equidés/ânes",
+        "other": "Autres"
+      },
+      "intakeCauses": {
+        "stray": "Trouvé errant",
+        "born_in_care": "Naissances",
+        "shelter_transfer": "Sortie fourrière",
+        "surrendered": "Cédé/abandon",
+        "cruelty_seizure": "Maltraitance",
+        "police_surrender": "Confié par la police",
+        "association_transfer": "Autre Asso"
+      },
+      "outcomeCauses": {
+        "reunited_with_owner": "Propriét. retrouvé",
+        "died": "DCD/Euthanasie",
+        "released": "Relâché",
+        "transferred_to_association": "Transfert Autre Asso",
+        "adopted": "Adopté"
+      },
+      "columns": {
+        "date": "Date",
+        "age": "Age",
+        "sex": "Sexe",
+        "name": "Nom",
+        "identification": "Identification",
+        "cause": "Cause",
+        "detail": "Détail",
+        "provenance": "Provenance",
+        "recipient": "Destinataire",
+        "contactName": "Nom",
+        "phone": "N° téléphone",
+        "address": "Adresse",
+        "documentRef": "Justificatif n°"
+      },
+      "sex": { "male": "M", "female": "F", "unknown": "?" },
+      "age": {
+        "weeks": "{count} sem",
+        "months": "{count} mois",
+        "years": "{count, plural, one {# an} other {# ans}}"
+      }
+    },
     "donations": {
       "title": "Donations received",
       "meta": "Last 12 months · {total} received",
@@ -698,6 +777,141 @@
       "empty": "No volunteer accounts yet.",
       "error": "Something went wrong creating this account.",
       "created": "Account created for {email}. Share this temporary password with them: {password}"
+    },
+    "foster": {
+      "title": "Foster families",
+      "meta": "{count, plural, =0 {No families} one {# family} other {# families}} · {animals, plural, =0 {no animals placed} one {# animal placed} other {# animals placed}}",
+      "add": "Add a family",
+      "newTitle": "New foster family",
+      "newMeta": "Contact details, capacity and accepted species",
+      "empty": "No foster families yet.",
+      "emptyFiltered": "No family matches these criteria.",
+      "delete": "Delete",
+      "deleteConfirm": "Permanently delete this foster family?",
+      "capacityValue": "{used}/{capacity}",
+      "capacityMeta": "{used}/{capacity} spots taken",
+      "checkinOverdue": "{count, plural, one {# check-in overdue} other {# check-ins overdue}}",
+      "checkinOk": "Check-ins up to date",
+      "filters": {
+        "species": "Accepted species",
+        "allSpecies": "All species",
+        "onlyFree": "With a free spot",
+        "apply": "Filter"
+      },
+      "columns": {
+        "family": "Family",
+        "city": "City",
+        "species": "Species",
+        "capacity": "Spots",
+        "status": "Status",
+        "checkins": "Follow-up"
+      },
+      "statuses": { "active": "Active", "paused": "Paused", "inactive": "Inactive" },
+      "speciesPlural": {
+        "cat": "Cats",
+        "dog": "Dogs",
+        "horse": "Horses",
+        "goat": "Goats",
+        "other": "Other"
+      },
+      "endReasons": {
+        "returned_to_shelter": "Returned to the shelter",
+        "adopted": "Adopted",
+        "deceased": "Deceased",
+        "other": "Other"
+      },
+      "checkinTypes": { "call": "Call", "visit": "Visit", "message": "Message" },
+      "form": {
+        "name": "Family name",
+        "contactName": "Contact person",
+        "phone": "Phone",
+        "email": "Email",
+        "emailInvalid": "Invalid email address.",
+        "city": "City",
+        "capacity": "Capacity (animals)",
+        "status": "Status",
+        "acceptedSpecies": "Accepted species",
+        "acceptedSpeciesRequired": "Select at least one species.",
+        "account": "Volunteer account",
+        "accountNone": "No linked account",
+        "accountHint": "Link the family's volunteer account so they can add photos of their animals. Create the account first under \"Volunteers\".",
+        "notes": "Internal notes",
+        "create": "Create family",
+        "save": "Save",
+        "saved": "Changes saved.",
+        "error": "Something went wrong while saving.",
+        "errorAccountLinked": "This volunteer account is already linked to another family."
+      },
+      "detail": {
+        "backToList": "All families",
+        "hasAccount": "Volunteer account linked",
+        "currentTitle": "Animals in foster care",
+        "noCurrent": "No animals are currently with this family.",
+        "editTitle": "Family details",
+        "historyTitle": "Placement history"
+      },
+      "history": {
+        "animal": "Animal",
+        "family": "Family",
+        "period": "Period",
+        "reason": "End of placement"
+      },
+      "placement": {
+        "title": "Place an animal",
+        "animal": "Animal",
+        "chooseAnimal": "Choose an animal…",
+        "animalRequired": "Choose an animal.",
+        "family": "Foster family",
+        "chooseFamily": "Choose a family…",
+        "familyRequired": "Choose a family.",
+        "startedOn": "Placement start",
+        "checkinInterval": "Check in every (days)",
+        "notes": "Notes",
+        "submit": "Confirm placement",
+        "freeSpots": "{count, plural, one {# free spot} other {# free spots}}",
+        "full": "full",
+        "speciesNotAccepted": "species not accepted",
+        "noFamilies": "No active family is available. Add one under \"Foster families\".",
+        "noAnimals": "No shelter animal is available for placement.",
+        "notActive": "This family is not active: check its status before placing an animal.",
+        "familyFull": "This family has reached its capacity.",
+        "error": "Something went wrong while placing the animal.",
+        "errorAlreadyPlaced": "This animal is already placed with a foster family."
+      },
+      "card": {
+        "since": "Since {date}",
+        "lastCheckin": "Last check-in: {date}",
+        "noCheckin": "No check-in recorded",
+        "nextCheckin": "Next check-in due by {date}",
+        "checkinOverdue": "Check-in overdue",
+        "checkinOk": "Check-ins up to date",
+        "delete": "Delete this placement",
+        "deleteConfirm": "Delete this placement and all its check-ins? Only use this to fix a data-entry mistake."
+      },
+      "checkins": {
+        "title": "Check-ins",
+        "empty": "No check-ins yet.",
+        "occurredOn": "Date",
+        "type": "Type",
+        "notes": "Notes",
+        "add": "Add a check-in",
+        "delete": "Delete",
+        "deleteConfirm": "Delete this check-in?",
+        "error": "Something went wrong while adding the check-in."
+      },
+      "end": {
+        "title": "End placement",
+        "endedOn": "End date",
+        "reason": "Reason",
+        "hint": "The animal's location goes back to \"At the shelter\". For an adoption or a death, record the outcome under \"Intake / outcome\" instead: the placement then ends automatically.",
+        "submit": "End placement",
+        "error": "Something went wrong."
+      },
+      "animalTab": {
+        "notPlaced": "This animal is not in a foster family.",
+        "notInCare": "This animal is no longer at the shelter, so it can't be placed.",
+        "noHistory": "No foster placements recorded for this animal."
+      }
     },
     "profile": {
       "title": "My account",

@@ -20,6 +20,16 @@ const INTAKE_REASONS = [
   "cruelty_seizure",
 ] as const;
 
+const EMPTY_VALUES = {
+  occurredOn: "",
+  reason: "stray",
+  description: "",
+  contactName: "",
+  contactPhone: "",
+  contactAddress: "",
+  documentRef: "",
+} as const;
+
 export function AnimalIntakeForm({ animalId }: { animalId: string }) {
   const t = useTranslations("admin.animals.intakeOutcome");
   const router = useRouter();
@@ -32,7 +42,7 @@ export function AnimalIntakeForm({ animalId }: { animalId: string }) {
     formState: { isSubmitting },
   } = useForm<AnimalIntakeFormValues>({
     resolver: zodResolver(animalIntakeFormSchema),
-    defaultValues: { occurredOn: "", reason: "stray", description: "" },
+    defaultValues: EMPTY_VALUES,
   });
 
   async function onSubmit(values: AnimalIntakeFormValues) {
@@ -49,7 +59,7 @@ export function AnimalIntakeForm({ animalId }: { animalId: string }) {
       return;
     }
 
-    reset({ occurredOn: "", reason: "stray", description: "" });
+    reset(EMPTY_VALUES);
     router.refresh();
   }
 
@@ -75,6 +85,29 @@ export function AnimalIntakeForm({ animalId }: { animalId: string }) {
         <AdminLabel>{t("description")}</AdminLabel>
         <AdminTextarea rows={2} {...register("description")} />
       </div>
+      <fieldset className="flex flex-col gap-3.5 rounded-[9px] border border-ink/10 p-3.5">
+        <legend className="px-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink/50">
+          {t("contact.intakeTitle")}
+        </legend>
+        <div className="grid grid-cols-2 gap-3.5">
+          <div className="flex flex-col gap-[5px]">
+            <AdminLabel>{t("contact.name")}</AdminLabel>
+            <AdminInput {...register("contactName")} />
+          </div>
+          <div className="flex flex-col gap-[5px]">
+            <AdminLabel>{t("contact.phone")}</AdminLabel>
+            <AdminInput type="tel" {...register("contactPhone")} />
+          </div>
+        </div>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("contact.address")}</AdminLabel>
+          <AdminInput {...register("contactAddress")} />
+        </div>
+        <div className="flex flex-col gap-[5px]">
+          <AdminLabel>{t("contact.documentRef")}</AdminLabel>
+          <AdminInput {...register("documentRef")} />
+        </div>
+      </fieldset>
       {serverError ? <p className="text-sm text-danger">Something went wrong.</p> : null}
       <div>
         <AdminButton type="submit" size="sm" disabled={isSubmitting}>

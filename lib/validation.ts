@@ -103,6 +103,10 @@ export const animalIntakeFormSchema = z.object({
   occurredOn: z.string().min(1, "Date is required"),
   reason: animalIntakeReasonSchema,
   description: z.string().trim().optional().nullable(),
+  contactName: z.string().trim().optional().nullable(),
+  contactPhone: z.string().trim().optional().nullable(),
+  contactAddress: z.string().trim().optional().nullable(),
+  documentRef: z.string().trim().optional().nullable(),
 });
 
 export type AnimalIntakeFormValues = z.infer<typeof animalIntakeFormSchema>;
@@ -111,6 +115,10 @@ export const animalOutcomeFormSchema = z.object({
   occurredOn: z.string().min(1, "Date is required"),
   reason: animalOutcomeReasonSchema,
   description: z.string().trim().optional().nullable(),
+  contactName: z.string().trim().optional().nullable(),
+  contactPhone: z.string().trim().optional().nullable(),
+  contactAddress: z.string().trim().optional().nullable(),
+  documentRef: z.string().trim().optional().nullable(),
 });
 
 export type AnimalOutcomeFormValues = z.infer<typeof animalOutcomeFormSchema>;
@@ -171,6 +179,58 @@ export const createVolunteerAccountSchema = z.object({
 });
 
 export type CreateVolunteerAccountValues = z.infer<typeof createVolunteerAccountSchema>;
+
+// Foster families (admin-only) -----------------------------------------------
+
+export const fosterFamilyStatusSchema = z.enum(["active", "paused", "inactive"]);
+export const fosterEndReasonSchema = z.enum(["returned_to_shelter", "adopted", "deceased", "other"]);
+export const fosterCheckinTypeSchema = z.enum(["call", "visit", "message"]);
+
+const emptyToNull = (val: unknown) => (val === "" ? null : val);
+
+export const fosterFamilyFormSchema = z.object({
+  name: z.string().trim().min(1, "Name is required"),
+  contactName: z.preprocess(emptyToNull, z.string().trim().nullable().optional()),
+  phone: z.preprocess(emptyToNull, z.string().trim().nullable().optional()),
+  email: z.preprocess(emptyToNull, z.string().trim().email().nullable().optional()),
+  city: z.preprocess(emptyToNull, z.string().trim().nullable().optional()),
+  capacity: z.coerce.number().int().min(0).max(50),
+  acceptedSpecies: z.array(animalSpeciesSchema).min(1, "Select at least one species"),
+  status: fosterFamilyStatusSchema,
+  notes: z.preprocess(emptyToNull, z.string().trim().nullable().optional()),
+  // The volunteer login of this household, if any ("" = none).
+  userId: z.preprocess(emptyToNull, z.string().uuid().nullable().optional()),
+});
+
+export type FosterFamilyFormValues = z.infer<typeof fosterFamilyFormSchema>;
+export type FosterFamilyFormInput = z.input<typeof fosterFamilyFormSchema>;
+
+export const fosterPlacementFormSchema = z.object({
+  animalId: z.string().uuid("Select an animal"),
+  familyId: z.string().uuid("Select a family"),
+  startedOn: z.string().min(1, "Date is required"),
+  checkinIntervalDays: z.coerce.number().int().min(1).max(365),
+  notes: z.preprocess(emptyToNull, z.string().trim().nullable().optional()),
+});
+
+export type FosterPlacementFormValues = z.infer<typeof fosterPlacementFormSchema>;
+export type FosterPlacementFormInput = z.input<typeof fosterPlacementFormSchema>;
+
+export const fosterPlacementEndSchema = z.object({
+  endedOn: z.string().min(1, "Date is required"),
+  endReason: fosterEndReasonSchema,
+});
+
+export type FosterPlacementEndValues = z.infer<typeof fosterPlacementEndSchema>;
+
+export const fosterCheckinFormSchema = z.object({
+  occurredOn: z.string().min(1, "Date is required"),
+  type: fosterCheckinTypeSchema,
+  notes: z.preprocess(emptyToNull, z.string().trim().nullable().optional()),
+});
+
+export type FosterCheckinFormValues = z.infer<typeof fosterCheckinFormSchema>;
+export type FosterCheckinFormInput = z.input<typeof fosterCheckinFormSchema>;
 
 // Self-service password change (any signed-in admin or volunteer) --------------
 

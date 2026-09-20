@@ -7,7 +7,9 @@ import {
   LayoutDashboard,
   Cat,
   Archive,
+  ClipboardList,
   CalendarDays,
+  House,
   HeartHandshake,
   Users,
   PenLine,
@@ -26,6 +28,8 @@ type AdminNavHref =
   | "/admin/animals"
   | "/admin/animals/archive"
   | "/admin/calendar"
+  | "/admin/foster"
+  | "/admin/register"
   | "/admin/donations"
   | "/admin/accounts"
   | "/admin/texts"
@@ -65,6 +69,8 @@ const NAV_GROUPS: { key: string; items: NavItem[] }[] = [
         exact: false,
         badge: "calendar",
       },
+      { href: "/admin/foster", icon: House, key: "foster", adminOnly: true, exact: false },
+      { href: "/admin/register", icon: ClipboardList, key: "register", adminOnly: true, exact: false },
     ],
   },
   {

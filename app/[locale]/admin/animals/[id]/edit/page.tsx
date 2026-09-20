@@ -3,6 +3,7 @@ import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getAnimalById } from "@/lib/animals";
 import { getAnimalInternalDetails } from "@/lib/animal-care";
+import { listPlacementsForAnimal } from "@/lib/foster";
 import { AnimalForm } from "@/components/admin/AnimalForm";
 import { VolunteerPhotoPanel } from "@/components/admin/VolunteerPhotoPanel";
 
@@ -25,11 +26,15 @@ export default async function EditAnimalPage({
     return <VolunteerPhotoPanel animal={animal} />;
   }
 
-  const internalDetails = await getAnimalInternalDetails(supabase, id);
+  const [internalDetails, placements] = await Promise.all([
+    getAnimalInternalDetails(supabase, id),
+    listPlacementsForAnimal(supabase, id),
+  ]);
+  const hasOpenPlacement = placements.some((placement) => placement.endedOn === null);
 
   return (
     <div className="rounded-admin border border-ink/10 bg-surface p-[18px]">
-      <AnimalForm animal={animal} internalDetails={internalDetails} />
+      <AnimalForm animal={animal} internalDetails={internalDetails} locationLocked={hasOpenPlacement} />
     </div>
   );
 }

@@ -23,9 +23,12 @@ const LOCATIONS = ["shelter", "foster_family", "cat_bar"] as const;
 export function AnimalForm({
   animal,
   internalDetails,
+  locationLocked = false,
 }: {
   animal?: Animal;
   internalDetails?: AnimalInternalDetails | null;
+  /** True while the animal has an open foster placement: the location is then managed from the foster tab. */
+  locationLocked?: boolean;
 }) {
   const t = useTranslations("admin.animals.form");
   const router = useRouter();
@@ -142,13 +145,24 @@ export function AnimalForm({
 
         <div className="col-span-2 flex flex-col gap-[5px]">
           <AdminLabel>{t("location")}</AdminLabel>
-          <AdminSelect {...register("location")}>
-            {LOCATIONS.map((value) => (
-              <option key={value} value={value}>
-                {t(`locations.${value}`)}
-              </option>
-            ))}
-          </AdminSelect>
+          {locationLocked ? (
+            <>
+              {/* Not registered: a disabled field is dropped from the submitted values, so the value rides in a hidden input. */}
+              <AdminSelect value="foster_family" disabled onChange={() => {}}>
+                <option value="foster_family">{t("locations.foster_family")}</option>
+              </AdminSelect>
+              <input type="hidden" {...register("location")} />
+              <span className="text-xs text-ink/55">{t("locationLocked")}</span>
+            </>
+          ) : (
+            <AdminSelect {...register("location")}>
+              {LOCATIONS.map((value) => (
+                <option key={value} value={value}>
+                  {t(`locations.${value}`)}
+                </option>
+              ))}
+            </AdminSelect>
+          )}
         </div>
 
         <div className="flex flex-col gap-[5px]">

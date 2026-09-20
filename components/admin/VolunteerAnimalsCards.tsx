@@ -31,11 +31,14 @@ export function VolunteerAnimalsCards({
   animals,
   internalDetails,
   vaccinesByAnimal,
+  fosterAnimalIds = [],
   initialSearch = "",
 }: {
   animals: Animal[];
   internalDetails: Record<string, AnimalInternalDetailsSummary>;
   vaccinesByAnimal: Record<string, AnimalVaccine[]>;
+  /** Animals this volunteer currently fosters — listed first and tagged. */
+  fosterAnimalIds?: string[];
   initialSearch?: string;
 }) {
   const t = useTranslations("admin.animals");
@@ -54,9 +57,12 @@ export function VolunteerAnimalsCards({
   const speciesOptions = [...new Set(cards.map((card) => card.species))].sort();
 
   const query = search.trim().toLowerCase();
+  const mine = new Set(fosterAnimalIds);
   const filtered = cards
     .filter((card) => speciesFilter === "all" || card.species === speciesFilter)
-    .filter((card) => !query || card.name.toLowerCase().includes(query) || card.species.toLowerCase().includes(query));
+    .filter((card) => !query || card.name.toLowerCase().includes(query) || card.species.toLowerCase().includes(query))
+    // Stable sort: the volunteer's own foster animals first, the rest keep their order.
+    .sort((a, b) => Number(mine.has(b.id)) - Number(mine.has(a.id)));
 
   return (
     <div className="flex flex-col gap-3.5">
@@ -98,9 +104,16 @@ export function VolunteerAnimalsCards({
                   <span className="h-[3px] w-[3px] rounded-pill bg-ink/25" />
                   <span className="text-xs text-ink/62">{t(`tracks.${animal.track}`)}</span>
                 </span>
-                <StatusPill tone={CARE_TONE[animal.careStatus]} className="w-fit">
-                  {t(`care.${animal.careStatus}`)}
-                </StatusPill>
+                <span className="flex flex-wrap gap-1.5">
+                  {mine.has(animal.id) ? (
+                    <StatusPill tone="accent" className="w-fit">
+                      {t("fosterMine")}
+                    </StatusPill>
+                  ) : null}
+                  <StatusPill tone={CARE_TONE[animal.careStatus]} className="w-fit">
+                    {t(`care.${animal.careStatus}`)}
+                  </StatusPill>
+                </span>
               </span>
             </Link>
           ))}

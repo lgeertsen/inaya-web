@@ -383,7 +383,9 @@
       "overview": "Vue d'ensemble",
       "animals": "Animaux",
       "animalsArchive": "Anciens animaux",
+      "register": "Registre",
       "calendar": "Calendrier",
+      "foster": "Familles d'accueil",
       "donations": "Dons",
       "accounts": "Bénévoles",
       "texts": "Textes du site",
@@ -434,6 +436,8 @@
         "unpublishedDraftsMeta": "Créées il y a plus de 15 jours",
         "missingMicrochip": "Fiche interne sans n° de puce",
         "missingMicrochipMeta": "{count, plural, one {# animal} other {# animaux}}",
+        "fosterCheckins": "Suivis d'accueil en retard",
+        "fosterCheckinsMeta": "{names}",
         "failedDonations": "Don en échec de paiement",
         "failedDonationsMeta": "{count, plural, one {# don à vérifier} other {# dons à vérifier}}"
       },
@@ -487,6 +491,7 @@
         "published": "Publication",
         "inShelter": "Présence"
       },
+      "fosterMine": "En accueil chez moi",
       "care": {
         "overdue": "Rappel en retard",
         "missingChip": "Puce manquante",
@@ -515,6 +520,7 @@
           "foster_family": "Famille d'accueil",
           "cat_bar": "Bar à chat PawPao"
         },
+        "locationLocked": "Géré depuis l'onglet « Famille d'accueil » tant que l'animal est placé.",
         "isPublished": "Publier sur le site",
         "save": "Enregistrer",
         "cancel": "Annuler",
@@ -534,7 +540,8 @@
         "photos": "Photos",
         "internalDetails": "Fiche interne",
         "intakeOutcome": "Entrées / sorties",
-        "vetAppointments": "Rendez-vous vétérinaire"
+        "vetAppointments": "Rendez-vous vétérinaire",
+        "foster": "Famille d'accueil"
       },
       "internalDetails": {
         "title": "Fiche interne",
@@ -578,6 +585,15 @@
         "delete": "Supprimer",
         "deleteConfirm": "Supprimer définitivement cet événement ?",
         "empty": "Aucune entrée ni sortie enregistrée.",
+        "contact": {
+          "column": "Contact",
+          "intakeTitle": "Provenance",
+          "outcomeTitle": "Destinataire",
+          "name": "Nom",
+          "phone": "Téléphone",
+          "address": "Adresse",
+          "documentRef": "Justificatif n°"
+        },
         "intakeReasons": {
           "stray": "Trouvé errant",
           "police_surrender": "Confié par la police",
@@ -649,6 +665,69 @@
         "empty": "Aucune visite vétérinaire enregistrée."
       }
     },
+    "register": {
+      "title": "Registre d'entrées / sorties",
+      "meta": "Année {year}",
+      "yearLabel": "Année",
+      "download": "Télécharger le PDF",
+      "pdfTitle": "Registre d'entrées et de sorties {year}",
+      "generatedOn": "Généré le {date}",
+      "page": "Page {current} / {total}",
+      "entriesTitle": "Entrées",
+      "exitsTitle": "Sorties",
+      "total": "TOTAL",
+      "species": "Espèce",
+      "presentAt": "Présent au {date}",
+      "today": "Aujourd'hui",
+      "entriesHeading": "ENTREES {species} {year}",
+      "exitsHeading": "SORTIES {species} {year}",
+      "noEntries": "Aucune entrée enregistrée pour cette année.",
+      "noExits": "Aucune sortie enregistrée pour cette année.",
+      "speciesNames": {
+        "cat": "Chats",
+        "dog": "Chiens",
+        "goat": "Caprins",
+        "horse": "Equidés/ânes",
+        "other": "Autres"
+      },
+      "intakeCauses": {
+        "stray": "Trouvé errant",
+        "born_in_care": "Naissances",
+        "shelter_transfer": "Sortie fourrière",
+        "surrendered": "Cédé/abandon",
+        "cruelty_seizure": "Maltraitance",
+        "police_surrender": "Confié par la police",
+        "association_transfer": "Autre Asso"
+      },
+      "outcomeCauses": {
+        "reunited_with_owner": "Propriét. retrouvé",
+        "died": "DCD/Euthanasie",
+        "released": "Relâché",
+        "transferred_to_association": "Transfert Autre Asso",
+        "adopted": "Adopté"
+      },
+      "columns": {
+        "date": "Date",
+        "age": "Age",
+        "sex": "Sexe",
+        "name": "Nom",
+        "identification": "Identification",
+        "cause": "Cause",
+        "detail": "Détail",
+        "provenance": "Provenance",
+        "recipient": "Destinataire",
+        "contactName": "Nom",
+        "phone": "N° téléphone",
+        "address": "Adresse",
+        "documentRef": "Justificatif n°"
+      },
+      "sex": { "male": "M", "female": "F", "unknown": "?" },
+      "age": {
+        "weeks": "{count} sem",
+        "months": "{count} mois",
+        "years": "{count, plural, one {# an} other {# ans}}"
+      }
+    },
     "donations": {
       "title": "Dons reçus",
       "meta": "12 derniers mois · {total} encaissés",
@@ -698,6 +777,141 @@
       "empty": "Aucun compte bénévole pour le moment.",
       "error": "Une erreur est survenue lors de la création de ce compte.",
       "created": "Compte créé pour {email}. Communiquez ce mot de passe temporaire : {password}"
+    },
+    "foster": {
+      "title": "Familles d'accueil",
+      "meta": "{count, plural, =0 {Aucune famille} one {# famille} other {# familles}} · {animals, plural, =0 {aucun animal placé} one {# animal placé} other {# animaux placés}}",
+      "add": "Ajouter une famille",
+      "newTitle": "Nouvelle famille d'accueil",
+      "newMeta": "Coordonnées, capacité et espèces acceptées",
+      "empty": "Aucune famille d'accueil pour le moment.",
+      "emptyFiltered": "Aucune famille ne correspond à ces critères.",
+      "delete": "Supprimer",
+      "deleteConfirm": "Supprimer définitivement cette famille d'accueil ?",
+      "capacityValue": "{used}/{capacity}",
+      "capacityMeta": "{used}/{capacity} places occupées",
+      "checkinOverdue": "{count, plural, one {# suivi en retard} other {# suivis en retard}}",
+      "checkinOk": "Suivis à jour",
+      "filters": {
+        "species": "Espèce acceptée",
+        "allSpecies": "Toutes les espèces",
+        "onlyFree": "Avec une place libre",
+        "apply": "Filtrer"
+      },
+      "columns": {
+        "family": "Famille",
+        "city": "Ville",
+        "species": "Espèces",
+        "capacity": "Places",
+        "status": "Statut",
+        "checkins": "Suivi"
+      },
+      "statuses": { "active": "Active", "paused": "En pause", "inactive": "Inactive" },
+      "speciesPlural": {
+        "cat": "Chats",
+        "dog": "Chiens",
+        "horse": "Chevaux",
+        "goat": "Chèvres",
+        "other": "Autres"
+      },
+      "endReasons": {
+        "returned_to_shelter": "Retour au refuge",
+        "adopted": "Adopté",
+        "deceased": "Décédé",
+        "other": "Autre"
+      },
+      "checkinTypes": { "call": "Appel", "visit": "Visite", "message": "Message" },
+      "form": {
+        "name": "Nom de la famille",
+        "contactName": "Personne de contact",
+        "phone": "Téléphone",
+        "email": "E-mail",
+        "emailInvalid": "Adresse e-mail invalide.",
+        "city": "Ville",
+        "capacity": "Capacité (animaux)",
+        "status": "Statut",
+        "acceptedSpecies": "Espèces acceptées",
+        "acceptedSpeciesRequired": "Choisissez au moins une espèce.",
+        "account": "Compte bénévole",
+        "accountNone": "Aucun compte lié",
+        "accountHint": "Liez le compte bénévole de la famille pour qu'elle puisse ajouter des photos de ses animaux. Créez d'abord le compte depuis « Bénévoles ».",
+        "notes": "Notes internes",
+        "create": "Créer la famille",
+        "save": "Enregistrer",
+        "saved": "Modifications enregistrées.",
+        "error": "Une erreur est survenue lors de l'enregistrement.",
+        "errorAccountLinked": "Ce compte bénévole est déjà lié à une autre famille."
+      },
+      "detail": {
+        "backToList": "Toutes les familles",
+        "hasAccount": "Compte bénévole lié",
+        "currentTitle": "Animaux en accueil",
+        "noCurrent": "Aucun animal en accueil chez cette famille.",
+        "editTitle": "Informations de la famille",
+        "historyTitle": "Historique des accueils"
+      },
+      "history": {
+        "animal": "Animal",
+        "family": "Famille",
+        "period": "Période",
+        "reason": "Fin de l'accueil"
+      },
+      "placement": {
+        "title": "Placer un animal",
+        "animal": "Animal",
+        "chooseAnimal": "Choisir un animal…",
+        "animalRequired": "Choisissez un animal.",
+        "family": "Famille d'accueil",
+        "chooseFamily": "Choisir une famille…",
+        "familyRequired": "Choisissez une famille.",
+        "startedOn": "Début de l'accueil",
+        "checkinInterval": "Suivi tous les (jours)",
+        "notes": "Notes",
+        "submit": "Confirmer le placement",
+        "freeSpots": "{count, plural, one {# place libre} other {# places libres}}",
+        "full": "complète",
+        "speciesNotAccepted": "espèce non acceptée",
+        "noFamilies": "Aucune famille active n'est disponible. Ajoutez-en une depuis « Familles d'accueil ».",
+        "noAnimals": "Aucun animal du refuge n'est disponible pour un placement.",
+        "notActive": "Cette famille n'est pas active : vérifiez son statut avant d'y placer un animal.",
+        "familyFull": "Cette famille a atteint sa capacité.",
+        "error": "Une erreur est survenue lors du placement.",
+        "errorAlreadyPlaced": "Cet animal est déjà placé dans une famille d'accueil."
+      },
+      "card": {
+        "since": "Depuis le {date}",
+        "lastCheckin": "Dernier suivi : {date}",
+        "noCheckin": "Aucun suivi enregistré",
+        "nextCheckin": "Prochain suivi avant le {date}",
+        "checkinOverdue": "Suivi en retard",
+        "checkinOk": "Suivi à jour",
+        "delete": "Supprimer ce placement",
+        "deleteConfirm": "Supprimer ce placement et tous ses suivis ? À utiliser uniquement en cas d'erreur de saisie."
+      },
+      "checkins": {
+        "title": "Suivis",
+        "empty": "Aucun suivi pour le moment.",
+        "occurredOn": "Date",
+        "type": "Type",
+        "notes": "Notes",
+        "add": "Ajouter un suivi",
+        "delete": "Supprimer",
+        "deleteConfirm": "Supprimer ce suivi ?",
+        "error": "Une erreur est survenue lors de l'ajout du suivi."
+      },
+      "end": {
+        "title": "Terminer l'accueil",
+        "endedOn": "Date de fin",
+        "reason": "Motif",
+        "hint": "Le lieu de vie de l'animal repasse à « Au refuge ». Pour une adoption ou un décès, enregistrez plutôt la sortie dans « Entrées / sorties » : l'accueil est alors terminé automatiquement.",
+        "submit": "Terminer l'accueil",
+        "error": "Une erreur est survenue."
+      },
+      "animalTab": {
+        "notPlaced": "Cet animal n'est pas en famille d'accueil.",
+        "notInCare": "Cet animal n'est plus au refuge : il ne peut pas être placé.",
+        "noHistory": "Aucun accueil enregistré pour cet animal."
+      }
     },
     "profile": {
       "title": "Mon compte",

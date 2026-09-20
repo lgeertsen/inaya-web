@@ -3,6 +3,7 @@ import { getPageRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getAnimals } from "@/lib/animals";
 import { listInternalDetailsSummaries, listAllVaccinesByAnimal } from "@/lib/animal-care";
+import { getMyFosterAnimalIds } from "@/lib/foster";
 import { AdminPage } from "@/components/admin/AdminPage";
 import { AnimalsTableClient } from "@/components/admin/AnimalsTableClient";
 import { VolunteerAnimalsCards } from "@/components/admin/VolunteerAnimalsCards";
@@ -17,10 +18,12 @@ export default async function AdminAnimalsPage({
   const isAdmin = role === "admin";
   const { q } = await searchParams;
   const supabase = await createClient();
-  const [animals, internalDetails, vaccinesByAnimal] = await Promise.all([
+  const [animals, internalDetails, vaccinesByAnimal, fosterAnimalIds] = await Promise.all([
     getAnimals(supabase, { publishedOnly: false }),
     listInternalDetailsSummaries(supabase),
     listAllVaccinesByAnimal(supabase),
+    // Volunteers who are also a foster household see their own animals first.
+    isAdmin ? Promise.resolve([]) : getMyFosterAnimalIds(supabase).catch(() => []),
   ]);
 
   // This page only lists animals currently at the shelter — former animals
@@ -47,6 +50,7 @@ export default async function AdminAnimalsPage({
           animals={visibleAnimals}
           internalDetails={internalDetails}
           vaccinesByAnimal={vaccinesByAnimal}
+          fosterAnimalIds={fosterAnimalIds}
           initialSearch={q ?? ""}
         />
       )}
