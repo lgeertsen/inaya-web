@@ -41,6 +41,8 @@ const SCAN_DELAY_MS = 700;
 const DESKTOP_WIDTH = 1200;
 const MOBILE_WIDTH = 390;
 const FRAME_PADDING = 12;
+const DESKTOP_BORDER = 1;
+const MOBILE_BORDER = 7;
 
 export function PreviewFrame(props: PreviewFrameProps) {
   const { src, viewport, drafts, selectedKey, scrollToSelected, hoveredKey, showAll, reloadToken } = props;
@@ -131,16 +133,15 @@ export function PreviewFrame(props: PreviewFrameProps) {
   useEffect(() => {
     controllerRef.current?.setShowAll(showAll);
   }, [showAll, ready]);
-
   // Track the space available for the preview.
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    const measure = () =>
-      setAvailable({
-        width: Math.max(0, container.clientWidth - FRAME_PADDING * 2),
-        height: Math.max(0, container.clientHeight - FRAME_PADDING * 2),
-      });
+    const measure = () => {
+      const width = Math.max(0, container.clientWidth - FRAME_PADDING * 2);
+      const height = Math.max(0, container.clientHeight - FRAME_PADDING * 2);
+      setAvailable((prev) => (prev && prev.width === width && prev.height === height ? prev : { width, height }));
+    };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(container);
@@ -150,14 +151,20 @@ export function PreviewFrame(props: PreviewFrameProps) {
   // Desktop: render at a fixed virtual width and scale down to fit. Mobile: real phone width.
   const isMobile = viewport === "mobile";
   const virtualWidth = isMobile ? MOBILE_WIDTH : DESKTOP_WIDTH;
-  const scale = available ? Math.min(1, available.width / virtualWidth) : 1;
-  const frameWidth = available && scale === 1 && !isMobile ? available.width : virtualWidth;
-  const frameHeight = available ? available.height / scale : 600;
-
+  // The border sits outside the content box, so it is subtracted from the measured space on both
+  // axes: a frame even slightly larger than its container would overflow, and the resulting
+  // scrollbars change the measurement, which flips the layout back and forth.
+  const border = isMobile ? MOBILE_BORDER : DESKTOP_BORDER;
+  const innerWidth = available ? Math.max(0, available.width - border * 2) : virtualWidth;
+  const innerHeight = available ? Math.max(0, available.height - border * 2) : 0;
+  const scale = available ? Math.min(1, innerWidth / virtualWidth) : 1;
+  const frameWidth = available && scale === 1 && !isMobile ? innerWidth : virtualWidth;
+  const frameHeight = available ? innerHeight / scale : 600;
   return (
     <div
       ref={containerRef}
-      className="relative flex h-full min-h-0 w-full min-w-0 justify-center overflow-auto bg-ink/[0.05]"
+      // Absolutely positioned so its size never depends on its content (see the measuring effect).
+      className="absolute inset-0 flex justify-center overflow-hidden bg-ink/[0.05]"
       style={{ padding: FRAME_PADDING }}
     >
       <div
@@ -166,7 +173,7 @@ export function PreviewFrame(props: PreviewFrameProps) {
         }`}
         style={{
           width: frameWidth * scale,
-          height: available ? available.height : "100%",
+          height: available ? innerHeight : "100%",
           boxSizing: "content-box",
         }}
       >

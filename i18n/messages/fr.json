@@ -805,6 +805,8 @@
       "showAll": "Repérer les textes",
       "openLive": "Voir la page",
       "previewHint": "Cliquez sur un texte de la page pour le modifier, ou survolez un champ pour le repérer.",
+      "selectHint": "Cliquez sur un texte de la page pour le modifier ici, ou choisissez-le dans la liste ci-dessous.",
+      "allTexts": "Tous les textes",
       "badge": "Texte sélectionné",
       "loadingPreview": "Chargement de l'aperçu…",
       "scanning": "Analyse de la page…",

@@ -805,6 +805,8 @@
       "showAll": "Highlight texts",
       "openLive": "View page",
       "previewHint": "Click a text on the page to edit it, or hover a field to locate it.",
+      "selectHint": "Click a text on the page to edit it here, or pick one from the list below.",
+      "allTexts": "All texts",
       "badge": "Selected text",
       "loadingPreview": "Loading preview…",
       "scanning": "Analysing the page…",

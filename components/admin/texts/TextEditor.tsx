@@ -226,8 +226,18 @@ export function TextEditor({
     if (tabToOpen) setTab(tabToOpen);
   }, []);
 
+  // Picking a text from the list in the side panel.
+  const handlePickText = useCallback((key: string) => {
+    setSelection({ key, source: "panel" });
+  }, []);
+
   const handleFieldFocus = useCallback((key: string) => {
     setSelection((prev) => (prev.key === key ? prev : { key, source: "panel" }));
+  }, []);
+
+  const handleBackToList = useCallback(() => {
+    setSelection({ key: null, source: "link" });
+    setHovered(null);
   }, []);
 
   const handleLocaleChange = useCallback((next: SiteTextLocale) => {
@@ -263,17 +273,15 @@ export function TextEditor({
     return entry.key.toLowerCase().includes(needle) || value.includes(needle);
   });
 
-  // Bring the selected text's field into view (unless the admin just focused it themselves).
+  // Put the cursor in the selected text's field. Never scrolls the page, so the preview stays where it is.
   useEffect(() => {
     const key = selection.key;
-    if (!key || selection.source === "panel") return;
+    if (!key) return;
     const frame = window.requestAnimationFrame(() => {
       const field = document.getElementById(`field-${key}`);
-      if (!field) return;
-      field.scrollIntoView({ block: "center", behavior: "smooth" });
       // The click happened inside the preview iframe, which still holds keyboard focus.
       window.focus();
-      field.querySelector("textarea")?.focus({ preventScroll: true });
+      field?.querySelector("textarea")?.focus({ preventScroll: true });
     });
     return () => window.cancelAnimationFrame(frame);
   }, [selection]);
@@ -353,6 +361,7 @@ export function TextEditor({
   const otherLocale: SiteTextLocale = locale === "fr" ? "en" : "fr";
   const otherLocaleDraftCount = Object.keys(drafts[otherLocale]).length;
   const src = previewPaths[locale];
+  const selectedEntry = selection.key ? entryByKey.get(selection.key) : undefined;
 
   return (
     <div className="flex min-h-0 flex-1 flex-col lg:h-screen">
@@ -420,12 +429,13 @@ export function TextEditor({
       </header>
 
       <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
-        <div className="flex h-[70vh] min-h-0 min-w-0 flex-1 flex-col lg:h-auto">
+        {/* flex-none below lg so the 70vh height is honoured (flex-1 would size it to its content). */}
+        <div className="flex h-[70vh] min-h-0 min-w-0 flex-none flex-col lg:h-auto lg:flex-1">
           <div className="flex items-center gap-2 border-b border-ink/8 bg-surface px-4 py-2 text-[12px] text-ink/60">
             <MousePointerClick size={14} className="flex-none text-accent" />
             {t("previewHint")}
           </div>
-          <div className="min-h-0 min-w-0 flex-1">
+          <div className="relative min-h-0 min-w-0 flex-1">
             <PreviewFrame
               src={src}
               viewport={viewport}
@@ -446,6 +456,18 @@ export function TextEditor({
         </div>
 
         <aside className="flex min-h-[60vh] w-full flex-none flex-col border-t border-ink/10 bg-background lg:min-h-0 lg:w-[440px] lg:border-l lg:border-t-0">
+          {selectedEntry ? (
+            <div className="border-b border-ink/10 bg-surface px-3.5 py-2.5">
+              <button
+                type="button"
+                onClick={handleBackToList}
+                className="inline-flex cursor-pointer items-center gap-1.5 rounded-[8px] px-2 py-1.5 text-[12.5px] font-bold text-ink/65 hover:bg-ink/5 hover:text-ink"
+              >
+                <ArrowLeft size={15} />
+                {t("allTexts")}
+              </button>
+            </div>
+          ) : (
           <div className="flex flex-col gap-2.5 border-b border-ink/10 bg-surface px-3.5 pb-0 pt-3">
             <div className="relative">
               <Search size={15} className="pointer-events-none absolute left-[11px] top-1/2 -translate-y-1/2 text-ink/40" />
@@ -477,43 +499,81 @@ export function TextEditor({
               ))}
             </div>
           </div>
+          )}
 
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3.5">
-            {tab === "hidden" ? (
-              <p className="rounded-admin-sm bg-ink/[0.04] px-3 py-2.5 text-[12px] leading-relaxed text-ink/65">
-                {t("hiddenExplain")}
-              </p>
-            ) : null}
-
-            {scanning ? (
-              <p className="flex items-center gap-2 py-6 text-[13px] text-ink/55">
-                <Loader2 size={15} className="animate-spin" />
-                {t("scanning")}
-              </p>
-            ) : visibleEntries.length === 0 ? (
-              <p className="py-6 text-center text-[13px] text-ink/50">{needle ? t("noResults") : t("emptyTab")}</p>
+            {selectedEntry ? (
+              <TextField
+                key={selectedEntry.key}
+                entry={selectedEntry}
+                locale={locale}
+                value={drafts[locale][selectedEntry.key] ?? selectedEntry[locale].value}
+                location={locations[selectedEntry.key]}
+                isSelected
+                isHovered={false}
+                problem={
+                  localProblems[`${locale}:${selectedEntry.key}`] ??
+                  serverProblems[`${locale}:${selectedEntry.key}`] ??
+                  null
+                }
+                onChange={(value) => setDraft(locale, selectedEntry.key, value)}
+                onFocus={() => handleFieldFocus(selectedEntry.key)}
+                onHover={() => {}}
+                onUndo={() => setDraft(locale, selectedEntry.key, selectedEntry[locale].value)}
+                onResetToDefault={() => setDraft(locale, selectedEntry.key, selectedEntry[locale].default)}
+              />
             ) : (
-              visibleEntries.map((entry) => {
-                const problem =
-                  localProblems[`${locale}:${entry.key}`] ?? serverProblems[`${locale}:${entry.key}`] ?? null;
-                return (
-                  <TextField
-                    key={entry.key}
-                    entry={entry}
-                    locale={locale}
-                    value={drafts[locale][entry.key] ?? entry[locale].value}
-                    location={locations[entry.key]}
-                    isSelected={selection.key === entry.key}
-                    isHovered={hovered === entry.key}
-                    problem={problem}
-                    onChange={(value) => setDraft(locale, entry.key, value)}
-                    onFocus={() => handleFieldFocus(entry.key)}
-                    onHover={(isHovered) => setHovered(isHovered ? entry.key : null)}
-                    onUndo={() => setDraft(locale, entry.key, entry[locale].value)}
-                    onResetToDefault={() => setDraft(locale, entry.key, entry[locale].default)}
-                  />
-                );
-              })
+              <>
+                <p className="flex items-start gap-2 rounded-admin-sm bg-accent-bg px-3 py-2.5 text-[12.5px] leading-relaxed text-ink/75">
+                  <MousePointerClick size={15} className="mt-0.5 flex-none text-accent" />
+                  {t("selectHint")}
+                </p>
+
+                {tab === "hidden" ? (
+                  <p className="rounded-admin-sm bg-ink/[0.04] px-3 py-2.5 text-[12px] leading-relaxed text-ink/65">
+                    {t("hiddenExplain")}
+                  </p>
+                ) : null}
+
+                {scanning ? (
+                  <p className="flex items-center gap-2 py-6 text-[13px] text-ink/55">
+                    <Loader2 size={15} className="animate-spin" />
+                    {t("scanning")}
+                  </p>
+                ) : visibleEntries.length === 0 ? (
+                  <p className="py-6 text-center text-[13px] text-ink/50">{needle ? t("noResults") : t("emptyTab")}</p>
+                ) : (
+                  <ul className="flex flex-col gap-1.5">
+                    {visibleEntries.map((entry) => {
+                      const location = locations[entry.key];
+                      const current = drafts[locale][entry.key] ?? entry[locale].value;
+                      return (
+                        <li key={entry.key}>
+                          <button
+                            type="button"
+                            onClick={() => handlePickText(entry.key)}
+                            onMouseEnter={() => setHovered(entry.key)}
+                            onMouseLeave={() => setHovered(null)}
+                            className={`flex w-full cursor-pointer flex-col gap-1 rounded-admin border bg-surface px-3 py-2.5 text-left transition-colors hover:border-accent/55 ${
+                              hovered === entry.key ? "border-accent/55" : "border-ink/10"
+                            }`}
+                          >
+                            <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-ink/50">
+                              {location ? t(`roles.${location.role}`) : t("roles.other")}
+                              {entry.key in drafts[locale] ? (
+                                <span className="rounded-pill bg-warning-bg px-1.5 py-0.5 text-[9.5px] text-warning">
+                                  {t("field.unsaved")}
+                                </span>
+                              ) : null}
+                            </span>
+                            <span className="line-clamp-2 text-[13px] leading-snug">{current}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </>
             )}
           </div>
 
