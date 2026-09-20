@@ -1,6 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
+// Intrinsic size of public/logo.png (not square).
+const LOGO_WIDTH = 2152;
+const LOGO_HEIGHT = 1993;
+
 type LogoProps = {
   size?: number;
   showTagline?: boolean;
@@ -15,8 +19,9 @@ export async function Logo({ size = 46, showTagline = true, variant = "dark" }: 
       <Image
         src="/logo.png"
         alt=""
-        width={size}
+        width={Math.round((size * LOGO_WIDTH) / LOGO_HEIGHT)}
         height={size}
+        style={{ width: "auto", height: size }}
         className={variant === "light" ? "invert" : undefined}
         priority
       />
